@@ -72,5 +72,3 @@ class Worker(AbstractUser):
     def __str__(self):
         return f"Username: {self.username} Full name: {self.first_name}" \
                f" {self.last_name} Position: {self.position.name}"
-
-
