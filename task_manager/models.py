@@ -64,6 +64,9 @@ class Worker(AbstractUser):
         related_name="workers"
     )
 
-
+    class Meta:
+        ordering = ["username"]
+        verbose_name = ["Worker"]
+        verbose_name_plural = ["Workers"]
 
 
