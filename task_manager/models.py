@@ -9,3 +9,11 @@ class TaskType(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Task(models.Model):
+    description = models.TextField(blank=True, null=True)
+    deadline = models.DateTimeField(blank=True)
+    is_completed = models.BooleanField(default=False)
+
+
