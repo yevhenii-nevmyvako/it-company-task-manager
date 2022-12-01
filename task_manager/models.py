@@ -37,4 +37,10 @@ class Task(models.Model):
         related_name="tasks"
     )
 
+    class Meta:
+        ordering = ["-deadline"]
 
+    def __str__(self):
+        return f"Task type: {self.task_type.name}" \
+               f" (deadline date: {self.deadline}," \
+               f" priority: {self.priority}"
