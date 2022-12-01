@@ -12,8 +12,20 @@ class TaskType(models.Model):
 
 
 class Task(models.Model):
+    TASK_PRIORITY_CHOICES = (
+        ("Ugent", "ugent priority task"),
+        ("High", "high priority task"),
+        ("Medium", "medium priority task"),
+        ("Low", "low priority task"),
+        ("Lowest", "lowest priority task")
+    )
     description = models.TextField(blank=True, null=True)
     deadline = models.DateTimeField(blank=True)
     is_completed = models.BooleanField(default=False)
+    priority = models.CharField(
+        max_length=6,
+        choices=TASK_PRIORITY_CHOICES
+    )
+
 
 
