@@ -69,4 +69,8 @@ class Worker(AbstractUser):
         verbose_name = ["Worker"]
         verbose_name_plural = ["Workers"]
 
+    def __str__(self):
+        return f"Username: {self.username} Full name: {self.first_name}" \
+               f" {self.last_name} Position: {self.position.name}"
+
 
