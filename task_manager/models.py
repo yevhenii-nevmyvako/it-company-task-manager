@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
@@ -44,3 +45,7 @@ class Task(models.Model):
         return f"Task type: {self.task_type.name}" \
                f" (deadline date: {self.deadline}," \
                f" priority: {self.priority}"
+
+
+class Worker(AbstractUser):
+    pass
