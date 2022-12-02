@@ -19,32 +19,26 @@ class Task(models.Model):
         ("High", "high priority task"),
         ("Medium", "medium priority task"),
         ("Low", "low priority task"),
-        ("Lowest", "lowest priority task")
+        ("Lowest", "lowest priority task"),
     )
     description = models.TextField(blank=True, null=True)
     deadline = models.DateTimeField(blank=True)
     is_completed = models.BooleanField(default=False)
-    priority = models.CharField(
-        max_length=6,
-        choices=TASK_PRIORITY_CHOICES
-    )
+    priority = models.CharField(max_length=6, choices=TASK_PRIORITY_CHOICES)
     task_type = models.ForeignKey(
-        TaskType,
-        on_delete=models.CASCADE,
-        related_name="tasks"
+        TaskType, on_delete=models.CASCADE, related_name="tasks"
     )
-    assignees = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        related_name="tasks"
-    )
+    assignees = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="tasks")
 
     class Meta:
         ordering = ["-deadline"]
 
     def __str__(self):
-        return f"Task type: {self.task_type.name}" \
-               f" (deadline date: {self.deadline}," \
-               f" priority: {self.priority}"
+        return (
+            f"Task type: {self.task_type.name}"
+            f" (deadline date: {self.deadline},"
+            f" priority: {self.priority}"
+        )
 
 
 class Position(models.Model):
@@ -59,9 +53,7 @@ class Position(models.Model):
 
 class Worker(AbstractUser):
     position = models.ForeignKey(
-        Position,
-        on_delete=models.CASCADE,
-        related_name="workers"
+        Position, on_delete=models.CASCADE, related_name="workers"
     )
 
     class Meta:
@@ -70,5 +62,7 @@ class Worker(AbstractUser):
         verbose_name_plural = ["Workers"]
 
     def __str__(self):
-        return f"Username: {self.username} Full name: {self.first_name}" \
-               f" {self.last_name} Position: {self.position.name}"
+        return (
+            f"Username: {self.username} Full name: {self.first_name}"
+            f" {self.last_name} Position: {self.position.name}"
+        )
