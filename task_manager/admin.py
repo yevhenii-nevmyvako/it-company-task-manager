@@ -13,7 +13,13 @@ class TaskTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ["is_completed", "priority", "task_type", "deadline", "description"]
+    list_display = [
+        "is_completed",
+        "priority",
+        "task_type",
+        "deadline",
+        "description"
+    ]
     list_filter = ["is_completed", "priority", "deadline"]
     search_fields = ["task_type"]
 
@@ -25,4 +31,14 @@ class PositionAdmin(admin.ModelAdmin):
     search_fields = ["name"]
 
 
-admin.site.register(Worker, UserAdmin)
+@admin.register(Worker)
+class WorkerAdmin(UserAdmin):
+    list_display = UserAdmin.list_display + ("position",)
+    fieldsets = UserAdmin.fieldsets + (
+        ("Additional info: position", {"fields": ("position",)}),
+    )
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        ("Additional info", {"fields": (
+            "first_name", "last_name", "email", "position",
+        )}),
+    )
