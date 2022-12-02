@@ -53,7 +53,10 @@ class Position(models.Model):
 
 class Worker(AbstractUser):
     position = models.ForeignKey(
-        Position, on_delete=models.CASCADE, related_name="workers"
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="workers",
+        null=True
     )
 
     class Meta:
