@@ -18,7 +18,7 @@ class TaskAdmin(admin.ModelAdmin):
         "priority",
         "task_type",
         "deadline",
-        "description"
+        "description",
     ]
     list_filter = ["is_completed", "priority", "deadline"]
     search_fields = ["task_type"]
