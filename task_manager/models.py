@@ -15,11 +15,11 @@ class TaskType(models.Model):
 
 class Task(models.Model):
     TASK_PRIORITY_CHOICES = (
-        ("Ugent", "ugent priority task"),
-        ("High", "high priority task"),
-        ("Medium", "medium priority task"),
-        ("Low", "low priority task"),
-        ("Lowest", "lowest priority task"),
+        ("ugent", "Ugent priority task"),
+        ("high", "High priority task"),
+        ("medium", "Medium priority task"),
+        ("low", "Low priority task"),
+        ("lowest", "Lowest priority task"),
     )
     description = models.TextField(blank=True, null=True)
     deadline = models.DateTimeField(blank=True)
@@ -28,7 +28,10 @@ class Task(models.Model):
     task_type = models.ForeignKey(
         TaskType, on_delete=models.CASCADE, related_name="tasks"
     )
-    assignees = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="tasks")
+    assignees = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="tasks"
+    )
 
     class Meta:
         ordering = ["-deadline"]
@@ -53,7 +56,7 @@ class Position(models.Model):
 
 class Worker(AbstractUser):
     position = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        Position,
         on_delete=models.CASCADE,
         related_name="workers",
         null=True
@@ -67,5 +70,5 @@ class Worker(AbstractUser):
     def __str__(self):
         return (
             f"Username: {self.username} Full name: {self.first_name}"
-            f" {self.last_name} Position: {self.position.name}"
+            f" {self.last_name} Position: "
         )
