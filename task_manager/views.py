@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+
 from django.shortcuts import render
 from django.views import generic
 
@@ -23,7 +23,7 @@ def index(request):
 
 class TaskTypeListView(generic.ListView):
     model = TaskType
-    # template_name =
+    template_name = "task_manager/task_type_list.html"
     context_object_name = "task_type_list"
     queryset = TaskType.objects.all()
 
@@ -44,4 +44,3 @@ class PositionListView(generic.ListView):
     model = Position
     queryset = Position.objects.all()
     context_object_name = "position_list"
-
