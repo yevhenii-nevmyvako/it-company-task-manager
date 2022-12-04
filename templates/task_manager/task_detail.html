@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h4 class="display-5">Task: {{ task.task_type }}</h4>
+  <hr>
+  <table class="table">
+      <tr>
+        <th>Task type:</th>
+        <th>Priority:</th>
+        <th>Is completed:</th>
+        <th>Deadline:</th>
+        <th>description</th>
+      </tr>
+      <tr>
+        <td>{{ task.task_type.name }}</td>
+        <td>{{ task.priority}}</td>
+        <td>{{ task.is_completed }}</td>
+        <td>{{ task.deadline }}</td>
+        <td>{{ task.description }}</td>
+      </tr>
+  </table>
+
+
+  <h5 class="display-5">Assignees: </h5>
+  <div class="p-2 bg-light border">
+  {% for assignee in task.assignees.all %}
+      <table class="table">
+      <tr>
+        <th>Username:</th>
+        <th>Full name:</th>
+        <th>Position assignee:</th>
+      </tr>
+      <tr>
+        <td>{{ assignee.username }}</td>
+        <td>{{ assignee.first_name }} {{ assignee.last_name }}</td>
+        <td>{{ assignee.position }}</td>
+      </tr>
+  </table>
+
+  {% empty %}
+    <p>No Workers!</p>
+  {% endfor %}
+  </div>
+{% endblock %}

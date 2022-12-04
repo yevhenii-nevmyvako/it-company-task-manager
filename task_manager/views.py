@@ -28,10 +28,20 @@ class TaskTypeListView(generic.ListView):
     queryset = TaskType.objects.all()
 
 
+class TaskTypeDetailView(generic.DetailView):
+    model = TaskType
+    template_name = "task_manager/task_type_detail.html"
+    context_object_name = "task_type_detail"
+
+
 class TaskListView(generic.ListView):
     model = Task
     queryset = Task.objects.all().select_related("task_type")
     context_object_name = "task_list"
+
+
+class TaskDetailView(generic.DetailView):
+    model = Task
 
 
 class WorkerListView(generic.ListView):
@@ -40,7 +50,15 @@ class WorkerListView(generic.ListView):
     queryset = Worker.objects.all().select_related("position")
 
 
+class WorkerDetailView(generic.DetailView):
+    model = Worker
+
+
 class PositionListView(generic.ListView):
     model = Position
     queryset = Position.objects.all()
     context_object_name = "position_list"
+
+
+class PositionDetailView(generic.DetailView):
+    model = Position
