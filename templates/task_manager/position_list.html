@@ -1,4 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+    <h1>Position List
+      Create
+    </h1>
+
+    {% if position_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Position</th>
+      </tr>
+    {% for position in position_list %}
+      <tr>
+        <td>{{ position.id }}</td>
+        <td><a href="#">{{ position.name }}</a></td>
+
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no position in the service.</p>
+    {% endif %}
 {% endblock %}
