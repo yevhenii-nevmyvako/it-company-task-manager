@@ -13,9 +13,13 @@
 </head>
 
 <body>
+<div class="header">
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-2">
+{#      {% block navigation %}#}
+{#        {% include "includes/navigation_to_top.html" %}#}
+{#      {% endblock %}#}
 
       {% block sidebar %}
         {% include "includes/sidebar.html" %}
@@ -32,6 +36,7 @@
 
     </div>
   </div>
+</div>
 </div>
 </body>
 
