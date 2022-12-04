@@ -13,6 +13,9 @@ class TaskType(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("task_manager:task-type-detail", args=[str(self.id)])
+
 
 class Task(models.Model):
     TASK_PRIORITY_CHOICES = (
@@ -44,6 +47,9 @@ class Task(models.Model):
             f" priority: {self.priority}"
         )
 
+    def get_absolute_url(self):
+        return reverse("task_manager:task-detail", args=[str(self.id)])
+
 
 class Position(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
@@ -53,6 +59,9 @@ class Position(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("task_manager:position-detail", args=[str(self.id)])
 
 
 class Worker(AbstractUser):
@@ -74,5 +83,5 @@ class Worker(AbstractUser):
             f" {self.last_name} Position: "
         )
 
-    # def get_absolute_url(self):
-    #     return reverse("task_manager:worker-detail", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("task_manager:worker-detail", args=[str(self.id)])

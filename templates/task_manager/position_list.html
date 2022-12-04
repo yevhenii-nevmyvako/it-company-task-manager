@@ -15,7 +15,7 @@
     {% for position in position_list %}
       <tr>
         <td>{{ position.id }}</td>
-        <td><a href="{% url 'task_manager:position-detail' pk=position.id %}">{{ position.name }}</a></td>
+        <td><a href="{{ position.get_absolute_url }}">{{ position.name }}</a></td>
 
       </tr>
     {% endfor %}

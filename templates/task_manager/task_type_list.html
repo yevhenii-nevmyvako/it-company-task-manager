@@ -18,7 +18,7 @@
 
       <tr>
         <td>{{ task_type.id }}</td>
-        <td><a href="{% url 'task_manager:task-type-detail' pk=task_type.id %}">{{ task_type.name }}</a></td>
+        <td><a href="{{ task_type.get_absolute_url }}">{{ task_type.name }}</a></td>
 
       </tr>
     {% endfor %}
