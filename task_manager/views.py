@@ -31,7 +31,7 @@ class TaskTypeListView(generic.ListView):
 class TaskTypeDetailView(generic.DetailView):
     model = TaskType
     template_name = "task_manager/task_type_detail.html"
-    context_object_name = "task_type_detail"
+    context_object_name = "task_type"
 
 
 class TaskListView(generic.ListView):

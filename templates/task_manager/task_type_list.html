@@ -7,15 +7,18 @@
     </h1>
 
     {% if task_type_list %}
+
     <table class="table">
+
       <tr>
         <th>ID</th>
         <th>Type</th>
       </tr>
-    {% for type in task_type_list %}
+      {% for task_type in task_type_list %}
+
       <tr>
-        <td>{{ type.id }}</td>
-        <td><a href="#">{{ type.name }}</a></td>
+        <td>{{ task_type.id }}</td>
+        <td><a href="{% url 'task_manager:task-type-detail' pk=task_type.id %}">{{ task_type.name }}</a></td>
 
       </tr>
     {% endfor %}

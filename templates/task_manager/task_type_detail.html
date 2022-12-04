@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h4 class="display-5">Type: {{ task_type.name }}</h4>
+  <hr>
+
+
+  <div class="p-2 bg-light border">
+  {% for task in task_type.tasks.all %}
+
+    <p class="text-muted"><strong>Task Type id: </strong>{{ task.id }}</p>
+    <table class="table">
+      <tr>
+        <th>Task priority</th>
+        <th>Is completed:</th>
+        <th>Deadline:</th>
+        <th>description</th>
+      </tr>
+      <tr>
+        <td>{{ task.priority }}</td>
+        <td>{{ task.is_completed }}</td>
+        <td>{{ task.deadline }}</td>
+        <td>{{ task.description }}</td>
+      </tr>
+    </table>
+
+  {% empty %}
+    <p>No Types!</p>
+  {% endfor %}
+  </div>
+{% endblock %}
