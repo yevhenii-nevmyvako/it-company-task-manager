@@ -59,6 +59,12 @@ class TaskDetailView(generic.DetailView):
     model = Task
 
 
+class TaskCreateViews(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:task-list")
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     context_object_name = "worker_list"
