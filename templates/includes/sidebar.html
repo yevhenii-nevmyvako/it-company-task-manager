@@ -1,7 +1,15 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
   <div class="sidebar">
-    <a class="active" href="#">Home</a>
+    {% if user.is_authenticated %}
+      <strong class="active">User: </strong>
+      <a href="{% url 'task_manager:worker-detail' pk=user.id %}">
+        {{ user.username }}</a>
+      <a href="{% url 'logout' %}">logged out</a>
+    {% else %}
+    <a href="{% url 'login' %}">login</a>
+  {% endif %}
+    <a class="active" href="{% url 'task_manager:index' %}">Home</a>
     <a href="{% url 'task_manager:index' %}">Index</a>
     <a href="{% url 'task_manager:worker-list' %}">Workers</a>
     <a href="{% url 'task_manager:task-list' %}">Tasks</a>
