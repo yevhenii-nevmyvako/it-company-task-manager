@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "debug_toolbar",
     "task_manager",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,8 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_REDIRECT_URL = "/task_manager/"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

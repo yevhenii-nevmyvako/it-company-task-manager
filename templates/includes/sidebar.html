@@ -2,9 +2,9 @@
 <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
   <div class="sidebar">
     {% if user.is_authenticated %}
-      <strong class="active">User: </strong>
-      <a href="{% url 'task_manager:worker-detail' pk=user.id %}">
-        {{ user.username }}</a>
+
+      <a class="active" href="{% url 'task_manager:worker-detail' pk=user.id %}">
+        User: {{ user.username }}</a>
       <a href="{% url 'logout' %}">logged out</a>
     {% else %}
     <a href="{% url 'login' %}">login</a>
