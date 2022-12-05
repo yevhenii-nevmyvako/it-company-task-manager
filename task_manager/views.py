@@ -1,10 +1,12 @@
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
 
 from task_manager.models import TaskType, Task, Position, Worker
 
 
+@login_required
 def index(request):
     num_tusk_types = TaskType.objects.count()
     num_tusks = Task.objects.count()
@@ -24,7 +26,7 @@ def index(request):
     return render(request, "task_manager/index.html", context=context)
 
 
-class TaskTypeListView(generic.ListView):
+class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     template_name = "task_manager/task_type_list.html"
     context_object_name = "task_type_list"
@@ -38,7 +40,7 @@ class TaskTypeDetailView(generic.DetailView):
     context_object_name = "task_type"
 
 
-class TaskListView(generic.ListView):
+class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     queryset = Task.objects.all().select_related("task_type")
     context_object_name = "task_list"
@@ -49,7 +51,7 @@ class TaskDetailView(generic.DetailView):
     model = Task
 
 
-class WorkerListView(generic.ListView):
+class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     context_object_name = "worker_list"
     queryset = Worker.objects.all().select_related("position")
@@ -61,7 +63,7 @@ class WorkerDetailView(generic.DetailView):
     queryset = Worker.objects.all().prefetch_related("tasks")
 
 
-class PositionListView(generic.ListView):
+class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     queryset = Position.objects.all()
     context_object_name = "position_list"
