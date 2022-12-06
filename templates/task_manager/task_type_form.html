@@ -3,12 +3,12 @@
 
 
 {% block content %}
-  <h1>{{ object|yesno:"Update,Addition" }} new task!</h1>
+  <h1>{{ object|yesno:"Update,Create" }} new type!</h1>
 
   <form action="" method="POST" novalidate>
   {% csrf_token %}
   {{ form|crispy }}
-    <input class="btn btn-primary" type="submit" name="Addition">
+    <input class="btn btn-primary" type="submit" value="Addition">
     <input class="btn btn-primary" type="button"
            value="Cancel" onclick="location.href='{% url 'task_manager:task-type-list' %}'">
 
