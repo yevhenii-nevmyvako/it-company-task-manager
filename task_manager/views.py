@@ -58,7 +58,7 @@ class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class TaskTypeDeleteView(LoginRequiredMixin, generic.DetailView):
     model = TaskType
-    template_name = "task_manager/task_type_delete.html"
+    template_name = "task_manager/task_type_delete_confirm.html"
     context_object_name = "task_type_to_delete"
     success_url = reverse_lazy("task_manager:task-type-list")
 
@@ -90,6 +90,9 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class TaskDeleteView(LoginRequiredMixin, generic.DetailView):
     model = Task
+    template_name = "task_manager/task_delete_confirm.html"
+    context_object_name = "task_to_delete"
+    success_url = reverse_lazy("task_manager:task-list")
 
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
