@@ -3,7 +3,9 @@
 {% block content %}
   <h4 class="display-5">Position: {{ position.name }}</h4>
   <hr>
-  <p><strong>Position: </strong>{{ position.name }}</p>
+  <p><strong>Position: </strong>{{ position.name }}
+    <a href="{% url 'task_manager:position-update' pk=position.id %}"><strong>Update</strong></a>
+  </p>
   <hr>
 
   <h5 class="display-5">Workers: </h5>

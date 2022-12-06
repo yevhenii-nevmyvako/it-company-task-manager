@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h4 class="display-5">Type: {{ task_type.name }}</h4>
+  <h4 class="display-5">Type: {{ task_type.name }}
+    <a href="{% url 'task_manager:task-type-update' pk=task_type.id %}"><strong>Update</strong></a>
+  </h4>
   <hr>
 
 
@@ -25,7 +27,7 @@
     </table>
 
   {% empty %}
-    <p>No Types!</p>
+    <p>No Tasks!</p>
   {% endfor %}
   </div>
 {% endblock %}
