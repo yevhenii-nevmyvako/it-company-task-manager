@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Worker List
-      Create
+      <a href="{% url 'task_manager:worker-create' %}"><strong>Create worker</strong></a>
     </h1>
 
     {% if worker_list %}

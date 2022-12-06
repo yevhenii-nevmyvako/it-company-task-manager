@@ -77,6 +77,12 @@ class WorkerDetailView(generic.DetailView):
     queryset = Worker.objects.all().prefetch_related("tasks")
 
 
+class WorkerCreateViews(LoginRequiredMixin, generic.CreateView):
+    model = Worker
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:worker-list")
+
+
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     queryset = Position.objects.all()
