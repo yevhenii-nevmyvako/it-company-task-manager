@@ -14,6 +14,7 @@
         <th>is_completed</th>
         <th>deadline</th>
         <th>description</th>
+        <th>Update</th>
       </tr>
     {% for task in task_list %}
       <tr>
@@ -25,6 +26,7 @@
         <td>
           {{ task.description }}
         </td>
+        <td><a href="{% url 'task_manager:task-update' pk=task.id %}">Update</a></td>
       </tr>
     {% endfor %}
 
