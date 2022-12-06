@@ -3,7 +3,7 @@
 {% block content %}
 
     <h1>Position List
-      Create
+      <a href="{% url 'task_manager:position-create' %}"><strong>Create position</strong></a>
     </h1>
 
     {% if position_list %}
