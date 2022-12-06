@@ -56,6 +56,13 @@ class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("task_manager:task-type-list")
 
 
+class TaskTypeDeleteView(LoginRequiredMixin, generic.DetailView):
+    model = TaskType
+    template_name = "task_manager/task_type_delete.html"
+    context_object_name = "task_type_to_delete"
+    success_url = reverse_lazy("task_manager:task-type-list")
+
+
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     queryset = Task.objects.all().select_related("task_type")
