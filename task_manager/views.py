@@ -41,7 +41,7 @@ class TaskTypeDetailView(generic.DetailView):
     context_object_name = "task_type"
 
 
-class TaskTypeCreateViews(LoginRequiredMixin, generic.CreateView):
+class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
     template_name = "task_manager/task_type_form.html"
     fields = "__all__"
@@ -59,7 +59,7 @@ class TaskDetailView(generic.DetailView):
     model = Task
 
 
-class TaskCreateViews(LoginRequiredMixin, generic.CreateView):
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     fields = "__all__"
     success_url = reverse_lazy("task_manager:task-list")
@@ -77,7 +77,7 @@ class WorkerDetailView(generic.DetailView):
     queryset = Worker.objects.all().prefetch_related("tasks")
 
 
-class WorkerCreateViews(LoginRequiredMixin, generic.CreateView):
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
     fields = "__all__"
     success_url = reverse_lazy("task_manager:worker-list")
