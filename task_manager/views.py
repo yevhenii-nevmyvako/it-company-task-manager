@@ -124,6 +124,15 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
         return context
 
+    def get_queryset(self):
+        form = WorkerSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                username__icontains=form.cleaned_data["username"]
+            )
+        return self.queryset
+
 
 class WorkerDetailView(generic.DetailView):
     model = Worker
