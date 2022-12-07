@@ -56,7 +56,13 @@ class WorkerPositionUpdateForm(forms.ModelForm):
 
 
 class PositionSearchForm(forms.Form):
-    title = forms.CharField(
+    position = forms.CharField(
         max_length=255,
-        required=False
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by position"
+            }
+        )
     )
