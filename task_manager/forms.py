@@ -79,3 +79,16 @@ class WorkerSearchForm(forms.Form):
             }
         )
     )
+
+
+class TaskSearchForm(forms.Form):
+    task_type = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by task type"
+            }
+        )
+    )
