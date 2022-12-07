@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block title %}Task type | {{ task_type.name }}{% endblock %}
 {% block content %}
   <h4 class="display-5">Type: {{ task_type.name }}
     <a href="{% url 'task_manager:task-type-update' pk=task_type.id %}"><strong>Update</strong></a>
