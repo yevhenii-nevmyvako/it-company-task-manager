@@ -85,6 +85,15 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
         return context
 
+    def get_queryset(self):
+        form = TaskSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                task_type__icontains=form.cleaned_data["task_type"]
+            )
+        return self.queryset
+
 
 class TaskDetailView(generic.DetailView):
     model = Task
