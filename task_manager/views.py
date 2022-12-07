@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.forms import WorkerCreationFrom, TaskForm, PositionForm, WorkerPositionUpdateForm
+from task_manager.forms import WorkerCreationFrom, TaskForm, PositionForm, WorkerPositionUpdateForm, PositionSearchForm
 from task_manager.models import TaskType, Task, Position, Worker
 
 
@@ -148,6 +148,13 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
     queryset = Position.objects.all()
     context_object_name = "position_list"
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(PositionListView, self).get_context_data(**kwargs)
+
+        context["search_position_form"] = PositionSearchForm()
+
+        return context
 
 
 class PositionDetailView(generic.DetailView):
