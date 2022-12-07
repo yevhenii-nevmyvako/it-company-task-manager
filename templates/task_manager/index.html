@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block title %}Task Manager{% endblock %}
 {% block content %}
   <h1>The Best Ever Task Manager</h1>
 
@@ -16,6 +16,6 @@
   <li>
     Count of employees {{ num_workers }}
   </li>
-  <li>You have visit thi page: {{ num_visits }} time{{ num_visits|pluralize }}</li>
+  <li>You have visit this page: {{ num_visits }} time{{ num_visits|pluralize }}</li>
 </ul>
 {% endblock %}
