@@ -128,8 +128,11 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
 
-        context["worker_search_form"] = WorkerSearchForm()
+        context["worker_search_form"] = WorkerSearchForm(
+            initial={"username": username}
+        )
 
         return context
 
@@ -191,9 +194,11 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(PositionListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
 
-        context["position_search_form"] = PositionSearchForm()
-
+        context["position_search_form"] = PositionSearchForm(
+            initial={"name": name}
+        )
         return context
 
     def get_queryset(self):
