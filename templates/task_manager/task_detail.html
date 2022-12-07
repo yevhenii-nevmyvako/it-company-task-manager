@@ -3,6 +3,12 @@
 {% block content %}
   <h4 class="display-5">Task: {{ task.task_type }}
     <a href="{% url 'task_manager:task-update' pk=task.id %}"><strong>Update</strong></a>
+    {% if not user in task.workers.all %}
+{#      <a class="btn btn-danger" href="{% url 'taxi:driver-delete-from-car' pk=car.id %}">Delete driver from car#}
+{#      </a>#}
+{#    {% else%}#}
+      <a class="btn btn-success" href="{% url 'task_manager:worker-assign-to-task' pk=task.id %}">Assign me to Task</a>
+    {% endif %}
   </h4>
 
   <hr>

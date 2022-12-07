@@ -47,3 +47,10 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = "__all__"
 
+
+class WorkerPositionUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Worker
+        fields = ("position",)
+

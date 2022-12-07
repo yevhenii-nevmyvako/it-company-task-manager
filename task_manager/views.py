@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.forms import WorkerCreationFrom, TaskForm, PositionForm
+from task_manager.forms import WorkerCreationFrom, TaskForm, PositionForm, WorkerPositionUpdateForm
 from task_manager.models import TaskType, Task, Position, Worker
 
 
@@ -113,10 +114,31 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy("task_manager:worker-list")
 
 
+class WorkerPositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Worker
+    form_class = WorkerPositionUpdateForm
+    template_name = "task_manager/worker_position_form.html"
+    context_object_name = "worker_position_update"
+
+
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     template_name = "task_manager/worker_delete_confirm.html"
     success_url = reverse_lazy("task_manager:worker-list")
+
+
+@login_required
+def assign_worker_to_task(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.assignees.add(request.user.id)
+    return HttpResponseRedirect(reverse_lazy("task_manager:task-detail", args=[pk]))
+
+
+# @login_required
+# def delete_worker_from_task(request, pk):
+#     task = Task.objects.get(pk=pk)
+#     task.assignees.remove(request.user.id)
+#     return HttpResponseRedirect(reverse_lazy("task_manager:task-detail"))
 
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
