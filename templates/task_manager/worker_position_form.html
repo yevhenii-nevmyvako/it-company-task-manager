@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}{{ worker_position_update }} | {{ object|yesno:"Update,Create" }}{% endblock %}
 {% load crispy_forms_filters %}
 
 
