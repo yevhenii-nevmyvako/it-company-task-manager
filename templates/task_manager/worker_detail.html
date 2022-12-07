@@ -33,7 +33,7 @@
       </tr>
       <tr>
         <td>{{ task.task_type }}</td>
-        <td>{{ task.is_completed }}</td>
+        <td>{% if task.is_cpmleted == True %} Completed{% else %}Not Completed{% endif %}</td>
         <td>{{ task.priority }}</td>
         <td>{{ task.deadline }}</td>
       </tr>
