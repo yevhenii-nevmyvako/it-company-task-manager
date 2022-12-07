@@ -17,7 +17,6 @@ from task_manager.forms import (
 )
 
 
-
 @login_required
 def index(request):
     num_tusk_types = TaskType.objects.count()
