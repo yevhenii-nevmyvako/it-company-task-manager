@@ -54,3 +54,9 @@ class WorkerPositionUpdateForm(forms.ModelForm):
         model = Worker
         fields = ("position",)
 
+
+class PositionSearchForm(forms.Form):
+    title = forms.CharField(
+        max_length=255,
+        required=False
+    )
