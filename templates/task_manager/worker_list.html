@@ -5,7 +5,7 @@
     <h1>Worker List
       <a href="{% url 'task_manager:worker-create' %}"><strong>Create worker</strong></a>
       <form action="" method="GET">
-        {{ search_worker_form|crispy }}
+        {{ worker_search_form|crispy }}
         <input type="submit" value="search">
       </form>
     </h1>

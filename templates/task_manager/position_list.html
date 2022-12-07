@@ -6,7 +6,7 @@
     <h1>Position List
       <a href="{% url 'task_manager:position-create' %}"><strong>Create position</strong></a>
       <form action="" method="GET">
-        {{ search_position_form|crispy }}
+        {{ position_search_form|crispy }}
         <input type="submit" value="search">
       </form>
     </h1>
