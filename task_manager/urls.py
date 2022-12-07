@@ -24,6 +24,7 @@ from task_manager.views import (
     WorkerDeleteView,
     WorkerPositionUpdateView,
     assign_worker_to_task,
+    delete_worker_from_task,
 
 )
 
@@ -64,6 +65,8 @@ urlpatterns = [
          WorkerPositionUpdateView.as_view(), name="worker-position-update"),
     path("workers/<int:pk>/assign_worker_to_task",
          assign_worker_to_task, name="worker-assign-to-task"),
+    path("workers/<int:pk>/delete_worker_from_task",
+         delete_worker_from_task, name="worker-delete-from-task"),
 
 
     path("positions/",

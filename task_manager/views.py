@@ -131,14 +131,16 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 def assign_worker_to_task(request, pk):
     task = Task.objects.get(pk=pk)
     task.assignees.add(request.user.id)
-    return HttpResponseRedirect(reverse_lazy("task_manager:task-detail", args=[pk]))
+    return HttpResponseRedirect(reverse_lazy(
+        "task_manager:task-detail", args=[pk]))
 
 
-# @login_required
-# def delete_worker_from_task(request, pk):
-#     task = Task.objects.get(pk=pk)
-#     task.assignees.remove(request.user.id)
-#     return HttpResponseRedirect(reverse_lazy("task_manager:task-detail"))
+@login_required
+def delete_worker_from_task(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.assignees.remove(request.user.id)
+    return HttpResponseRedirect(reverse_lazy(
+        "task_manager:task-detail", args=[pk]))
 
 
 class PositionListView(LoginRequiredMixin, generic.ListView):

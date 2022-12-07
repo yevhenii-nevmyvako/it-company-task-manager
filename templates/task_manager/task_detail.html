@@ -3,11 +3,11 @@
 {% block content %}
   <h4 class="display-5">Task: {{ task.task_type }}
     <a href="{% url 'task_manager:task-update' pk=task.id %}"><strong>Update</strong></a>
-    {% if not user in task.workers.all %}
-{#      <a class="btn btn-danger" href="{% url 'taxi:driver-delete-from-car' pk=car.id %}">Delete driver from car#}
-{#      </a>#}
-{#    {% else%}#}
+    {% if user not in task.assignees.all %}
       <a class="btn btn-success" href="{% url 'task_manager:worker-assign-to-task' pk=task.id %}">Assign me to Task</a>
+    {% else %}
+      <a class="btn btn-danger" href="{% url 'task_manager:worker-delete-from-task' pk=task.id %}">Delete me from Task
+      </a>
     {% endif %}
   </h4>
 
@@ -40,7 +40,7 @@
         <th>Position assignee:</th>
       </tr>
       <tr>
-        <td>{{ assignee.username }}</td>
+        <td>{{ assignee.username }} {% if user == assignee %} (Me){% endif %}</td>
         <td>{{ assignee.first_name }} {{ assignee.last_name }}</td>
         <td>{{ assignee.position }}</td>
       </tr>
