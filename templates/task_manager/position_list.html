@@ -1,11 +1,15 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 {% block title %}Position List{% endblock %}
 {% block content %}
 
     <h1>Position List
       <a href="{% url 'task_manager:position-create' %}"><strong>Create position</strong></a>
+      <form action="" method="GET">
+        {{ search_position_form|crispy }}
+        <input type="submit" value="search">
+      </form>
     </h1>
-
     {% if position_list %}
     <table class="table">
       <tr>
