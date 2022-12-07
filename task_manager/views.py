@@ -4,10 +4,18 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-
-from task_manager.forms import WorkerCreationFrom, TaskForm, PositionForm, WorkerPositionUpdateForm, PositionSearchForm, \
-    WorkerSearchForm, TaskSearchForm, TaskTypeSearchForm
 from task_manager.models import TaskType, Task, Position, Worker
+from task_manager.forms import (
+    WorkerCreationFrom,
+    TaskForm,
+    PositionForm,
+    WorkerPositionUpdateForm,
+    PositionSearchForm,
+    WorkerSearchForm,
+    TaskSearchForm,
+    TaskTypeSearchForm,
+)
+
 
 
 @login_required
