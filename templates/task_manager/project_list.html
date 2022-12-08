@@ -28,7 +28,7 @@
         <td>{{ project.description }}</td>
 
         <td><a href="{% url 'task_manager:project-update' pk=project.id %}">Update</a></td>
-      <td><a href="{% url 'task_manager:project-delete' pk=task.id %}">Delete</a></td>
+      <td><a href="{% url 'task_manager:project-delete' pk=project.id %}">Delete</a></td>
       </tr>
     {% endfor %}
     </table>
