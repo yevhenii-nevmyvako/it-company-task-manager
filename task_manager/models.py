@@ -44,6 +44,10 @@ class Project(models.Model):
             UniqueConstraint(fields=["name"])
         ]
 
+    def __str__(self):
+        return f"Project: {self.name}" \
+               f"Teams:{self.teams.name}"
+
 
 class Task(models.Model):
     TASK_PRIORITY_CHOICES = (
