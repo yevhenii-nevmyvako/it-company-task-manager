@@ -5,10 +5,10 @@
 
     <h1>Team List
       <a href="{% url 'task_manager:team-create' %}"><strong>Create team</strong></a>
-{#      <form action="" method="GET">#}
-{#        {{ team_search_form|crispy }}#}
-{#        <input type="submit" value="search">#}
-{#      </form>#}
+      <form action="" method="GET">
+        {{ team_search_form|crispy }}
+        <input type="submit" value="search">
+      </form>
     </h1>
     {% if team_list %}
     <table class="table">
