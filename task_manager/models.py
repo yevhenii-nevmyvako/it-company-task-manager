@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models import UniqueConstraint
 from django.urls import reverse
 
 
@@ -18,8 +19,13 @@ class TaskType(models.Model):
 
 
 class Team(models.Model):
-    name = models.CharField(max_length=63, unique=True)
+    name = models.CharField(max_length=63)
 
+    class Meta:
+        ordering = ["name"]
+        constraints = [
+            UniqueConstraint(fields=["name"])
+        ]
 
 
 class Task(models.Model):
