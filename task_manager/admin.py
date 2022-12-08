@@ -7,6 +7,7 @@ from task_manager.models import (
     Position,
     Worker,
     Project,
+    Team,
 )
 
 
@@ -53,5 +54,12 @@ class WorkerAdmin(UserAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ["name", "description"]
+    list_filter = ["name"]
+    search_fields = ["name"]
+
+
+@admin.register(Team)
+class TeamAdmin(admin.ModelAdmin):
+    list_display = ["name"]
     list_filter = ["name"]
     search_fields = ["name"]
