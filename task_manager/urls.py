@@ -75,7 +75,7 @@ urlpatterns = [
 
     path("positions/",
          PositionListView.as_view(), name="position-list"),
-    path("positions/<int:pk>",
+    path("positions/<int:pk>/",
          PositionDetailView.as_view(), name="position-detail"),
     path("positions/create/",
          PositionCreateView.as_view(), name="position-create"),
@@ -87,7 +87,7 @@ urlpatterns = [
 
     path("projects/",
          ProjectListView.as_view(), name="project-list"),
-    path("projects/<int:pk>",
+    path("projects/<int:pk>/",
          ProjectDetailView.as_view(), name="project-detail"),
     path("projects/create/",
          ProjectCreateView.as_view(), name="project-create"),

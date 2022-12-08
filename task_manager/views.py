@@ -266,16 +266,16 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Project
     queryset = Project.objects.all().prefetch_related("teams")
-    success_url = reverse_lazy("task_manager:project-list-list")
+    success_url = reverse_lazy("task_manager:project-list")
 
 
 class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     model = Project
     fields = "__all__"
-    success_url = reverse_lazy("task_manager:project-list-list")
+    success_url = reverse_lazy("task_manager:project-list")
 
 
 class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Project
     fields = "__all__"
-    success_url = reverse_lazy("task_manager:project-list-list")
+    success_url = reverse_lazy("task_manager:project-list")

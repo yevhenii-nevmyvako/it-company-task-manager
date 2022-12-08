@@ -3,7 +3,7 @@
 {% block title %}Project List{% endblock %}
 {% block content %}
     <h1>Tasks List
-      <a href="{% url 'task_manager:task-create' %}"><strong>Create Task</strong></a>
+      <a href="{% url 'task_manager:project-create' %}"><strong>Create Task</strong></a>
 {#      <form action="" method="GET">#}
 {#        {{ task_search_form|crispy }}#}
 {#        <input type="submit" value="search">#}
@@ -17,7 +17,7 @@
         <th>Project Name</th>
         <th>Teams</th>
         <th>Description</th>
-{#        <th>Update</th>#}
+        <th>Update</th>
 {#        <th>Delete</th>#}
       </tr>
     {% for project in project_list %}
@@ -27,7 +27,7 @@
         <td>{{ project.teams}}</td>
         <td>{{ project.description }}</td>
 
-{#        <td><a href="{% url 'task_manager:task-update' pk=task.id %}">Update</a></td>#}
+        <td><a href="{% url 'task_manager:project-update' pk=project.id %}">Update</a></td>
 {#      <td><a href="{% url 'task_manager:task-delete' pk=task.id %}">Delete</a></td>#}
       </tr>
     {% endfor %}
