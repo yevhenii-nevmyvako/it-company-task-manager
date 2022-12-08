@@ -24,7 +24,7 @@ class PositionForm(forms.ModelForm):
     def clean_name(self):
         name = self.cleaned_data["name"]
 
-        if not name.isalpha():
+        if [el for el in name if el in "0123456789"]:
             raise ValidationError("Should be no digits in position field")
         return name
 
