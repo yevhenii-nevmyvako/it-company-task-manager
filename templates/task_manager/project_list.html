@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block title %}Project List{% endblock %}
+{% block content %}
+    <h1>Tasks List
+{#      <a href="{% url 'task_manager:task-create' %}"><strong>Create Task</strong></a>#}
+{#      <form action="" method="GET">#}
+{#        {{ task_search_form|crispy }}#}
+{#        <input type="submit" value="search">#}
+{#      </form>#}
+    </h1>
+
+    {% if project_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Project Name</th>
+        <th>Teams</th>
+        <th>Description</th>
+{#        <th>Update</th>#}
+{#        <th>Delete</th>#}
+      </tr>
+    {% for project in project_list %}
+      <tr>
+        <td>{{ project.id }}</td>
+        <td><a href="{{ project.get_absolute_url }}">{{ project.task_type.name }}</a></td>
+        <td>{{ task.priority}}</td>
+        <td>{{ task.is_completed }}</td>
+
+{#        <td><a href="{% url 'task_manager:task-update' pk=task.id %}">Update</a></td>#}
+{#      <td><a href="{% url 'task_manager:task-delete' pk=task.id %}">Delete</a></td>#}
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no project in the service.</p>
+    {% endif %}
+{% endblock %}

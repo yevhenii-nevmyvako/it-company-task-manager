@@ -260,7 +260,4 @@ class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
 class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
     queryset = Project.objects.all()
-    context_object_name = "project_list"
     paginate_by = 5
-
-
