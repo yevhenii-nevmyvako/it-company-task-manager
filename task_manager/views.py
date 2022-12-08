@@ -279,3 +279,10 @@ class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Project
     fields = "__all__"
     success_url = reverse_lazy("task_manager:project-list")
+
+
+class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Project
+    template_name = "task_manager/project_delete_confirm.html"
+    context_object_name = "project_to_delete"
+    success_url = reverse_lazy("task_manager:project-list")
