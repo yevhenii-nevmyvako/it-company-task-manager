@@ -316,7 +316,7 @@ class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
-    queryset = Team.objects.all().select_related("workers")
+    queryset = Team.objects.all()
     paginate_by = 5
 
 
