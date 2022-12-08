@@ -109,6 +109,12 @@ class Worker(AbstractUser):
         related_name="workers",
         null=True
     )
+    team = models.ForeignKey(
+        Team,
+        on_delete=models.CASCADE,
+        related_name="workers",
+        null=True
+    )
 
     class Meta:
         ordering = ["username"]
