@@ -14,6 +14,7 @@ from task_manager.forms import (
     WorkerSearchForm,
     TaskSearchForm,
     TaskTypeSearchForm,
+    ProjectSearchForm,
 )
 
 
@@ -261,6 +262,24 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
     queryset = Project.objects.all()
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProjectListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+
+        context["project_search_form"] = ProjectSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        form = ProjectSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+        return self.queryset
 
 
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
