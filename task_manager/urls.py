@@ -34,6 +34,7 @@ from task_manager.views import (
     TeamDetailView,
     TeamCreateView,
     TeamUpdateView,
+    TeamDeleteView,
 
 )
 
@@ -110,6 +111,8 @@ urlpatterns = [
          TeamCreateView.as_view(), name="team-create"),
     path("teams/<int:pk>/update/",
          TeamUpdateView.as_view(), name="team-update"),
+    path("teams/<int:pk>delete/",
+         TeamDeleteView.as_view(), name="team-delete"),
 ]
 
 app_name = "task_manager"
