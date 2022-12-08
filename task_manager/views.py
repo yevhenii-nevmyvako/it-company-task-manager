@@ -336,3 +336,11 @@ class TeamUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Team
     fields = "__all__"
     success_url = reverse_lazy("task_manager:team-list")
+
+
+class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Team
+    template_name = "task_manager/team_delete_confirm.html"
+    context_object_name = "team_to_delete"
+    success_url = reverse_lazy("task_manager:team-list")
+
