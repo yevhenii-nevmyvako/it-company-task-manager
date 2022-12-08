@@ -24,7 +24,9 @@ class Team(models.Model):
     class Meta:
         ordering = ["name"]
         constraints = [
-            UniqueConstraint(fields=["name"])
+            UniqueConstraint(
+                name="unique_team_name", fields=["name"]
+            )
         ]
 
     def get_absolute_url(self):
@@ -41,7 +43,9 @@ class Project(models.Model):
     class Meta:
         ordering = ["name"]
         constraints = [
-            UniqueConstraint(fields=["name"])
+            UniqueConstraint(
+                name="unique_project_name", fields=["name"]
+            )
         ]
 
     def __str__(self):
