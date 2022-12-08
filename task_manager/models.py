@@ -27,6 +27,9 @@ class Team(models.Model):
             UniqueConstraint(fields=["name"])
         ]
 
+    def __str__(self):
+        return self.name
+
 
 class Task(models.Model):
     TASK_PRIORITY_CHOICES = (
