@@ -21,7 +21,7 @@ from task_manager.forms import (
     WorkerSearchForm,
     TaskSearchForm,
     TaskTypeSearchForm,
-    ProjectSearchForm,
+    ProjectSearchForm, TeamSearchForm,
 )
 
 
@@ -319,6 +319,24 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
     queryset = Team.objects.all()
     paginate_by = 5
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TeamListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+
+        context["team_search_form"] = TeamSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        form = TeamSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+        return self.queryset
+
 
 class TeamDetailView(LoginRequiredMixin, generic.DetailView):
     model = Team
@@ -343,4 +361,3 @@ class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = "task_manager/team_delete_confirm.html"
     context_object_name = "team_to_delete"
     success_url = reverse_lazy("task_manager:team-list")
-
