@@ -2,12 +2,12 @@
 {% load crispy_forms_filters %}
 {% block title %}Project List{% endblock %}
 {% block content %}
-    <h1>Tasks List
+    <h1>Project List
       <a href="{% url 'task_manager:project-create' %}"><strong>Create Task</strong></a>
-{#      <form action="" method="GET">#}
-{#        {{ task_search_form|crispy }}#}
-{#        <input type="submit" value="search">#}
-{#      </form>#}
+      <form action="" method="GET">
+        {{ project_search_form|crispy }}
+        <input type="submit" value="search">
+      </form>
     </h1>
 
     {% if project_list %}
