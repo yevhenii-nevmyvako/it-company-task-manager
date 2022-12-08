@@ -19,7 +19,7 @@ class TaskType(models.Model):
 
 
 class Team(models.Model):
-    name = models.CharField(max_length=63)
+    name = models.CharField(max_length=255)
 
     class Meta:
         ordering = ["name"]
@@ -30,7 +30,13 @@ class Team(models.Model):
     def get_absolute_url(self):
         return reverse("task_manager:team-detail", args=[str(self.id)])
 
-    def get_absolute
+
+class Project(models.Model):
+    name = models.CharField(max_length=255)
+    teams = models.ManyToManyField(
+        Team, related_name="projects"
+    )
+    description = models.TextField(null=True, blank=True)
 
 
 class Task(models.Model):
