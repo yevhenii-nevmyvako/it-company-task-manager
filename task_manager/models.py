@@ -36,9 +36,12 @@ class Task(models.Model):
         settings.AUTH_USER_MODEL,
         related_name="tasks"
     )
+    team = models.ForeignKey(
+        Team, on_delete=models.CASCADE, related_name="tasks"
+    )
 
     class Meta:
-        ordering = ["-deadline"]
+        ordering = ["deadline"]
 
     def __str__(self):
         return (
