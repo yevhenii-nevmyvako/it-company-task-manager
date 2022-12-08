@@ -65,7 +65,7 @@ class Task(models.Model):
         ("lowest", "Lowest priority task"),
     )
     description = models.TextField(blank=True, null=True)
-    deadline = models.DateTimeField(blank=True)
+    deadline = models.DateTimeField(blank=True, null=True)
     is_completed = models.BooleanField(default=False)
     priority = models.CharField(max_length=6, choices=TASK_PRIORITY_CHOICES)
     task_type = models.ForeignKey(
