@@ -38,6 +38,12 @@ class Project(models.Model):
     )
     description = models.TextField(null=True, blank=True)
 
+    class Meta:
+        ordering = ["name"]
+        constraints = [
+            UniqueConstraint(fields=["name"])
+        ]
+
 
 class Task(models.Model):
     TASK_PRIORITY_CHOICES = (
