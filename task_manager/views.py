@@ -4,7 +4,14 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-from task_manager.models import TaskType, Task, Position, Worker, Project
+from task_manager.models import (
+    TaskType,
+    Task,
+    Position,
+    Worker,
+    Project,
+    Team,
+)
 from task_manager.forms import (
     WorkerCreationFrom,
     TaskForm,
@@ -305,3 +312,12 @@ class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = "task_manager/project_delete_confirm.html"
     context_object_name = "project_to_delete"
     success_url = reverse_lazy("task_manager:project-list")
+
+
+class TeamListView(LoginRequiredMixin, generic.ListView):
+    model = Team
+    queryset = Team.objects.all().select_related("workers")
+    paginate_by = 5
+
+
+

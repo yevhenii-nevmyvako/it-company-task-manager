@@ -30,7 +30,7 @@ from task_manager.views import (
     ProjectCreateView,
     ProjectUpdateView,
     ProjectDeleteView,
-    TeamListViev,
+    TeamListView,
 
 )
 
@@ -99,7 +99,7 @@ urlpatterns = [
          ProjectDeleteView.as_view(), name="project-delete"),
 
 
-    path("teams/", TeamListViev.as_view(), name="team-list"),
+    path("teams/", TeamListView.as_view(), name="team-list"),
 ]
 
 app_name = "task_manager"
