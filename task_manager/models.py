@@ -48,6 +48,9 @@ class Project(models.Model):
         return f"Project: {self.name}" \
                f"Teams:{self.teams.name}"
 
+    def get_absolute_url(self):
+        return reverse("task_manager:project-detail", args=[str(self.id)])
+
 
 class Task(models.Model):
     TASK_PRIORITY_CHOICES = (
