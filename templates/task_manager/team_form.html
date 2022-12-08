@@ -4,7 +4,7 @@
 
 
 {% block content %}
-<h1>{{ object|yesno:"Update,Addition" }} new position!</h1>
+<h1>{{ object|yesno:"Update,Create" }} new Team!</h1>
 
   <form action="" method="POST" novalidate>
   {% csrf_token %}
