@@ -267,3 +267,5 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Project
     queryset = Project.objects.all().prefetch_related("teams")
     success_url = reverse_lazy("task_manager:project-list-list")
+
+
