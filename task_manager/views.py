@@ -322,5 +322,5 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
 
 class TeamDetailView(LoginRequiredMixin, generic.DetailView):
     model = Team
-    queryset = Team.objects.all().perfect_related("project")
+    queryset = Team.objects.all()
     success_url = reverse_lazy("task_manager:team-list")
