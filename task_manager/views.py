@@ -320,4 +320,7 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
-
+class TeamDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Team
+    queryset = Team.objects.all().perfect_related("project")
+    success_url = reverse_lazy("task_manager:team-list")
