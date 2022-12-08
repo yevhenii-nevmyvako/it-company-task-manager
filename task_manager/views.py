@@ -331,3 +331,8 @@ class TeamCreateView(LoginRequiredMixin, generic.CreateView):
     fields = "__all__"
     success_url = reverse_lazy("task_manager:team-list")
 
+
+class TeamUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Team
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:team-list")
