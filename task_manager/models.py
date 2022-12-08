@@ -27,8 +27,10 @@ class Team(models.Model):
             UniqueConstraint(fields=["name"])
         ]
 
-    def __str__(self):
-        return self.name
+    def get_absolute_url(self):
+        return reverse("task_manager:team-detail", args=[str(self.id)])
+
+    def get_absolute
 
 
 class Task(models.Model):
