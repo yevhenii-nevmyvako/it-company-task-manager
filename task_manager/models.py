@@ -17,6 +17,11 @@ class TaskType(models.Model):
         return reverse("task_manager:task-type-detail", args=[str(self.id)])
 
 
+class Team(models.Model):
+    name = models.CharField(max_length=63, unique=True)
+
+
+
 class Task(models.Model):
     TASK_PRIORITY_CHOICES = (
         ("ugent", "Ugent priority task"),
