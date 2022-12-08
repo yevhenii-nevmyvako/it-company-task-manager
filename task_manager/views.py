@@ -261,3 +261,9 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
     queryset = Project.objects.all()
     paginate_by = 5
+
+
+class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Project
+    queryset = Project.objects.all().prefetch_related("teams")
+    success_url = reverse_lazy("task_manager:project-list-list")

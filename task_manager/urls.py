@@ -26,6 +26,7 @@ from task_manager.views import (
     assign_worker_to_task,
     delete_worker_from_task,
     ProjectListView,
+    ProjectDetailView,
 
 )
 
@@ -83,7 +84,9 @@ urlpatterns = [
 
 
     path("projects/",
-         ProjectListView.as_view(), name="project-list")
+         ProjectListView.as_view(), name="project-list"),
+    path("projects/<int:pk>",
+         ProjectDetailView.as_view(), name="project-detail")
 ]
 
 app_name = "task_manager"

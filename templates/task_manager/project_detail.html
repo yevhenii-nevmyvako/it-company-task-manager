@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Project | {{ project.name }}{% endblock %}
+
+{% block content %}
+  <h4 class="display-5">Task: {{ project.name }}
+{#    <a href="{% url 'task_manager:task-update' pk=task.id %}"><strong>Update</strong></a>#}
+{#    {% if user not in task.assignees.all %}#}
+{#      <a class="btn btn-success" href="{% url 'task_manager:worker-assign-to-task' pk=task.id %}">Assign me to Task</a>#}
+{#    {% else %}#}
+{#      <a class="btn btn-danger" href="{% url 'task_manager:worker-delete-from-task' pk=task.id %}">Delete me from Task#}
+{#      </a>#}
+{#    {% endif %}#}
+  </h4>
+
+  <hr>
+  <table class="table">
+      <tr>
+        <th>Project name:</th>
+        <th>description:</th>
+      </tr>
+      <tr>
+        <td>{{ project.name }}</td>
+        <td>{{ project.description}}</td>
+      </tr>
+  </table>
+
+
+  <h5 class="display-5">Assignees: </h5>
+  <div class="p-2 bg-light border">
+  {% for team in project.teams.all %}
+      <table class="table">
+      <tr>
+        <th>Team Name:</th>
+      </tr>
+      <tr>
+        <td>{{ team.name }}</td>
+      </tr>
+  </table>
+
+  {% empty %}
+    <p>No Teams!</p>
+  {% endfor %}
+  </div>
+{% endblock %}
