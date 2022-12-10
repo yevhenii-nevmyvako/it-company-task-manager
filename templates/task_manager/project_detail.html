@@ -30,9 +30,11 @@
   {% for team in project.teams.all %}
       <table class="table">
       <tr>
+        <th>Team id:</th>
         <th>Team Name:</th>
       </tr>
       <tr>
+        <td>{{ team.id }}</td>
         <td>{{ team.name }}</td>
       </tr>
   </table>
