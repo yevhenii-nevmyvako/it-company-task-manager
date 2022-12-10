@@ -31,6 +31,8 @@ def index(request):
     num_tusks = Task.objects.count()
     num_positions = Position.objects.count()
     num_workers = Worker.objects.count()
+    num_teams = Team.objects.count()
+    num_projects = Project.objects.count()
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
 
@@ -39,6 +41,8 @@ def index(request):
         "num_tusks": num_tusks,
         "num_positions": num_positions,
         "num_workers": num_workers,
+        "num_teams": num_teams,
+        "num_projects": num_projects,
         "num_visits": num_visits + 1
     }
 
@@ -291,7 +295,7 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
 
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Project
-    queryset = Project.objects.all().prefetch_related("teams")
+    queryset = Project.objects.all()
     success_url = reverse_lazy("task_manager:project-list")
 
 

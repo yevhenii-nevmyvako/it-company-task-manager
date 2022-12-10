@@ -2,8 +2,8 @@
 {% block title %}Project | {{ project.name }}{% endblock %}
 
 {% block content %}
-  <h4 class="display-5">Task: {{ project.name }}
-{#    <a href="{% url 'task_manager:task-update' pk=task.id %}"><strong>Update</strong></a>#}
+  <h4 class="display-5">Project: {{ project.name }}
+    <a href="{% url 'task_manager:task-update' pk=project.id %}"><strong>Update</strong></a>
 {#    {% if user not in task.assignees.all %}#}
 {#      <a class="btn btn-success" href="{% url 'task_manager:worker-assign-to-task' pk=task.id %}">Assign me to Task</a>#}
 {#    {% else %}#}

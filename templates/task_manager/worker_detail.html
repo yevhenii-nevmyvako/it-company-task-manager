@@ -10,6 +10,8 @@
         <th>Surname:</th>
         <th>@email:</th>
         <th>Position</th>
+        <th>Team id</th>
+        <th>Team name</th>
       </tr>
       <tr>
         <td>{{ worker.username }}</td>
@@ -17,6 +19,8 @@
         <td>{{ worker.last_name }}</td>
         <td>{{ worker.email }}</td>
         <td>{{ worker.position }}</td>
+        <td>{{ worker.team.id }}</td>
+        <td>{{ worker.team.name }}</td>
       </tr>
   </table>
 
@@ -24,23 +28,23 @@
   <h5 class="display-5">My Tasks: </h5>
   <div class="p-2 bg-light border">
   {% for task in worker.tasks.all %}
-      <table class="table">
-      <tr>
-        <th>Task type:</th>
-        <th>Is completed:</th>
-        <th>Task priority</th>
-        <th>Deadline</th>
-      </tr>
-      <tr>
-        <td>{{ task.task_type }}</td>
-        <td>{% if task.is_cpmleted == True %} Completed{% else %}Not Completed{% endif %}</td>
-        <td>{{ task.priority }}</td>
-        <td>{{ task.deadline }}</td>
-      </tr>
-  </table>
+    <table class="table">
+    <tr>
+      <th>Task type:</th>
+      <th>Is completed:</th>
+      <th>Task priority</th>
+      <th>Deadline</th>
+    </tr>
+    <tr>
+      <td>{{ task.task_type }}</td>
+      <td>{% if task.is_cpmleted == True %} Completed{% else %}Not Completed{% endif %}</td>
+      <td>{{ task.priority }}</td>
+      <td>{{ task.deadline }}</td>
+    </tr>
 
-  {% empty %}
-    <p>I have finish all!</p>
+    </table>
+    {% empty %}
+      <p>I have finish all!</p>
   {% endfor %}
   </div>
 {% endblock %}

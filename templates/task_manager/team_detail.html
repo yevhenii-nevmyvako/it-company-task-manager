@@ -4,7 +4,7 @@
   <h4 class="display-5">Position: {{ team.name }}</h4>
   <hr>
   <p><strong>Position: </strong>{{ team.name }}
-{#    <a href="{% url 'task_manager:position-update' pk=position.id %}"><strong>Update</strong></a>#}
+    <a href="{% url 'task_manager:team-update' pk=team.id %}"><strong>Update</strong></a>
   </p>
   <hr>
 
@@ -12,7 +12,7 @@
   <div class="p-2 bg-light border">
   {% for worker in team.workers.all %}
     <hr>
-    <p class="text-muted"><strong>Position id: </strong>{{ worker.id }}</p>
+    <p class="text-muted"><strong>Team id: </strong>{{ worker.id }}</p>
     <table class="table">
       <tr>
         <th>Username:</th>
