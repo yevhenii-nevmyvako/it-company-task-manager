@@ -24,7 +24,7 @@
       <tr>
         <td>{{ project.id }}</td>
         <td><a href="{{ project.get_absolute_url }}">{{ project.name }}</a></td>
-        <td>{{ project.teams}}</td>
+        <td>{{ project.teams.name}}</td>
         <td>{{ project.description }}</td>
 
         <td><a href="{% url 'task_manager:project-update' pk=project.id %}">Update</a></td>
@@ -32,7 +32,24 @@
       </tr>
     {% endfor %}
     </table>
+
     {% else %}
       <p>There are no project in the service.</p>
     {% endif %}
+
+      <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>task Name</th>
+
+
+      {% for task in project_list %}
+      <tr>
+        <td>{{ task.id }}</td>
+        <td>{{ task.description }}</td>
+
+
+      </tr>
+    {% endfor %}
+    </table>
 {% endblock %}

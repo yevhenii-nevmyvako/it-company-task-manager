@@ -19,6 +19,7 @@
         <th>Priority:</th>
         <th>Is completed:</th>
         <th>Deadline:</th>
+        <th>Project:</th>
         <th>description:</th>
       </tr>
       <tr>
@@ -26,6 +27,7 @@
         <td>{{ task.priority}}</td>
         <td>{% if task.is_completed == True %} Completed{% else %}Not Completed{% endif %}</td>
         <td>{{ task.deadline }}</td>
+       <td> {{ task.project.name }}</td>
         <td>{{ task.description }}</td>
       </tr>
   </table>
