@@ -52,7 +52,14 @@ class WorkerPositionUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Worker
-        fields = ("position", "team")
+        fields = ("position",)
+
+
+class WorkerTeamUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Worker
+        fields = ("team",)
 
 
 class PositionSearchForm(forms.Form):
