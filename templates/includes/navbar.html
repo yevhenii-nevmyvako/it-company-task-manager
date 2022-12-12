@@ -45,6 +45,7 @@
             <i class="fa-regular fa-user"></i>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
             {% if user.is_authenticated %}
             <li><a class="dropdown-item" href="{% url 'task_manager:worker-detail' pk=user.id %}">
               {{ user.username }}</a></li>
@@ -53,7 +54,10 @@
             <li><a class="dropdown-item" href="{% url 'logout' %}">Loggen out</a></li>
               {% else %}
             <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+
+            <li><a class="dropdown-item" href="{% url 'task_manager:worker-create' %}">Registration</a></li>
             {% endif %}
+
           </ul>
         </li>
         <li class="nav-item">
