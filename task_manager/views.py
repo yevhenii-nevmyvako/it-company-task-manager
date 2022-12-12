@@ -21,7 +21,9 @@ from task_manager.forms import (
     WorkerSearchForm,
     TaskSearchForm,
     TaskTypeSearchForm,
-    ProjectSearchForm, TeamSearchForm,
+    ProjectSearchForm,
+    TeamSearchForm,
+    WorkerTeamUpdateForm,
 )
 
 
