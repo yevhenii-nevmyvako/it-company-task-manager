@@ -186,7 +186,7 @@ class WorkerDetailView(generic.DetailView):
     queryset = Worker.objects.all().prefetch_related("tasks")
 
 
-class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+class WorkerCreateView(generic.CreateView):
     model = Worker
     form_class = WorkerCreationFrom
     success_url = reverse_lazy("task_manager:worker-list")
