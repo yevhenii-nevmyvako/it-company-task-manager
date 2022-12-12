@@ -1,3 +1,4 @@
+{% load crispy_forms_filters %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,14 +32,10 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'task_manager:task-list' %}">Tasks</a>
         </li>
-
-
-
       </ul>
+
+
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
              role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,21 +44,46 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
             {% if user.is_authenticated %}
-            <li><a class="dropdown-item" href="{% url 'task_manager:worker-detail' pk=user.id %}">
+              <li><a class="dropdown-item" href="{% url 'task_manager:worker-detail' pk=user.id %}">
               {{ user.username }}</a></li>
 
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{% url 'logout' %}">Loggen out</a></li>
-              {% else %}
-            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Loggen out</a></li>
+            {% else %}
+              <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
 
-            <li><a class="dropdown-item" href="{% url 'task_manager:worker-create' %}">Registration</a></li>
+              <li><a class="dropdown-item" href="{% url 'task_manager:worker-create' %}">Registration</a></li>
             {% endif %}
-
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">no link here</a>
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-registration" href="{% url 'task_manager:worker-create' %}">Registration</a>
+                        <!-- Modal -->
+
+            <div class="modal fade" id="modal-registration" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modal-registration">Create new account:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <form action="" method="POST" novalidate>
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="modal-footer">
+                          <input class="btn btn-primary" data-bs-dismiss="modal" type="submit" name="Registrate">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
         </li>
       </ul>
 {#      <form class="d-flex">#}
