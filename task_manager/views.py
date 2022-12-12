@@ -199,6 +199,13 @@ class WorkerPositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     context_object_name = "worker_position_update"
 
 
+class WorkerTeamUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Worker
+    form_class = WorkerTeamUpdateForm
+    template_name = "task_manager/worker_team_form.html"
+    context_object_name = "worker_team_update"
+
+
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     template_name = "task_manager/worker_delete_confirm.html"

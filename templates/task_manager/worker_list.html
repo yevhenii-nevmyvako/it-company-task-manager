@@ -31,9 +31,10 @@
         </td>
         <td>{{ worker.first_name }}</td>
         <td>{{ worker.last_name }}</td>
-        <td>{{ worker.position }}</td>
-        <td>{{ worker.team }}</td>
+        <td>{{ worker.position.name }}</td>
+        <td>{{ worker.team.name }}</td>
         <td><a href="{% url 'task_manager:worker-position-update' pk=worker.id %}">Update position</a></td>
+{#        <td><a href="{% url 'task_manager:worker-team-update' pk=worker.id %}"></a></td>#}
         <td><a href="{% url 'task_manager:worker-delete' pk=worker.id %}">Delete</a></td>
 
       </tr>
