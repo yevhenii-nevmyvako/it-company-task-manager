@@ -21,6 +21,7 @@
         <th>Position</th>
         <th>Team</th>
         <th>Position update</th>
+        <th>Team update</th>
         <th>Delete</th>
       </tr>
     {% for worker in worker_list %}
@@ -34,7 +35,7 @@
         <td>{{ worker.position.name }}</td>
         <td>{{ worker.team.name }}</td>
         <td><a href="{% url 'task_manager:worker-position-update' pk=worker.id %}">Update position</a></td>
-{#        <td><a href="{% url 'task_manager:worker-team-update' pk=worker.id %}"></a></td>#}
+        <td><a href="{% url 'task_manager:worker-team-update' pk=worker.id %}">Team Update</a></td>
         <td><a href="{% url 'task_manager:worker-delete' pk=worker.id %}">Delete</a></td>
 
       </tr>
