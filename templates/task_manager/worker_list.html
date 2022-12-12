@@ -3,11 +3,12 @@
 {% block title %}Worker List{% endblock %}
 {% block content %}
     <h1>Worker List
-      <a href="{% url 'task_manager:worker-create' %}"><strong>Create worker</strong></a>
-      <form action="" method="GET">
+      <form action="" class="form-inline col-sm-4" method="GET">
         {{ worker_search_form|crispy }}
-        <input type="submit" value="search">
+        <input class="btn btn-outline-dark" type="submit" value="search">
+
       </form>
+    <a class="btn btn-outline-success" href="{% url 'task_manager:worker-create' %}"><strong>Create worker</strong></a>
     </h1>
 
     {% if worker_list %}
