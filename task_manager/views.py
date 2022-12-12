@@ -23,7 +23,7 @@ from task_manager.forms import (
     TaskTypeSearchForm,
     ProjectSearchForm,
     TeamSearchForm,
-    WorkerTeamUpdateForm,
+    WorkerTeamUpdateForm, TeamForm,
 )
 
 
@@ -357,13 +357,13 @@ class TeamDetailView(LoginRequiredMixin, generic.DetailView):
 
 class TeamCreateView(LoginRequiredMixin, generic.CreateView):
     model = Team
-    fields = "__all__"
+    form_class = TeamForm
     success_url = reverse_lazy("task_manager:team-list")
 
 
 class TeamUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Team
-    fields = "__all__"
+    form_class = TeamForm
     success_url = reverse_lazy("task_manager:team-list")
 
 

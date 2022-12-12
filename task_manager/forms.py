@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from task_manager.models import Worker, Task, Position
+from task_manager.models import Worker, Task, Position, Team
 
 
 class WorkerCreationFrom(UserCreationForm):
@@ -13,6 +13,13 @@ class WorkerCreationFrom(UserCreationForm):
         fields = UserCreationForm.Meta.fields + (
             "first_name", "last_name", "position", "team",
         )
+
+
+class TeamForm(forms.ModelForm):
+
+    class Meta:
+        model = Team
+        fields = "__all__"
 
 
 class PositionForm(forms.ModelForm):
