@@ -37,7 +37,6 @@ class Project(models.Model):
     name = models.CharField(max_length=255)
     teams = models.ManyToManyField(
         Team, related_name="projects",
-        required=False
     )
     description = models.TextField(null=True, blank=True)
 
@@ -75,12 +74,10 @@ class Task(models.Model):
     assignees = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="tasks",
-        required=False,
     )
     project = models.ForeignKey(
         Project, on_delete=models.CASCADE,
         related_name="tasks",
-        required=False,
     )
 
     class Meta:
@@ -98,7 +95,7 @@ class Task(models.Model):
 
 
 class Position(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255)
 
     class Meta:
         ordering = ["name"]
@@ -121,14 +118,12 @@ class Worker(AbstractUser):
         on_delete=models.CASCADE,
         related_name="workers",
         null=True,
-        required=False,
     )
     team = models.ForeignKey(
         Team,
         on_delete=models.CASCADE,
         related_name="workers",
         null=True,
-        required=False,
     )
 
     class Meta:
