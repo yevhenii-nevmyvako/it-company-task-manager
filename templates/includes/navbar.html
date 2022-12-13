@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand">Task Manager</a>
+    <a class="navbar-brand"><i class="fa-solid fa-people-group"></i><Strong>Task Manager</Strong></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -57,9 +57,9 @@
           </ul>
         </li>
 
-
+      {% if not user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-registration" href="#">Registration</a>
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-registration" href="#">Login</a>
                         <!-- Modal -->
 
 
@@ -67,14 +67,14 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="modal-registration">Create new account:</h5>
+                    <h5 class="modal-title" id="modal-registration">Login:</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
 
                       <form action="" method="POST" novalidate>
                         {% csrf_token %}
-                        {{ form|crispy }}
+                        {{ form | crispy }}
                         <div class="modal-footer">
                           <input class="btn btn-outline-primary" data-bs-dismiss="modal" type="submit" name="Registrate">
                           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -85,7 +85,13 @@
               </div>
             </div>
 
+
         </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="#">Online</a>
+        </li>
+      {% endif %}
 
       </ul>
 {#      <form class="d-flex">#}
