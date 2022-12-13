@@ -36,7 +36,8 @@ class Team(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=255)
     teams = models.ManyToManyField(
-        Team, related_name="projects"
+        Team, related_name="projects",
+        required=False
     )
     description = models.TextField(null=True, blank=True)
 
@@ -101,6 +102,11 @@ class Position(models.Model):
 
     class Meta:
         ordering = ["name"]
+        constraints = [
+            UniqueConstraint(
+                name="unique_position_name", fields=["name"]
+            )
+        ]
 
     def __str__(self):
         return self.name
