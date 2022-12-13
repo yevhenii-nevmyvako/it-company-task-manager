@@ -1,0 +1,14 @@
+/*carousel*/
+
+.home-carousel {
+    padding: 0;
+}
+
+.home-carousel .carousel-item {
+    display: flex;
+    max-height: 700px;
+}
+
+.home-carousel .carousel-item img {
+    object-fit: cover;
+}
