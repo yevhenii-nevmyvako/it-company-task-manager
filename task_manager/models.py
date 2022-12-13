@@ -23,6 +23,11 @@ class Team(models.Model):
 
     class Meta:
         ordering = ["name"]
+        constraints = [
+            UniqueConstraint(
+                name="unique_team_name", fields=["name"]
+            )
+        ]
 
     def get_absolute_url(self):
         return reverse("task_manager:team-detail", args=[str(self.id)])
