@@ -73,10 +73,13 @@ class Task(models.Model):
     )
     assignees = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        related_name="tasks"
+        related_name="tasks",
+        required=False,
     )
     project = models.ForeignKey(
-        Project, on_delete=models.CASCADE, related_name="tasks"
+        Project, on_delete=models.CASCADE,
+        related_name="tasks",
+        required=False,
     )
 
     class Meta:
@@ -111,13 +114,15 @@ class Worker(AbstractUser):
         Position,
         on_delete=models.CASCADE,
         related_name="workers",
-        null=True
+        null=True,
+        required=False,
     )
     team = models.ForeignKey(
         Team,
         on_delete=models.CASCADE,
         related_name="workers",
-        null=True
+        null=True,
+        required=False,
     )
 
     class Meta:
