@@ -2,6 +2,15 @@
 
 
 {% block content %}
-  <p>Logged out!</p>
-  <a href="{% url 'login' %}">Push to login!</a>
+  {% load static %}
+   <link rel="stylesheet" href="{% static 'css/log_out.css' %}">
+    <div class="container login_form">
+      <form class="row justify-content-center" method="POST" action="">
+        <div class="mb-3 col-12 col-md-4">
+          <h1>You are Logged out!</h1>
+          <a class="btn btn-outline-dark" href="{% url 'login' %}">Push to login!</a>
+
+        </div>
+      </form>
+   </div>
 {% endblock %}
