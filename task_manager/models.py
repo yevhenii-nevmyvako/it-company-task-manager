@@ -69,7 +69,9 @@ class Task(models.Model):
     is_completed = models.BooleanField(default=False)
     priority = models.CharField(max_length=6, choices=TASK_PRIORITY_CHOICES)
     task_type = models.ForeignKey(
-        TaskType, on_delete=models.CASCADE, related_name="tasks"
+        TaskType, on_delete=models.CASCADE,
+        related_name="tasks",
+        null=True, blank=True,
     )
     assignees = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
@@ -78,6 +80,8 @@ class Task(models.Model):
     project = models.ForeignKey(
         Project, on_delete=models.CASCADE,
         related_name="tasks",
+        null=True,
+        blank=True,
     )
 
     class Meta:
@@ -117,12 +121,14 @@ class Worker(AbstractUser):
         Position,
         on_delete=models.CASCADE,
         related_name="workers",
+        blank=True,
         null=True,
     )
     team = models.ForeignKey(
         Team,
         on_delete=models.CASCADE,
         related_name="workers",
+        blank=True,
         null=True,
     )
 
