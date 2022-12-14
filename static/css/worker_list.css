@@ -2,21 +2,47 @@
     margin: 0;
 }
 
-.container {
-    margin: 0;
+.container-search {
+    margin-left: 240px;
     box-sizing: border-box;
 }
 
-h1 {
-    margin: 0 20px;
+h1{
+    margin: 20px 0 0 50px;
     font-size: 60px;
 
 }
 
-.tax {
+.tax{
     margin: 30px 50px;
 }
 
-.btn {
+.btn{
     margin-bottom: 16px;
+}
+
+.container-table{
+    width: 1400px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+.mtb3{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.table{
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.table th, table td{
+    text-align: center;
+    padding: 10px;
+}
+
+.table th{
+    background-color: #d0d0d0;
+    color: #fff;
 }
