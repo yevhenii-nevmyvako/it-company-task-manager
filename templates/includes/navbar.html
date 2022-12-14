@@ -3,7 +3,10 @@
 <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand"><i class="fa-solid fa-people-group"></i><Strong>Task Manager</Strong></a>
+    <a class="navbar-brand" href="{% url 'task_manager:index' %}">
+      <i class="fa-solid fa-people-group"></i>
+      <Strong>Task Manager</Strong>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">

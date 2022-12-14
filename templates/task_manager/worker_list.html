@@ -2,14 +2,40 @@
 {% load crispy_forms_filters %}
 {% block title %}Worker List{% endblock %}
 {% block content %}
-    <h1>Worker List
-      <form action="" class="form-inline col-sm-4" method="GET">
-        {{ worker_search_form|crispy }}
-        <input class="btn btn-outline-dark" type="submit" value="search">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/worker_list.css' %}">
 
-      </form>
-    <a class="btn btn-outline-success" href="{% url 'task_manager:worker-create' %}"><strong>Create worker</strong></a>
-    </h1>
+
+
+
+    <div class="container">
+    <h1>Workers</h1>
+      <form class="form-inline tax" action="" method="GET">
+
+        {{ worker_search_form|crispy }}
+        <input class="btn btn-outline-secondary" type="submit" value="search">
+
+      </form></div>
+  <a href="{% url 'task_manager:worker-create' %}"><strong>Create team</strong></a>
+
+
+
+
+
+
+{##}
+{#    <div class="container-fluid search-box">#}
+{#      <row></row>#}
+{#      <form class="form-inline" action="" method="get">#}
+{##}
+{#          {{ worker_search_form|crispy }}#}
+{#        <button class="btn btn-outline-success" type="submit">Search</button>#}
+{##}
+{#      </form></div>#}
+
+
+
+
 
     {% if worker_list %}
     <table class="table">
