@@ -29,30 +29,3 @@ a {
 a:hover {
     color: #555;
 }
-
-/*header*/
-.navbar-light .navbar-nav .nav-link {
-    color: #111;
-    font-weight: 500;
-    text-transform: uppercase;
-}
-
-.navbar-nav .dropdown-menu {
-    right: 0;
-    left: auto;
-}
-
-.top-menu li a::after {
-    content: '';
-    display: block;
-    width: 100%;
-    background-color: #111;
-    height: 1px;
-    transition: all .3s;
-    transform: scale(0);
-}
-
-.top-menu li a:hover::after {
-    transform: scale(1);
-}
-

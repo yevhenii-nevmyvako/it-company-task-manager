@@ -45,8 +45,8 @@
 
             {% if user.is_authenticated %}
               <li><a class="dropdown-item" href="{% url 'task_manager:worker-detail' pk=user.id %}">
-              {{ user.username }}</a></li>
-
+                {{ user.username }}</a>
+              </li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Loggen out</a></li>
             {% else %}
@@ -56,43 +56,9 @@
             {% endif %}
           </ul>
         </li>
-
-      {% if not user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-registration" href="#">Login</a>
-                        <!-- Modal -->
-
-
-            <div class="modal fade" id="modal-registration" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="modal-registration">Login:</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-
-                      <form action="" method="POST" novalidate>
-                        {% csrf_token %}
-                        {{ form | crispy }}
-                        <div class="modal-footer">
-                          <input class="btn btn-outline-primary" data-bs-dismiss="modal" type="submit" name="Registrate">
-                          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                      </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
+          <a class="nav-link" href="#">You have visit this page: {{ num_visits }} time{{ num_visits|pluralize }}</a>
         </li>
-      {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="#">Online</a>
-        </li>
-      {% endif %}
-
       </ul>
 {#      <form class="d-flex">#}
 {#        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}
