@@ -33,29 +33,6 @@ class Team(models.Model):
         return reverse("task_manager:team-detail", args=[str(self.id)])
 
 
-class Project(models.Model):
-    name = models.CharField(max_length=255)
-    teams = models.ManyToManyField(
-        Team, related_name="projects",
-    )
-    description = models.TextField(null=True, blank=True)
-
-    class Meta:
-        ordering = ["name"]
-        constraints = [
-            UniqueConstraint(
-                name="unique_project_name", fields=["name"]
-            )
-        ]
-
-    def __str__(self):
-        return f"Project: {self.name}" \
-               f"Teams:{self.teams.name}"
-
-    def get_absolute_url(self):
-        return reverse("task_manager:project-detail", args=[str(self.id)])
-
-
 class Task(models.Model):
     TASK_PRIORITY_CHOICES = (
         ("ugent", "Ugent priority task"),
@@ -77,12 +54,12 @@ class Task(models.Model):
         settings.AUTH_USER_MODEL,
         related_name="tasks",
     )
-    project = models.ForeignKey(
-        Project, on_delete=models.CASCADE,
-        related_name="tasks",
-        null=True,
-        blank=True,
-    )
+    # project = models.ForeignKey(
+    #     Project, on_delete=models.CASCADE,
+    #     related_name="tasks",
+    #     null=True,
+    #     blank=True,
+    # )
 
     class Meta:
         ordering = ["deadline"]
@@ -96,6 +73,33 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return reverse("task_manager:task-detail", args=[str(self.id)])
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=255)
+    team = models.ForeignKey(
+        Team,
+        on_delete=models.CASCADE,
+        related_name="projects",
+        null=True,
+    )
+    tasks = models.ManyToManyField(Task, related_name="projects")
+    description = models.TextField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["name"]
+        constraints = [
+            UniqueConstraint(
+                name="unique_project_name", fields=["name"]
+            )
+        ]
+
+    def __str__(self):
+        return f"Project: {self.name}" \
+               f"Teams:{self.team.name} Tasks: {self.tasks.name}"
+
+    def get_absolute_url(self):
+        return reverse("task_manager:project-detail", args=[str(self.id)])
 
 
 class Position(models.Model):

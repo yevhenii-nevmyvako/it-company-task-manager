@@ -42,5 +42,21 @@
   {% empty %}
     <p>No Teams!</p>
   {% endfor %}
+
+        <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>task Name</th>
+
+
+      {% for task in project.tasks.all %}
+      <tr>
+        <td>{{ task.id }} <a href=""></a> </td>
+        <td>{{ task.name }}</td>
+
+
+      </tr>
+    {% endfor %}
+
   </div>
 {% endblock %}
