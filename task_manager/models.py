@@ -54,12 +54,6 @@ class Task(models.Model):
         settings.AUTH_USER_MODEL,
         related_name="tasks",
     )
-    # project = models.ForeignKey(
-    #     Project, on_delete=models.CASCADE,
-    #     related_name="tasks",
-    #     null=True,
-    #     blank=True,
-    # )
 
     class Meta:
         ordering = ["deadline"]

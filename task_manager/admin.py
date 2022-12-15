@@ -53,7 +53,7 @@ class WorkerAdmin(UserAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ["name", "description"]
+    list_display = ["name", "description", "team"]
     list_filter = ["name"]
     search_fields = ["name"]
 
