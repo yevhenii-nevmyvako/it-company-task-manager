@@ -16,34 +16,20 @@
   <table class="table">
       <tr>
         <th>Project name:</th>
+        <th>Team</th>
         <th>description:</th>
       </tr>
       <tr>
         <td>{{ project.name }}</td>
+        <td>{{ project.team.name }}</td>
         <td>{{ project.description}}</td>
       </tr>
   </table>
 
-
-  <h5 class="display-5">Teams: </h5>
   <div class="p-2 bg-light border">
-  {% for team in project.teams.all %}
-      <table class="table">
-      <tr>
-        <th>Team id:</th>
-        <th>Team Name:</th>
-      </tr>
-      <tr>
-        <td>{{ team.id }}</td>
-        <td>{{ team.name }}</td>
-      </tr>
-  </table>
-
-  {% empty %}
-    <p>No Teams!</p>
-  {% endfor %}
 
         <table class="table">
+        <h5>Tasks</h5>
       <tr>
         <th>ID</th>
         <th>task Name</th>
