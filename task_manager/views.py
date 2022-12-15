@@ -23,7 +23,9 @@ from task_manager.forms import (
     TaskTypeSearchForm,
     ProjectSearchForm,
     TeamSearchForm,
-    WorkerTeamUpdateForm, TeamForm,
+    WorkerTeamUpdateForm,
+    TeamForm,
+    ProjectForm,
 )
 
 
@@ -303,25 +305,25 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
 
 
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Project
+    form_class = ProjectForm
     queryset = Project.objects.all()
     success_url = reverse_lazy("task_manager:project-list")
 
 
 class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     model = Project
-    fields = "__all__"
+    form_class = ProjectForm
     success_url = reverse_lazy("task_manager:project-list")
 
 
 class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Project
-    fields = "__all__"
+    form_class = ProjectForm
     success_url = reverse_lazy("task_manager:project-list")
 
 
 class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
-    model = Project
+    form_class = ProjectForm
     template_name = "task_manager/project_delete_confirm.html"
     context_object_name = "project_to_delete"
     success_url = reverse_lazy("task_manager:project-list")
