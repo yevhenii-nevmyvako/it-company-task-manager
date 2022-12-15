@@ -68,12 +68,13 @@ class WorkerPositionUpdateForm(forms.ModelForm):
 
 
 class ProjectForm(forms.ModelForm):
-    tasks = forms.ModelMultipleChoiceField(
-        queryset=Task.objects.all(),
+    teams = forms.ModelMultipleChoiceField(
+        queryset=Team.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
-    team = forms.ModelMultipleChoiceField(
+
+    tasks = forms.ModelMultipleChoiceField(
         queryset=Task.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
