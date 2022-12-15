@@ -46,14 +46,14 @@ class WorkerAdmin(UserAdmin):
     )
     add_fieldsets = UserAdmin.add_fieldsets + (
         ("Additional info", {"fields": (
-            "first_name", "last_name", "email", "position", "team"
+            "first_name", "last_name", "email", "position",
         )}),
     )
 
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ["name", "description", "team"]
+    list_display = ["name", "description"]
     list_filter = ["name"]
     search_fields = ["name"]
 

@@ -18,19 +18,22 @@ class TaskType(models.Model):
         return reverse("task_manager:task-type-detail", args=[str(self.id)])
 
 
-class Team(models.Model):
+class Position(models.Model):
     name = models.CharField(max_length=255)
 
     class Meta:
         ordering = ["name"]
         constraints = [
             UniqueConstraint(
-                name="unique_team_name", fields=["name"]
+                name="unique_position_name", fields=["name"]
             )
         ]
 
+    def __str__(self):
+        return self.name
+
     def get_absolute_url(self):
-        return reverse("task_manager:team-detail", args=[str(self.id)])
+        return reverse("task_manager:position-detail", args=[str(self.id)])
 
 
 class Task(models.Model):
@@ -53,6 +56,7 @@ class Task(models.Model):
     assignees = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="tasks",
+        blank=True
     )
 
     class Meta:
@@ -69,61 +73,9 @@ class Task(models.Model):
         return reverse("task_manager:task-detail", args=[str(self.id)])
 
 
-class Project(models.Model):
-    name = models.CharField(max_length=255)
-    team = models.ForeignKey(
-        Team,
-        on_delete=models.CASCADE,
-        related_name="projects",
-        null=True,
-    )
-    tasks = models.ManyToManyField(Task, related_name="projects")
-    description = models.TextField(null=True, blank=True)
-
-    class Meta:
-        ordering = ["name"]
-        constraints = [
-            UniqueConstraint(
-                name="unique_project_name", fields=["name"]
-            )
-        ]
-
-    def __str__(self):
-        return f"Project: {self.name}" \
-               f"Teams:{self.team.name} Tasks: {self.tasks.name}"
-
-    def get_absolute_url(self):
-        return reverse("task_manager:project-detail", args=[str(self.id)])
-
-
-class Position(models.Model):
-    name = models.CharField(max_length=255)
-
-    class Meta:
-        ordering = ["name"]
-        constraints = [
-            UniqueConstraint(
-                name="unique_position_name", fields=["name"]
-            )
-        ]
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse("task_manager:position-detail", args=[str(self.id)])
-
-
 class Worker(AbstractUser):
     position = models.ForeignKey(
         Position,
-        on_delete=models.CASCADE,
-        related_name="workers",
-        blank=True,
-        null=True,
-    )
-    team = models.ForeignKey(
-        Team,
         on_delete=models.CASCADE,
         related_name="workers",
         blank=True,
@@ -143,3 +95,60 @@ class Worker(AbstractUser):
 
     def get_absolute_url(self):
         return reverse("task_manager:worker-detail", args=[str(self.id)])
+
+
+class Team(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    members = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="workers",
+        blank=True,
+    )
+
+    class Meta:
+        ordering = ["name"]
+        constraints = [
+            UniqueConstraint(
+                name="unique_team_name", fields=["name"]
+            )
+        ]
+
+    def get_absolute_url(self):
+        return reverse("task_manager:team-detail", args=[str(self.id)])
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=255)
+    team = models.ManyToManyField(
+        Team,
+        related_name="projects",
+        blank=True,
+    )
+    tasks = models.ManyToManyField(
+        Task,
+        related_name="projects",
+        blank=True
+    )
+    description = models.TextField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["name"]
+        constraints = [
+            UniqueConstraint(
+                name="unique_project_name", fields=["name"]
+            )
+        ]
+
+    def __str__(self):
+        return f"Project: {self.name}" \
+               f"Teams: {self.team.name} Tasks: {self.tasks.name}"
+
+    def get_absolute_url(self):
+        return reverse("task_manager:project-detail", args=[str(self.id)])
+
+
+
+
+
+

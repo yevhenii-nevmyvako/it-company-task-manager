@@ -32,7 +32,7 @@
             <tr>
               <td>{{ project.id }}</td>
               <td><a style="font-size: 20px; color: #00a0a0" href="{{ project.get_absolute_url }}">{{ project.name }}</a></td>
-              <td>{{ project.teams.name}}</td>
+              <td>{{ project.team.name}}</td>
               <td>{{ project.description }}</td>
               <td><a class="atuin-btn" href="{% url 'task_manager:project-update' pk=project.id %}">Update</a></td>
               <td><a class="atuin-btn-danger" href="{% url 'task_manager:project-delete' pk=project.id %}">Delete</a></td>

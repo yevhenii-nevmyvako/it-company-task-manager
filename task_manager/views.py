@@ -23,7 +23,7 @@ from task_manager.forms import (
     TaskTypeSearchForm,
     ProjectSearchForm,
     TeamSearchForm,
-    WorkerTeamUpdateForm,
+    # WorkerTeamUpdateForm,
     TeamForm,
     ProjectForm,
 )
@@ -203,11 +203,11 @@ class WorkerPositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     context_object_name = "worker_position_update"
 
 
-class WorkerTeamUpdateView(LoginRequiredMixin, generic.UpdateView):
-    model = Worker
-    form_class = WorkerTeamUpdateForm
-    template_name = "task_manager/worker_team_form.html"
-    context_object_name = "worker_team_update"
+# class WorkerTeamUpdateView(LoginRequiredMixin, generic.UpdateView):
+#     model = Worker
+#     form_class = WorkerTeamUpdateForm
+#     template_name = "task_manager/worker_team_form.html"
+#     context_object_name = "worker_team_update"
 
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -355,6 +355,7 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
 
 class TeamDetailView(LoginRequiredMixin, generic.DetailView):
     model = Team
+    form_class = TeamForm
     queryset = Team.objects.all()
 
 

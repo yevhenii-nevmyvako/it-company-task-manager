@@ -11,7 +11,7 @@ class WorkerCreationFrom(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Worker
         fields = UserCreationForm.Meta.fields + (
-            "first_name", "last_name", "position", "team"
+            "first_name", "last_name", "position"
         )
 
 
@@ -74,11 +74,11 @@ class ProjectForm(forms.ModelForm):
         fields = "__all__"
 
 
-class WorkerTeamUpdateForm(forms.ModelForm):
-
-    class Meta:
-        model = Worker
-        fields = ("team",)
+# class WorkerTeamUpdateForm(forms.ModelForm):
+#
+#     class Meta:
+#         model = Worker
+#         fields = ("team",)
 
 
 class PositionSearchForm(forms.Form):
