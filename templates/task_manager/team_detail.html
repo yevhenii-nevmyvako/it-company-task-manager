@@ -3,9 +3,15 @@
 {% block content %}
   <h4 class="display-5">Team: {{ team.name }}</h4>
   <hr>
-  <p><strong>Position: </strong>{{ team.name }}
+  <strong>Position: </strong>{{ team.name }}
     <a href="{% url 'task_manager:team-update' pk=team.id %}"><strong>Update</strong></a>
-  </p>
+  {#    {% if user not in task.assignees.all %}#}
+{#      <a class="btn btn-success" href="{% url 'task_manager:worker-assign-to-task' pk=task.id %}">Assign me to Task</a>#}
+{#    {% else %}#}
+{#      <a class="btn btn-danger" href="{% url 'task_manager:worker-delete-from-task' pk=task.id %}">Delete me from Task#}
+{#      </a>#}
+{#    {% endif %}#}
+
   <hr>
 
   <h5 class="display-5">Members: </h5>
