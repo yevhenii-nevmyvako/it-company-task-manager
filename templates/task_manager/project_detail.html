@@ -44,6 +44,17 @@
       </tr>
     {% endfor %}
 
+        {% for team in project.team.all %}
+        <tr>
+          <th>Team name</th>
+        <tr>
+        <tr>
+          <td>{{ team.name }} </td>
+        </tr>
+
+
+        {% endfor %}
+
 
   </div>
 {% endblock %}
