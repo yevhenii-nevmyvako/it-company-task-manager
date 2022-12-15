@@ -229,7 +229,18 @@ def delete_worker_from_task(request, pk):
     task = Task.objects.get(pk=pk)
     task.assignees.remove(request.user.id)
     return HttpResponseRedirect(reverse_lazy(
-        "task_manager:task-detail", args=[pk]))
+        "task_manager:task-detail", args=[pk]
+    ))
+
+
+@login_required
+def assign_worker_to_team(request, pk):
+    team = Team.objects.get(pk=pk)
+    team.members.add(request.user.id)
+    return HttpResponseRedirect(reverse_lazy(
+        "task_manager:team-detail", args=[pk]
+    ))
+
 
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
