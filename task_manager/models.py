@@ -120,7 +120,7 @@ class Team(models.Model):
 
 class Project(models.Model):
     name = models.CharField(max_length=255)
-    team = models.ManyToManyField(
+    teams = models.ManyToManyField(
         Team,
         related_name="projects",
         blank=True,
