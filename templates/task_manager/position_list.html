@@ -1,35 +1,49 @@
 {% extends "base.html" %}
+{% load static %}
 {% load crispy_forms_filters %}
 {% block title %}Position List{% endblock %}
 {% block content %}
 
-    <h1>Position List
-      <a href="{% url 'task_manager:position-create' %}"><strong>Create position</strong></a>
-      <form class="form-inline" action="" method="GET">
-        {{ position_search_form|crispy }}
-        <input type="submit" value="search">
-      </form>
-    </h1>
-    {% if position_list %}
-    <table class="table">
-      <tr>
-        <th>ID</th>
-        <th>Position</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-    {% for position in position_list %}
-      <tr>
-        <td>{{ position.id }}</td>
-        <td><a href="{{ position.get_absolute_url }}">{{ position.name }}</a></td>
-        <td><a href="{% url 'task_manager:position-update' pk=position.id %}">Update</a></td>
-        <td><a href="{% url 'task_manager:position-delete' pk=position.id %}">Delete</a></td>
 
-      </tr>
-    {% endfor %}
+  <link rel="stylesheet" href="{% static 'css/worker_list.css' %}">
+  <div class="container-search">
+    <h1>Position List:</h1>
+    <form class="form-inline tax" action="" method="GET">
+      {{ position_search_form|crispy }}
+      <input class="btn btn-outline-success" type="submit" value="🔍">
+    </form>
+  </div>
+  <div class="container-table mtb3">
+    <a class="atuin-btn" href="{% url 'task_manager:position-create' %}"><strong>Create position</strong></a>
+    <hr>
+    <div class="table-res">
+      <table class="table">
+        <thead>
+          {% if position_list %}
+            <tr>
+              <th>ID</th>
+              <th>Position</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+        </thead>
+        {% for position in position_list %}
+        <tbody>
+          <tr>
+            <td>{{ position.id }}</td>
+            <td><a style="font-size: 20px; color: #00a0a0" href="{{ position.get_absolute_url }}">{{ position.name }}</a></td>
+            <td><a class="atuin-btn" href="{% url 'task_manager:position-update' pk=position.id %}">Update</a></td>
+            <td><a class="atuin-btn-danger" href="{% url 'task_manager:position-delete' pk=position.id %}">Delete</a></td>
 
-    </table>
-    {% else %}
-      <p>There are no position in the service.</p>
-    {% endif %}
+          </tr>
+        </tbody>
+        {% endfor %}
+
+      </table>
+
+        {% else %}
+          <p>There are no position in the service.</p>
+        {% endif %}
+    </div>
+  </div>
 {% endblock %}

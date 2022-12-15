@@ -1,42 +1,46 @@
 {% extends "base.html" %}
+{% load static %}
 {% load crispy_forms_filters %}
 {% block title %}Task type List{% endblock %}
 {% block content %}
 
-    <h1>Task Type List
-      <a href="{% url 'task_manager:task-type-create' %}"><strong>Create Type</strong></a>
-
-      <form action="" method="GET">
+  <link rel="stylesheet" href="{% static 'css/worker_list.css' %}">
+    <div class="container-search">
+      <h1>Task Type:</h1>
+      <form class="form-inline tax" action="" method="GET">
         {{ task_type_search_form|crispy }}
-        <input type="submit" value="search">
+        <input class="btn btn-outline-success" type="submit" value="🔍">
       </form>
-    </h1>
+   </div>
+    <div class="container-table mtb3">
+      <a class="atuin-btn" href="{% url 'task_manager:task-type-create' %}"><strong>Create Task Type</strong></a>
+      <hr>
+      <div class="table-res">
+        <table class="table">
+          <thead>
+            {% if task_type_list %}
+              <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Update</th>
+                <th>Delete</th>
+              </tr>
+          </thead>
+        {% for task_type in task_type_list %}
+          <tbody>
+            <tr>
+              <td>{{ task_type.id }}</td>
+              <td><a style="font-size: 20px; color: #00a0a0" href="{{ task_type.get_absolute_url }}">{{ task_type.name }}</a></td>
+              <td><a class="atuin-btn" href="{% url 'task_manager:task-type-update' pk=task_type.id %}">Update</a></td>
+              <td><a class="atuin-btn-danger" href="{% url 'task_manager:task-type-delete' pk=task_type.id %}">Delete</a></td>
+            </tr>
+          </tbody>
+        {% endfor %}
 
-    {% if task_type_list %}
-
-    <table class="table">
-
-      <tr>
-        <th>ID</th>
-        <th>Type</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-      {% for task_type in task_type_list %}
-
-      <tr>
-        <td>{{ task_type.id }}</td>
-        <td><a href="{{ task_type.get_absolute_url }}">{{ task_type.name }}</a></td>
-        <td>
-          <a href="{% url 'task_manager:task-type-update' pk=task_type.id %}">Update</a>
-        </td>
-        <td><a href="{% url 'task_manager:task-type-delete' pk=task_type.id %}">Delete</a></td>
-
-      </tr>
-    {% endfor %}
-
-    </table>
-    {% else %}
-      <p>There are no Types of Tasks in the service.</p>
-    {% endif %}
+        </table>
+            {% else %}
+              <p>There are no Types of Tasks in the service.</p>
+            {% endif %}
+      </div>
+    </div>
 {% endblock %}

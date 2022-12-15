@@ -1,35 +1,45 @@
 {% extends "base.html" %}
+{% load static %}
 {% load crispy_forms_filters %}
 {% block title %}Team List{% endblock %}
 {% block content %}
-
-    <h1>Team List
-      <a href="{% url 'task_manager:team-create' %}"><strong>Create team</strong></a>
-      <form action="" method="GET">
+    <link rel="stylesheet" href="{% static 'css/worker_list.css' %}">
+    <div class="container-search">
+      <h1>Position List:</h1>
+      <form class="form-inline tax" action="" method="GET">
         {{ team_search_form|crispy }}
-        <input type="submit" value="search">
+        <input class="btn btn-outline-success" type="submit" value="🔍">
       </form>
-    </h1>
-    {% if team_list %}
-    <table class="table">
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-    {% for team in team_list %}
-      <tr>
-        <td>{{ team.id }}</td>
-        <td><a href="{{ team.get_absolute_url }}">{{ team.name }}</a></td>
-        <td><a href="{% url 'task_manager:team-update' pk=team.id %}">Update</a></td>
-        <td><a href="{% url 'task_manager:team-delete' pk=team.id %}">Delete</a></td>
+   </div>
+    <div class="container-table mtb3">
+      <a class="atuin-btn" href="{% url 'task_manager:team-create' %}"><strong>Create Team</strong></a>
+      <hr>
+      <div class="table-res">
+        <table class="table">
+          <thead>
+            {% if team_list %}
+              <tr>
+                <th>ID</th>
+                <th>Team Name</th>
+                <th>Update</th>
+                <th>Delete</th>
+              </tr>
+          <thead>
+        {% for team in team_list %}
+          <tbody>
+            <tr>
+              <td>{{ team.id }}</td>
+              <td><a style="font-size: 20px; color: #00a0a0" href="{{ team.get_absolute_url }}">{{ team.name }}</a></td>
+              <td><a class="atuin-btn" href="{% url 'task_manager:team-update' pk=team.id %}">Update</a></td>
+              <td><a class="atuin-btn-danger" href="{% url 'task_manager:team-delete' pk=team.id %}">Delete</a></td>
 
-      </tr>
-    {% endfor %}
-
-    </table>
-    {% else %}
-      <p>There are no Team in the service.</p>
-    {% endif %}
+            </tr>
+          </tbody>
+        {% endfor %}
+        </table>
+          {% else %}
+            <p>There are no Team in the service.</p>
+          {% endif %}
+      </div>
+    </div>
 {% endblock %}

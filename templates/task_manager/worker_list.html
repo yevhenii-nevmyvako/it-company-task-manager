@@ -3,11 +3,7 @@
 {% block title %}Worker List{% endblock %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/worker_list.css' %}">
-
-
-
-
+  <link rel="stylesheet" href="{% static 'css/worker_list.css' %}">
   <div class="container-search">
     <h1>Workers List:</h1>
     <form class="form-inline tax" action="" method="GET">
@@ -17,6 +13,7 @@
   </div>
   <div class="container-table mtb3">
     <a class="atuin-btn" href="{% url 'task_manager:worker-create' %}"><strong>Create new Worker</strong></a>
+    <hr>
     <div class="table-res">
       <table class="table">
         <thead>
@@ -27,11 +24,11 @@
             <tr>
               <th>ID</th>
               <th>Username</th>
-              <th>First name</th>
-              <th>Last name</th>
+              <th>Full Name</th>
+              <th>@Email</th>
               <th>Position</th>
-              <th>Team name</th>
-              <th>Position update</th>
+              <th>Team Tame</th>
+              <th>Position Update</th>
               <th>Choose Team </th>
               <th>Delete</th>
             </tr>
@@ -40,11 +37,11 @@
           <tbody>
             <tr>
               <td>{{ worker.id }}</td>
-              <td><a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a>
+              <td><a style="font-size: 20px; color: #00a0a0" href="{{ worker.get_absolute_url }}"><strong>{{ worker.username }}</strong></a>
               {% if user == worker %} (Me) {% endif %}
               </td>
-              <td>{{ worker.first_name }}</td>
-              <td>{{ worker.last_name }}</td>
+              <td>{{ worker.first_name }} {{ worker.last_name }}</td>
+              <td>{{ worker.email }}</td>
               <td>{{ worker.position.name }}</td>
               <td>{{ worker.team.name }}</td>
               <td><a class="atuin-btn" href="{% url 'task_manager:worker-position-update' pk=worker.id %}">Change</a></td>
