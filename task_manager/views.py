@@ -162,7 +162,7 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     context_object_name = "worker_list"
-    queryset = Worker.objects.all().select_related("position").select_related("team")
+    queryset = Worker.objects.all().select_related("position")
     paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):

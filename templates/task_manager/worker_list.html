@@ -29,7 +29,7 @@
               <th>Position</th>
               <th>Team Name</th>
               <th>Position Update</th>
-              <th>Choose Team </th>
+{#              <th>Choose Team </th>#}
               <th>Delete</th>
             </tr>
         </thead>
@@ -45,7 +45,7 @@
               <td>{{ worker.position.name }}</td>
               <td>{{ worker.team.name }}</td>
               <td><a class="atuin-btn" href="{% url 'task_manager:worker-position-update' pk=worker.id %}">Change</a></td>
-              <td><a class="atuin-btn" href="{% url 'task_manager:worker-team-update' pk=worker.id %}">Choose</a></td>
+{#              <td><a class="atuin-btn" href="{% url 'task_manager:worker-team-update' pk=worker.id %}">Choose</a></td>#}
               <td><a class="atuin-btn-danger" href="{% url 'task_manager:worker-delete' pk=worker.id %}">Delete</a></td>
             </tr>
           </tbody>
