@@ -241,6 +241,14 @@ def assign_worker_to_team(request, pk):
         "task_manager:team-detail", args=[pk]
     ))
 
+@login_required
+def delete_worker_from_team(request, pk):
+    team = Team.objects.get(pk=pk)
+    team.members.remove(request.user.id)
+    return HttpResponseRedirect(reverse_lazy(
+        "task_manager:team-detail", args=[pk]
+    ))
+
 
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
