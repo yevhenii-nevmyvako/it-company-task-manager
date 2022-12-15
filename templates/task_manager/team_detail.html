@@ -5,12 +5,12 @@
   <hr>
   <strong>Position: </strong>{{ team.name }}
     <a href="{% url 'task_manager:team-update' pk=team.id %}"><strong>Update</strong></a>
-  {#    {% if user not in task.assignees.all %}#}
-{#      <a class="btn btn-success" href="{% url 'task_manager:worker-assign-to-task' pk=task.id %}">Assign me to Task</a>#}
-{#    {% else %}#}
-{#      <a class="btn btn-danger" href="{% url 'task_manager:worker-delete-from-task' pk=task.id %}">Delete me from Task#}
-{#      </a>#}
-{#    {% endif %}#}
+      {% if user not in team.members.all %}
+      <a class="btn btn-success" href="{% url 'task_manager:worker-assign-to-team' pk=team.id %}">Assign me to team</a>
+    {% else %}
+      <a class="btn btn-danger" href="{% url 'task_manager:worker-delete-from-team' pk=team.id %}">Delete me from team
+      </a>
+    {% endif %}
 
   <hr>
 

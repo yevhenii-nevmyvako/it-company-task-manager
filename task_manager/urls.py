@@ -35,6 +35,8 @@ from task_manager.views import (
     TeamCreateView,
     TeamUpdateView,
     TeamDeleteView,
+    assign_worker_to_team,
+    delete_worker_from_team,
     # WorkerTeamUpdateView,
 
 )
@@ -78,6 +80,10 @@ urlpatterns = [
          assign_worker_to_task, name="worker-assign-to-task"),
     path("workers/<int:pk>/delete_worker_from_task",
          delete_worker_from_task, name="worker-delete-from-task"),
+    path("workers/<int:pk>/assign_worker_to_team",
+         assign_worker_to_team, name="worker-assign-to-team"),
+    path("workers/<int:pk>/delete_worker_from_team",
+         delete_worker_from_team, name="worker-delete-from-team"),
     # path("workers/<int:pk>/team-update/",
     #      WorkerTeamUpdateView.as_view(), name="worker-team-update"),
 
