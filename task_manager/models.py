@@ -145,13 +145,7 @@ class Project(models.Model):
 
     def __str__(self):
         return f"Project: {self.name}" \
-               f"Teams: {self.team.name} Tasks: {self.tasks.name}"
+               f"Teams: {self.teams.name} Tasks: {self.tasks.name}"
 
     def get_absolute_url(self):
         return reverse("task_manager:project-detail", args=[str(self.id)])
-
-
-
-
-
-
