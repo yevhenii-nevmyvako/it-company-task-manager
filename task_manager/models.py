@@ -36,43 +36,6 @@ class Position(models.Model):
         return reverse("task_manager:position-detail", args=[str(self.id)])
 
 
-class Task(models.Model):
-    TASK_PRIORITY_CHOICES = (
-        ("ugent", "Ugent priority task"),
-        ("high", "High priority task"),
-        ("medium", "Medium priority task"),
-        ("low", "Low priority task"),
-        ("lowest", "Lowest priority task"),
-    )
-    description = models.TextField(blank=True, null=True)
-    deadline = models.DateTimeField(blank=True, null=True)
-    is_completed = models.BooleanField(default=False)
-    priority = models.CharField(max_length=6, choices=TASK_PRIORITY_CHOICES)
-    task_type = models.ForeignKey(
-        TaskType, on_delete=models.CASCADE,
-        related_name="tasks",
-        null=True, blank=True,
-    )
-    assignees = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        related_name="tasks",
-        blank=True
-    )
-
-    class Meta:
-        ordering = ["deadline"]
-
-    def __str__(self):
-        return (
-            f"Task type: {self.task_type.name}"
-            f" (deadline date: {self.deadline},"
-            f" priority: {self.priority}"
-        )
-
-    def get_absolute_url(self):
-        return reverse("task_manager:task-detail", args=[str(self.id)])
-
-
 class Worker(AbstractUser):
     position = models.ForeignKey(
         Position,
@@ -115,7 +78,7 @@ class Team(models.Model):
         ]
 
     def __str__(self):
-        return {self.name}
+        return self.name
 
     def get_absolute_url(self):
         return reverse("task_manager:team-detail", args=[str(self.id)])
@@ -127,11 +90,6 @@ class Project(models.Model):
         Team,
         related_name="projects",
         blank=True,
-    )
-    tasks = models.ManyToManyField(
-        Task,
-        related_name="projects",
-        blank=True
     )
     description = models.TextField(null=True, blank=True)
 
@@ -145,7 +103,50 @@ class Project(models.Model):
 
     def __str__(self):
         return f"Project: {self.name}" \
-               f"Teams: {self.teams.name} Tasks: {self.tasks.name}"
+               f"Teams: {self.teams.name}"
 
     def get_absolute_url(self):
         return reverse("task_manager:project-detail", args=[str(self.id)])
+
+
+class Task(models.Model):
+    TASK_PRIORITY_CHOICES = (
+        ("Ugent", "Ugent priority task"),
+        ("High", "High priority task"),
+        ("Medium", "Medium priority task"),
+        ("Low", "Low priority task"),
+        ("Lowest", "Lowest priority task"),
+    )
+    description = models.TextField(blank=True, null=True)
+    deadline = models.DateTimeField(blank=True, null=True)
+    is_completed = models.BooleanField(default=False)
+    priority = models.CharField(max_length=6, choices=TASK_PRIORITY_CHOICES)
+    task_type = models.ForeignKey(
+        TaskType, on_delete=models.CASCADE,
+        related_name="tasks",
+        null=True, blank=True,
+    )
+    assignees = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="tasks",
+        blank=True
+    )
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE,
+        related_name="Tasks",
+        null=True,
+    )
+
+    class Meta:
+        ordering = ["deadline"]
+
+    def __str__(self):
+        return (
+            f"Task type: {self.task_type.name}"
+            f" (deadline date: {self.deadline},"
+            f" priority: {self.priority}"
+        )
+
+    def get_absolute_url(self):
+        return reverse("task_manager:task-detail", args=[str(self.id)])
