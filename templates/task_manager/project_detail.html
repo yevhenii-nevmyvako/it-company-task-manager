@@ -17,39 +17,24 @@
 
       <tr>
         <th>Project name:</th>
-        <th>Team</th>
         <th>description:</th>
+        <th>tasks</th>
       </tr>
       <tr>
         <td>{{ project.name }}</td>
-        <td>{{ project.team.name }}</td>
+        <td>{{ project.tasks }}</td>
         <td>{{ project.description}}</td>
       </tr>
   </table>
   <div class="p-2 bg-light border">
 
         <table class="table">
-        <h5>Tasks</h5>
-      <tr>
-        <th>ID</th>
-        <th>task Name</th>
-
-
-      {% for task in project.tasks.all %}
-      <tr>
-        <td>{{ task.id }} <a href=""></a> </td>
-        <td>{{ task.name }}</td>
-
-
-      </tr>
-    {% endfor %}
-
         {% for team in project.teams.all %}
         <tr>
           <th>Team name</th>
         <tr>
         <tr>
-          <td>{{ teams.name }} </td>
+          <td>{{ team.name }} </td>
         </tr>
 
 

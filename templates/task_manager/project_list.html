@@ -46,18 +46,18 @@
       </div>
     </div>
 
-{#      <table class="table">#}
-{#      <tr>#}
-{#        <th>ID</th>#}
-{#        <th>task Name</th>#}
-{##}
-{##}
-{#      {% for task in project_list %}#}
-{#      <tr>#}
-{#        <td>{{ task.id }}</td>#}
-{#        <td>{{ task.description }}</td>#}
-{##}
-{##}
-{#      </tr>#}
-{#    {% endfor %}#}
+      <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>task Name</th>
+
+
+      {% for task in project_list %}
+      <tr>
+        <td>{{ task.id }}</td>
+        <td>{{ task.name }}</td>
+
+
+      </tr>
+    {% endfor %}
 {% endblock %}
