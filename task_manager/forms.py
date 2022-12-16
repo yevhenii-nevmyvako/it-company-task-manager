@@ -11,7 +11,7 @@ class WorkerCreationFrom(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Worker
         fields = UserCreationForm.Meta.fields + (
-            "first_name", "last_name", "position"
+            "first_name", "last_name", "email", "position"
         )
 
 
@@ -46,8 +46,8 @@ class TaskForm(forms.ModelForm):
         label="Deadline datetime",
         widget=forms.DateInput(
             format='%d-%m-%Y', attrs={'type': 'date'}
-        )
-        , required=False
+        ),
+        required=False
     )
     assignees = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
