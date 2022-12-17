@@ -6,4 +6,5 @@ db.sqlite3
 .env
 .DS_Store
 .pytest_cache/
-
+assets
+base-test.html
