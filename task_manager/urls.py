@@ -122,6 +122,24 @@ urlpatterns = [
          TeamUpdateView.as_view(), name="team-update"),
     path("teams/<int:pk>delete/",
          TeamDeleteView.as_view(), name="team-delete"),
+
+    # path("workers/<int:pk>/team-update/",
+    #      WorkerTeamUpdateView.as_view(), name="worker-team-update"),
+
+#     custom path to update views:
+
+
+    # path("tasks/<int:pk>/task-type-update/",
+    #      TaskTaskTypeUpdateView.as_view(), name="task-task-type-update"),
+    # path("tasks/<int:pk>/assignees-update/",
+    #      TaskAssigneesUpdateView.as_view(), name="task-assignees-update"),
+    # path("tasks/<int:pk>/project-update/",
+    #      TaskAProjectUpdateView.as_view(), name="task-project-update"),
+    # path("teams/<int:pk>/member-update/",
+    #      TeamMemberUpdateView.as_view(), name="team-member-update"),
+    # path("projects/<int:pk>/team-update/",
+    #      ProjectTeamUpdateView.as_view(), name="project-team-update")
+
 ]
 
 app_name = "task_manager"
