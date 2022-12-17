@@ -1,64 +1,82 @@
-{% load static %}
+<!--
+=========================================================
+* Soft UI Dashboard - v1.0.6
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>
-    {% block title %}{% endblock %}
-  </title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ ASSETS_ROOT }}/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="{{ ASSETS_ROOT }}/img/favicon.png">
   <script src="https://kit.fontawesome.com/3ba661e069.js" crossorigin="anonymous"></script>
 
+  <title>
+    Task Manager | {% block title %}{% endblock %}
+  </title>
 
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="{{ ASSETS_ROOT }}/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="{{ ASSETS_ROOT }}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{{ ASSETS_ROOT }}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{{ ASSETS_ROOT }}/css/soft-ui-dashboard.css?v=1.0.6" rel="stylesheet" />
+  
+  <link id="pagestyle_dark" href="{{ ASSETS_ROOT }}/css/dark-theme-core.css" rel="stylesheet" />
 
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-        crossorigin="anonymous">
-
-
+  <!-- Specific CSS goes HERE -->
+  {% block stylesheets %}{% endblock stylesheets %}  
 
 </head>
+<body class="g-sidenav-show  bg-gray-100">
+  
+  {% include "includes/sidebar.html" %} 
 
-<body>
-  {% block navigation %}
-    {% include "includes/navbar.html" %}
-  {% endblock %}
-{#<div class="header">#}
-{#<div class="container-fluid">#}
-{#  <div class="row">#}
-{#    <div class="col-sm-3">#}
-{#    </div>#}
-{#    <div class="col-sm-4 content">#}
-      {% block content %}
-      {% endblock %}
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
-      {% block pagination %}
-        {% include "includes/pagination.html" %}
-      {% endblock %}
+    {% include "includes/navigation.html" %} 
 
-{#    </div>#}
-{#  </div>#}
-{#</div>#}
-{#</div>#}
- <footer class="bg-light text-center text-lg-start fixed-bottom">
-  <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: #888; color: #faf0e6">
-      © 2022 Copyright:
-       Thanks for coming to see my project!
-    </div>
-  <!-- Copyright -->
-  </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+    {% block content %}{% endblock content %}
+
+  </main>
+
+  <!-- APP Configurator -->
+  {% include "includes/fixed-plugin.html" %}
+
+  <!-- Core JS Files -->
+  {% include "includes/scripts.html" %}
+
+  <!-- Specific JS goes HERE --> 
+  {% block javascripts %}{% endblock javascripts %}  
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>  
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{{ ASSETS_ROOT }}/js/soft-ui-dashboard.min.js?v=1.0.6"></script>
+
 </body>
-
 </html>

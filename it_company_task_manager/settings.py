@@ -145,4 +145,4 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Assets Management
-ASSETS_ROOT = os.getenv("/static/assets")
+ASSETS_ROOT = os.getenv("ASSETS_ROOT", "/static/assets")

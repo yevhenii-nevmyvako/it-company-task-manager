@@ -1,74 +1,73 @@
 /*carousel*/
 
-.home-carousel {
-    padding: 0;
-}
+/*.home-carousel {*/
+/*    padding: 0;*/
+/*}*/
 
-.home-carousel .carousel-item {
-    display: flex;
-    max-height: 692px;
-
-}
+/*.home-carousel .carousel-item {*/
+/*    display: flex;*/
+/*    max-height: 600px;*/
+/*}*/
 
 .home-carousel .carousel-item img {
     object-fit: cover;
 }
 
-.first-part h5 {
-    font-size: 40px;
-    color: white;
-}
+/*.first-part h5 {*/
+/*    font-size: 40px;*/
+/*    color: white;*/
+/*}*/
 
-.first-part p {
-    font-size: 20px;
-    color: white;
-}
+/*.first-part p {*/
+/*    font-size: 20px;*/
+/*    color: white;*/
+/*}*/
 
-.second-part h5 {
-    font-size: 40px;
-    color: black;
-}
+/*.second-part h5 {*/
+/*    font-size: 40px;*/
+/*    color: black;*/
+/*}*/
 
-.second-part p {
-    font-size: 20px;
-    color: black;
-}
-.tasks h5 {
-    font-size: 40px;
-    color: black;
-}
+/*.second-part p {*/
+/*    font-size: 20px;*/
+/*    color: black;*/
+/*}*/
+/*.tasks h5 {*/
+/*    font-size: 40px;*/
+/*    color: black;*/
+/*}*/
 
-.tasks p {
-    font-size: 20px;
-    color: black;
-}
+/*.tasks p {*/
+/*    font-size: 20px;*/
+/*    color: black;*/
+/*}*/
 
-.main-content {
-    padding: 5px;
-    background-color: #202020;
+/*.main-content {*/
+/*    padding: 5px;*/
+/*    background-color: #202020;*/
 
-    border: thick double black;
+/*    border: thick double black;*/
 
-}
+/*}*/
 
-.main-content h5 {
-    margin: 30px;
-    font-size: 16px;
-    text-align: center;
-    color: #fff;
-}
+/*.main-content h5 {*/
+/*    margin: 30px;*/
+/*    font-size: 16px;*/
+/*    text-align: center;*/
+/*    color: #fff;*/
+/*}*/
 
-.tax {
-    border-style: outset;
-    text-align: center;
-    border-radius: 20px;
-    padding: 0;
+/*.tax {*/
+/*    border-style: outset;*/
+/*    text-align: center;*/
+/*    border-radius: 20px;*/
+/*    padding: 0;*/
 
-}
+/*}*/
 
-.counter {
-    padding: 0;
-    text-align: center;
-    margin-top: 25px;
+/*.counter {*/
+/*    padding: 0;*/
+/*    text-align: center;*/
+/*    margin-top: 25px;*/
 
-}
+/*}*/
