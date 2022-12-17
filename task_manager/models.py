@@ -150,3 +150,22 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return reverse("task_manager:task-detail", args=[str(self.id)])
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="profiles",
+        null=True
+    )
+    avatar = models.ImageField(
+        default="default.jpg",
+        upload_to="profile_images"
+    )
+    bio = models.TextField(
+        blank=True, null=True
+    )
+
+    def __str__(self):
+        return str(self.user)
