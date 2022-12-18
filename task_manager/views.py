@@ -1,9 +1,7 @@
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 from task_manager.models import (
@@ -28,6 +26,7 @@ from task_manager.forms import (
     # WorkerTeamUpdateForm,
     TeamForm,
     ProjectForm,
+    # ProfileBioUpdateForm,
 )
 
 
@@ -405,7 +404,15 @@ class ProfileListView(LoginRequiredMixin, generic.ListView):
     template_name = "task_manager/profile.html"
 
 
-class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
-    model = Profile
-    fields = ["bio"]
-    template_name = "task_manager/profile_bio.html"
+# class ProfileDetailView(LoginRequiredMixin, generic.DetailView):
+#     model = Profile
+#     fields = "__all__"
+#     queryset = Profile.objects.all()
+#     template_name = "task_manager/profile_detail.html"
+
+
+# class ProfileBioUpdate(LoginRequiredMixin, generic.UpdateView):
+#     model = Profile
+#     form_class = ProfileBioUpdateForm
+#     template_name = "task_manager/bio_update.html"
+#     success_url = reverse_lazy("task_manager:profile")

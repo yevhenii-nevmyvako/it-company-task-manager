@@ -36,9 +36,10 @@ from task_manager.views import (
     TeamUpdateView,
     TeamDeleteView,
     assign_worker_to_team,
-    delete_worker_from_team, ProfileListView, ProfileUpdateView,
-    # WorkerTeamUpdateView,  ProfileView,  profile,
-
+    delete_worker_from_team,
+    ProfileListView,
+    # ProfileBioUpdate,
+    # ProfileDetailView,
 )
 
 urlpatterns = [
@@ -140,9 +141,11 @@ urlpatterns = [
     # path("projects/<int:pk>/team-update/",
     #      ProjectTeamUpdateView.as_view(), name="project-team-update")
 
-    path("profile/<int:pk>/",
+    path("profile/<int:pk>/profile/",
          ProfileListView.as_view(), name="profile"),
-    path("profile/<int:pk>/update/", ProfileUpdateView.as_view(), name="profile-update")
+    # path("profile/<int:pk>/detail", ProfileDetailView.as_view(), name="profile-detail"),
+    # path("profile/<int:pk>/update/", ProfileBioUpdate.as_view(), name="bio-update")
+
 
 ]
 

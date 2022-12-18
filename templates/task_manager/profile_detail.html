@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="header-bar"><h1>Profile</h1></div>
+  <div class="card-body">
+
+    <h1>Profile <a class="atuin-btn" href="{% url 'task_manager:bio-update' pk=user.id%}">Update</a></h1>
+    {% if user.is_authenticated %}
+          {{ user.username }}
+
+
+    {% endif %}
+
+
+  </div>
+
+{% endblock %}

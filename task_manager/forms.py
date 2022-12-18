@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from task_manager.models import Worker, Task, Position, Team, Project
+from task_manager.models import Worker, Task, Position, Team, Project, Profile
 
 
 class WorkerCreationFrom(UserCreationForm):
@@ -85,11 +85,11 @@ class ProjectForm(forms.ModelForm):
         fields = "__all__"
 
 
-# class WorkerTeamUpdateForm(forms.ModelForm):
+# class ProfileBioUpdateForm(forms.ModelForm):
 #
 #     class Meta:
-#         model = Worker
-#         fields = ("team",)
+#         model = Profile
+#         fields = ("bio",)
 
 
 class PositionSearchForm(forms.Form):
