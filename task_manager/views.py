@@ -1,8 +1,9 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 from task_manager.models import (
@@ -11,7 +12,7 @@ from task_manager.models import (
     Position,
     Worker,
     Project,
-    Team,
+    Team, Profile,
 )
 from task_manager.forms import (
     WorkerCreationFrom,
@@ -396,3 +397,15 @@ class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = "task_manager/team_delete_confirm.html"
     context_object_name = "team_to_delete"
     success_url = reverse_lazy("task_manager:team-list")
+
+
+class ProfileListView(LoginRequiredMixin, generic.ListView):
+    model = Profile
+    queryset = Profile.objects.all()
+    template_name = "task_manager/profile.html"
+
+
+class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Profile
+    fields = ["bio"]
+    template_name = "task_manager/profile_bio.html"

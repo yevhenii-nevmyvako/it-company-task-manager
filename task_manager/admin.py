@@ -7,7 +7,7 @@ from task_manager.models import (
     Position,
     Worker,
     Project,
-    Team,
+    Team, Profile,
 )
 
 
@@ -63,3 +63,6 @@ class TeamAdmin(admin.ModelAdmin):
     list_display = ["name"]
     list_filter = ["name"]
     search_fields = ["name"]
+
+
+admin.site.register(Profile)

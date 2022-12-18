@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Position | {{ object|yesno:"Update,Addition" }}{% endblock %}
+{% load crispy_forms_filters %}
+
+
+{% block content %}
+<h1> Profile Update!</h1>
+
+  <form action="" method="POST" novalidate>
+  {% csrf_token %}
+  {{ form|crispy }}
+    <input class="btn btn-primary" type="submit" name="Addition">
+    <input class="btn btn-primary" type="button"
+           value="Cancel" onclick="location.href='{% url 'task_manager:profile-list' %}'">
+  </form>
+
+{% endblock %}

@@ -157,7 +157,7 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="profiles",
-        null=True
+        primary_key=True
     )
     avatar = models.ImageField(
         default="default.jpg",

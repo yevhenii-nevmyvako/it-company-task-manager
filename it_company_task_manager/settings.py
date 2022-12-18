@@ -146,6 +146,3 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Assets Management
 ASSETS_ROOT = os.getenv("ASSETS_ROOT", "/static/assets")
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
