@@ -9,10 +9,10 @@
 
 {% block content %}
   <div class="input-group">
-    <form class="" action="" method="GET">
-      {% crispy worker_search_form %}
+    <form class="form-row" action="" method="GET">
+      {{ worker_search_form | crispy }}
 
-      <input class="btn btn-outline-dark" style="border: 0" type="submit" value="Search">
+      <input class="btn btn-outline-dark" type="submit" value="Search">
     </form>
   </div>
   <hr>
@@ -69,8 +69,6 @@
                             </a>
                             <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
                               <li><a class="dropdown-item border-radius-md" href="{% url 'task_manager:worker-position-update' pk=worker.id %}">Change Position</a></li>
-{#                              <li><a class="dropdown-item border-radius-md" href="#">Another action</a></li>#}
-{#                              <li><a class="dropdown-item border-radius-md" href="#">Something else here</a></li>#}
                             </ul>
                           </div>
                         </div>
@@ -91,7 +89,7 @@
                   {% endfor %}
                   </tbody>
                   {% else %}
-                    <p>There are no worker in the service.</p>
+                    <p style="text-align: center; color: mediumspringgreen">There are no worker in the service.</p>
                   {% endif %}
                 </table>
               </div>

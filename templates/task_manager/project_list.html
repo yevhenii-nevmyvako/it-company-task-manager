@@ -9,10 +9,10 @@
 
 {% block content %}
   <div class="input-group">
-    <form class="" action="" method="GET">
-      {% crispy project_search_form %}
+    <form class="form-row" action="" method="GET">
+      {{ project_search_form | crispy }}
 
-      <input class="btn btn-outline-dark" style="border: 0" type="submit" value="Search">
+      <input class="btn btn-outline-dark" type="submit" value="Search">
     </form>
   </div>
   <hr>
@@ -64,7 +64,7 @@
                   {% endfor %}
                   </tbody>
                   {% else %}
-                    <p>There are no Projects in thi list</p>
+                    <p style="text-align: center; color: mediumspringgreen">There are no Projects in thi list</p>
                   {% endif %}
                 </table>
               </div>
@@ -77,72 +77,3 @@
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}{% endblock javascripts %}
-
-
-
-
-
-
-
-{#{% extends "base.html" %}#}
-{#{% load static %}#}
-{#{% load crispy_forms_filters %}#}
-{#{% block title %}Project List{% endblock %}#}
-{#{% block content %}#}
-{#  <link rel="stylesheet" href="{% static 'css/worker_list.css' %}">#}
-{#    <div class="container-search">#}
-{#      <h1>Project List:</h1>#}
-{#      <form class="form-inline tax" action="" method="GET">#}
-{#        {{ project_search_form|crispy }}#}
-{#        <input class="btn btn-outline-success" type="submit" value="🔍">#}
-{#      </form>#}
-{#   </div>#}
-{#    <div class="container-table mtb3">#}
-{#      <a class="atuin-btn" href="{% url 'task_manager:project-create' %}"><strong>Create Project</strong></a>#}
-{#      <hr>#}
-{#      <div class="table-res">#}
-{#        <table class="table">#}
-{#          <thead>#}
-{#            {% if project_list %}#}
-{#              <tr>#}
-{#                <th>ID</th>#}
-{#                <th>Project Name</th>#}
-{#                <th>Teams</th>#}
-{#                <th>Description</th>#}
-{#                <th>Update</th>#}
-{#                <th>Delete</th>#}
-{#              </tr>#}
-{#          </thead>#}
-{#        {% for project in project_list %}#}
-{#          <tbody>#}
-{#            <tr>#}
-{#              <td>{{ project.id }}</td>#}
-{#              <td><a style="font-size: 20px; color: #00a0a0" href="{{ project.get_absolute_url }}">{{ project.name }}</a></td>#}
-{#              <td>{{ project.teams.name}}</td>#}
-{#              <td>{{ project.description }}</td>#}
-{#              <td><a class="atuin-btn" href="{% url 'task_manager:project-update' pk=project.id %}">Update</a></td>#}
-{#              <td><a class="atuin-btn-danger" href="{% url 'task_manager:project-delete' pk=project.id %}">Delete</a></td>#}
-{#            </tr>#}
-{#          </tbody>#}
-{#        {% endfor %}#}
-{#        </table>#}
-{#          {% else %}#}
-{#            <p>There are no project in the service.</p>#}
-{#          {% endif %}#}
-{#      </div>#}
-{#    </div>#}
-{##}
-{#      <table class="table">#}
-{#      <tr>#}
-{#        <th>ID</th>#}
-{#        <th>task Name</th>#}
-{##}
-{##}
-{#      {% for task in project_list %}#}
-{#      <tr>#}
-{#        <td>{{ task.id }}</td>#}
-{#        <td>{{ task.name }}</td>#}
-{#      </tr>#}
-{#        </table>#}
-{#    {% endfor %}#}
-{#{% endblock %}#}
