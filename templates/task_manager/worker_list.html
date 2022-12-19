@@ -1,60 +1,106 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% load crispy_forms_filters %}
-{% block title %}Worker List{% endblock %}
+
+{% block title %} Members {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
 {% block content %}
-{% load static %}
-  <link rel="stylesheet" href="{% static 'css/worker_list.css' %}">
-  <div class="container-search">
-    <h1>Workers List:</h1>
-    <form class="form-inline tax" action="" method="GET">
-      {{ worker_search_form|crispy }}
-      <input class="btn btn-outline-success" type="submit" value="🔍">
-    </form>
-  </div>
-  <div class="container-table mtb3">
-    <a class="atuin-btn" href="{% url 'task_manager:worker-create' %}"><strong>Create new Worker</strong></a>
-    <hr>
-    <div class="table-res">
-      <table class="table">
-        <thead>
+
+      <div class="input-group">
+        <form class="form-inline tax" action="" method="GET">
+          {% crispy worker_search_form %}
+
+          <input class="btn btn-outline-dark" style="margin-top: 0;" type="submit" value="Search">
+        </form>
+      </div>
+  
+
+  <hr>
+  <a class="btn bg-gradient-success" style="margin-left: 25px;" href="{% url 'task_manager:worker-create' %}"><strong>Create new Worker</strong></a>
 
 
-          {% if worker_list %}
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h6>Members table</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  {% if worker_list %}
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">id</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center">Username</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center">Full Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center">Position</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center">Change position</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                      <th class="text-secondary text-uppercase text-xxs font-weight-bolder opacity-7" style="text-align: center">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for worker in worker_list %}
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center" style="margin-left: 10px">
+                            {{ worker.id }}
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                         <a class="btn btn-linkedin container-fluid" href="{{ worker.get_absolute_url }}">
+                           <strong>{{ worker.username }}{% if user == worker %} (Me) {% endif %}</strong></a>
+                      </td>
+                      <td style="text-align: center;">
+                         <span class="font-weight-bolder">{{ worker.first_name }} {{ worker.last_name }}</span>
+                      </td>
+                      <td style="text-align: center;">
+                         <span class="font-weight-bolder">{{ worker.position.name }}</span>
+                      </td>
+                      <td style="text-align: center;">
+                         <a class="btn btn-link text-info text-gradient px-3" href="{% url 'task_manager:worker-position-update' pk=worker.id %}">Change</a>
+                      </td>
 
-            <tr>
-              <th>ID</th>
-              <th>Username</th>
-              <th>Full Name</th>
-              <th>@Email</th>
-              <th>Position</th>
-              <th>Team Name</th>
-              <th>Position Update</th>
-{#              <th>Choose Team </th>#}
-              <th>Delete</th>
-            </tr>
-        </thead>
-        {% for worker in worker_list %}
-          <tbody>
-            <tr>
-              <td>{{ worker.id }}</td>
-              <td><a style="font-size: 20px; color: #00a0a0" href="{{ worker.get_absolute_url }}"><strong>{{ worker.username }}</strong></a>
-              {% if user == worker %} (Me) {% endif %}
-              </td>
-              <td>{{ worker.first_name }} {{ worker.last_name }}</td>
-              <td>{{ worker.email }}</td>
-              <td>{{ worker.position.name }}</td>
-              <td>{{ worker.team.name }}</td>
-              <td><a class="atuin-btn" href="{% url 'task_manager:worker-position-update' pk=worker.id %}">Change</a></td>
-{#              <td><a class="atuin-btn" href="{% url 'task_manager:worker-team-update' pk=worker.id %}">Choose</a></td>#}
-              <td><a class="atuin-btn-danger" href="{% url 'task_manager:worker-delete' pk=worker.id %}">Delete</a></td>
-            </tr>
-          </tbody>
-        {% endfor %}
-
-      </table>
+                      {% if user == worker %}
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-success">Online</span>
+                      </td>
+                        {% else %}
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                      </td>
+                      {% endif %}
+                       <td style="text-align: center;">
+                         <a class="btn btn-link text-danger text-gradient px-3 mb-0 delete" href="{% url 'task_manager:worker-delete' pk=worker.id %}">
+                           <i class="far fa-trash-alt me-2"></i>Delete</a>
+                       </td>
+{#                      <td class="align-middle">#}
+{#                        <a href="javascript:;" style="margin-left: 17px" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">#}
+{#                          Update#}
+{#                        </a>#}
+{#                      </td>#}
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                  {% else %}
+                    <p>There are no worker in the service.</p>
+                  {% endif %}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  {% else %}
-    <p>There are no worker in the service.</p>
-  {% endif %}
-{% endblock %}
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

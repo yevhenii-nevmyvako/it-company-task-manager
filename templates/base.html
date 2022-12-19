@@ -53,7 +53,10 @@
 
     {% block content %}{% endblock content %}
 
+    {% block pagination %} {% include "includes/pagination.html" %} {% endblock %}
+    {% include "includes/footer.html" %}
   </main>
+
 
   <!-- APP Configurator -->
   {% include "includes/fixed-plugin.html" %}

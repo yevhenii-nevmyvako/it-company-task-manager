@@ -85,6 +85,13 @@ class ProjectForm(forms.ModelForm):
         fields = "__all__"
 
 
+class TeamWorkerUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Team
+        fields = ("members",)
+
+
 # class ProfileBioUpdateForm(forms.ModelForm):
 #
 #     class Meta:

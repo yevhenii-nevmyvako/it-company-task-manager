@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ worker_position_update }} | {{ object|yesno:"Update,Create" }}{% endblock %}
+{% load crispy_forms_filters %}
+
+
+{% block content %}
+<h1>{{ object|yesno:"Update,Create" }} new Team!</h1>
+
+  <form action="" method="POST" novalidate>
+  {% csrf_token %}
+  {{ form|crispy }}
+    <input class="btn btn-primary" type="submit" value="Update">
+    <input class="btn btn-primary" type="button"
+           value="Cancel" onclick="location.href='{% url 'task_manager:team-list' %}'">
+
+  </form>
+
+{% endblock %}
