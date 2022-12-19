@@ -38,7 +38,7 @@ from task_manager.views import (
     assign_worker_to_team,
     delete_worker_from_team,
     ProfileListView,
-    TeamWorkerUpdateView,
+    TeamWorkerUpdateView, TaskCompletedUpdateView,
 )
 
 urlpatterns = [
@@ -128,6 +128,8 @@ urlpatterns = [
 
 #     custom path to update views:
 
+    path("tasks/<int:pk>/task-completed-update",
+         TaskCompletedUpdateView.as_view(), name="task-completed-update"),
 
     # path("tasks/<int:pk>/task-type-update/",
     #      TaskTaskTypeUpdateView.as_view(), name="task-task-type-update"),

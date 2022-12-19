@@ -25,7 +25,7 @@ from task_manager.forms import (
     TeamSearchForm,
     TeamForm,
     ProjectForm,
-    TeamWorkerUpdateForm,
+    TeamWorkerUpdateForm, CompletedForm,
 
 )
 
@@ -160,6 +160,14 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("task_manager:task-list")
 
 
+class TaskCompletedUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Task
+    form_class = CompletedForm
+    context_object_name = "task_completed_update"
+    success_url = reverse_lazy("task_manager:task-list")
+    template_name = "task_manager/task_completed_form.html"
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     context_object_name = "worker_list"
@@ -202,13 +210,6 @@ class WorkerPositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     form_class = WorkerPositionUpdateForm
     template_name = "task_manager/worker_position_form.html"
     context_object_name = "worker_position_update"
-
-
-# class WorkerTeamUpdateView(LoginRequiredMixin, generic.UpdateView):
-#     model = Worker
-#     form_class = WorkerTeamUpdateForm
-#     template_name = "task_manager/worker_team_form.html"
-#     context_object_name = "worker_team_update"
 
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):

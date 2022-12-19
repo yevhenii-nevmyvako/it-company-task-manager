@@ -60,6 +60,13 @@ class TaskForm(forms.ModelForm):
         fields = "__all__"
 
 
+class CompletedForm(forms.ModelForm):
+
+    class Meta:
+        model = Task
+        fields = ("is_completed",)
+
+
 class WorkerPositionUpdateForm(forms.ModelForm):
 
     class Meta:
