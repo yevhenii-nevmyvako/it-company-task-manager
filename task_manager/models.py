@@ -159,13 +159,6 @@ class Profile(models.Model):
         related_name="profiles",
         primary_key=True
     )
-    avatar = models.ImageField(
-        default="default.jpg",
-        upload_to="profile_images"
-    )
-    bio = models.TextField(
-        blank=True, null=True
-    )
 
     def __str__(self):
         return str(self.user)
