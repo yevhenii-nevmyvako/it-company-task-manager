@@ -67,6 +67,13 @@ class CompletedForm(forms.ModelForm):
         fields = ("is_completed",)
 
 
+class DeadlineForm(forms.ModelForm):
+
+    class Meta:
+        model = Task
+        fields = ("deadline",)
+
+
 class WorkerPositionUpdateForm(forms.ModelForm):
 
     class Meta:

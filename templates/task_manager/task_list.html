@@ -71,7 +71,7 @@
                             <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
                               <li><a class="dropdown-item border-radius-md" href="{% url 'task_manager:task-update' pk=task.id %}">Edit Task</a></li>
                               <li><a class="dropdown-item border-radius-md" href="{% url 'task_manager:task-completed-update' pk=task.id %}">Edit Completed</a></li>
-{#                              <li><a class="dropdown-item border-radius-md" href="#">Something else here</a></li>#}
+                              <li><a class="dropdown-item border-radius-md" href="{% url 'task_manager:task-deadline-update' pk=task.id %}">Edit Deadline</a></li>
                             </ul>
                           </div>
                         </div>
