@@ -72,6 +72,8 @@
                               <li><a class="dropdown-item border-radius-md" href="{% url 'task_manager:task-update' pk=task.id %}">Edit Task</a></li>
                               <li><a class="dropdown-item border-radius-md" href="{% url 'task_manager:task-completed-update' pk=task.id %}">Edit Completed</a></li>
                               <li><a class="dropdown-item border-radius-md" href="{% url 'task_manager:task-deadline-update' pk=task.id %}">Edit Deadline</a></li>
+                              <li><a class="dropdown-item border-radius-md" href="{% url 'task_manager:task-priority-update' pk=task.id %}">Edit Priority</a></li>
+
                             </ul>
                           </div>
                         </div>

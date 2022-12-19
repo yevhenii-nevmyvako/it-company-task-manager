@@ -74,6 +74,13 @@ class DeadlineForm(forms.ModelForm):
         fields = ("deadline",)
 
 
+class PriorityForm(forms.ModelForm):
+
+    class Meta:
+        model = Task
+        fields = ("priority",)
+
+
 class WorkerPositionUpdateForm(forms.ModelForm):
 
     class Meta:
