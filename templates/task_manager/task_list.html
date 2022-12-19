@@ -22,7 +22,7 @@
         <div class="col-11">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Task List<a class="col-2 btn btn-link text-dark px-3 mb-0" style="margin-left: 200px;" href="{% url 'task_manager:worker-create' %}">
+              <h6>Task List<a class="col-2 btn btn-link text-dark px-3 mb-0" style="margin-left: 200px;" href="{% url 'task_manager:task-create' %}">
               <i class="fas fa-plus text-success me-2" aria-hidden="true"></i>
                 <strong>Create new Task</strong></a></h6>
             </div>
@@ -108,51 +108,3 @@
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}{% endblock javascripts %}
-
-
-
-
-
-
-
-
-{#{% extends "base.html" %}#}
-{#{% load crispy_forms_filters %}#}
-{#{% block title %}Task List{% endblock %}#}
-{#{% block content %}#}
-{#    <h1>Tasks List#}
-{#      <a href="{% url 'task_manager:task-create' %}"><strong>Create Task</strong></a>#}
-{#      <form action="" method="GET">#}
-{#        {{ task_search_form|crispy }}#}
-{#        <input type="submit" value="search">#}
-{#      </form>#}
-{#    </h1>#}
-{##}
-{#    {% if task_list %}#}
-{#    <table class="table">#}
-{#      <tr>#}
-{#        <th>ID</th>#}
-{#        <th>Task type</th>#}
-{#        <th>priority</th>#}
-{#        <th>is_completed</th>#}
-{#        <th>deadline</th>#}
-{#        <th>Update</th>#}
-{#        <th>Delete</th>#}
-{#      </tr>#}
-{#    {% for task in task_list %}#}
-{#      <tr>#}
-{#        <td>{{ task.id }}</td>#}
-{#        <td><a href="{{ task.get_absolute_url }}">{{ task.task_type.name }}</a></td>#}
-{#        <td>{{ task.priority}}</td>#}
-{#        <td>{% if task.is_completed == True %} Completed {% else %} Not Completed{% endif %}</td>#}
-{#        <td>{{ task.deadline }}</td>#}
-{#        <td><a href="{% url 'task_manager:task-update' pk=task.id %}">Update</a></td>#}
-{#      <td><a href="{% url 'task_manager:task-delete' pk=task.id %}">Delete</a></td>#}
-{#      </tr>#}
-{#    {% endfor %}#}
-{##}
-{#    </table>#}
-{#    {% else %}#}
-{#      <p>There are no task in the service.</p>#}
-{#    {% endif %}#}
-{#{% endblock %}#}
