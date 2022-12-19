@@ -23,10 +23,10 @@ from task_manager.forms import (
     TaskTypeSearchForm,
     ProjectSearchForm,
     TeamSearchForm,
-    # WorkerTeamUpdateForm,
     TeamForm,
-    ProjectForm, TeamWorkerUpdateForm,
-    # ProfileBioUpdateForm,
+    ProjectForm,
+    TeamWorkerUpdateForm,
+
 )
 
 
@@ -410,17 +410,3 @@ class ProfileListView(LoginRequiredMixin, generic.ListView):
     model = Profile
     queryset = Profile.objects.all()
     template_name = "task_manager/profile.html"
-
-
-# class ProfileDetailView(LoginRequiredMixin, generic.DetailView):
-#     model = Profile
-#     fields = "__all__"
-#     queryset = Profile.objects.all()
-#     template_name = "task_manager/profile_detail.html"
-
-
-# class ProfileBioUpdate(LoginRequiredMixin, generic.UpdateView):
-#     model = Profile
-#     form_class = ProfileBioUpdateForm
-#     template_name = "task_manager/bio_update.html"
-#     success_url = reverse_lazy("task_manager:profile")

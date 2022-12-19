@@ -37,9 +37,8 @@ from task_manager.views import (
     TeamDeleteView,
     assign_worker_to_team,
     delete_worker_from_team,
-    ProfileListView, TeamWorkerUpdateView,
-    # ProfileBioUpdate,
-    # ProfileDetailView,
+    ProfileListView,
+    TeamWorkerUpdateView,
 )
 
 urlpatterns = [
@@ -143,8 +142,7 @@ urlpatterns = [
 
     path("profile/<int:pk>/profile/",
          ProfileListView.as_view(), name="profile"),
-    # path("profile/<int:pk>/detail", ProfileDetailView.as_view(), name="profile-detail"),
-    # path("profile/<int:pk>/update/", ProfileBioUpdate.as_view(), name="bio-update")
+
 
 
 ]

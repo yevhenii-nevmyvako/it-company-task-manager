@@ -92,13 +92,6 @@ class TeamWorkerUpdateForm(forms.ModelForm):
         fields = ("members",)
 
 
-# class ProfileBioUpdateForm(forms.ModelForm):
-#
-#     class Meta:
-#         model = Profile
-#         fields = ("bio",)
-
-
 class PositionSearchForm(forms.Form):
     name = forms.CharField(
         max_length=255,
