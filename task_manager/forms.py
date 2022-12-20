@@ -95,11 +95,11 @@ class ProjectForm(forms.ModelForm):
         required=False
     )
 
-    tasks = forms.ModelMultipleChoiceField(
-        queryset=Task.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=False
-    )
+    # tasks = forms.ModelMultipleChoiceField(
+    #     queryset=Task.objects.all(),
+    #     widget=forms.CheckboxSelectMultiple,
+    #     required=False
+    # )
 
     class Meta:
         model = Project

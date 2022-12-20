@@ -131,10 +131,10 @@ class Task(models.Model):
         related_name="tasks",
         blank=True
     )
-    project = models.ForeignKey(
+    projects = models.ForeignKey(
         Project,
         on_delete=models.CASCADE,
-        related_name="Tasks",
+        related_name="tasks",
         null=True,
     )
 

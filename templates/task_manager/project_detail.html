@@ -4,12 +4,6 @@
 {% block content %}
   <h4 class="display-5">Project: {{ project.name }}
     <a href="{% url 'task_manager:project-update' pk=project.id %}"><strong>Update</strong></a>
-{#    {% if user not in task.assignees.all %}#}
-{#      <a class="btn btn-success" href="{% url 'task_manager:worker-assign-to-task' pk=task.id %}">Assign me to Task</a>#}
-{#    {% else %}#}
-{#      <a class="btn btn-danger" href="{% url 'task_manager:worker-delete-from-task' pk=task.id %}">Delete me from Task#}
-{#      </a>#}
-{#    {% endif %}#}
   </h4>
 
   <hr>
@@ -17,15 +11,29 @@
 
       <tr>
         <th>Project name:</th>
-        <th>description:</th>
-        <th>tasks</th>
+        <th>project description:</th>
       </tr>
       <tr>
         <td>{{ project.name }}</td>
-        <td>{{ project.tasks }}</td>
-        <td>{{ project.description}}</td>
+        <td>{{ project.description }}</td>
       </tr>
   </table>
+
+    <hr>
+  <table class="table">
+    {% for task in project.tasks %}
+
+      <tr>
+        <th>Project name:</th>
+        <th>project description:</th>
+      </tr>
+      <tr>
+        <td>{{ project.name }}</td>
+        <td>{{ project.description }}</td>
+      </tr>
+  </table>
+
+
   <div class="p-2 bg-light border">
 
         <table class="table">
