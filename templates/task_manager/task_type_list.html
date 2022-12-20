@@ -40,7 +40,7 @@
                   <tbody>
                   {% for type in task_type_list %}
                     <tr>
-                      <td>
+                      <td class="col-lg-1">
                         <div class="d-flex px-2 py-1">
                           <div class="d-flex flex-column justify-content-center" style="margin-left: 10px">
                             {{ type.id }}
@@ -48,7 +48,7 @@
                         </div>
                       </td>
                       <td>
-                         <a class="btn btn-link text-bg-primary text-gradient container-fluid" style="margin-top: 10px" href="{{ task_type.get_absolute_url }}">
+                         <a class="btn btn-link text-bg-success text-gradient container-fluid" style="margin-top: 10px" href="{{ task_type.get_absolute_url }}">
                           <span style="font-size: 14px">{{ type.name }}</span>
                       </td>
 
