@@ -68,6 +68,13 @@ class CompletedForm(forms.ModelForm):
 
 
 class DeadlineForm(forms.ModelForm):
+    deadline = forms.DateField(
+        label="Deadline datetime",
+        widget=forms.DateInput(
+            format='%d-%m-%Y', attrs={'type': 'date'}
+        ),
+        required=False
+    )
 
     class Meta:
         model = Task
@@ -94,12 +101,6 @@ class ProjectForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
-
-    # tasks = forms.ModelMultipleChoiceField(
-    #     queryset=Task.objects.all(),
-    #     widget=forms.CheckboxSelectMultiple,
-    #     required=False
-    # )
 
     class Meta:
         model = Project
