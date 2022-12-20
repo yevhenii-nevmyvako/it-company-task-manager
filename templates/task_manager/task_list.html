@@ -22,7 +22,8 @@
         <div class="col-11">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Task List<a class="col-2 btn btn-link text-dark px-3 mb-0" style="margin-left: 200px;" href="{% url 'task_manager:task-create' %}">
+              <h6 class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">
+                Task List<a class="col-2 btn btn-link text-dark px-3 mb-0" style="margin-left: 200px;" href="{% url 'task_manager:task-create' %}">
               <i class="fas fa-plus text-success me-2" aria-hidden="true"></i>
                 <strong>Create new Task</strong></a></h6>
             </div>
@@ -32,11 +33,11 @@
                   {% if task_list %}
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">id</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center">Task type</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center">Priority</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center">Deadline</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: left">Edit Task</th>
+                      <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">id</th>
+                      <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7" style="text-align: center">Task type</th>
+                      <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7" style="text-align: center">Priority</th>
+                      <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7" style="text-align: center">Deadline</th>
+                      <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7" style="text-align: left">Edit Task</th>
 
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Complete Status</th>
                       <th class="text-secondary text-uppercase text-xxs font-weight-bolder opacity-7" style="text-align: center">Delete</th>
