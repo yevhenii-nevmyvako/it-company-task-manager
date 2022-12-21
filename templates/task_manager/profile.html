@@ -1,18 +1,25 @@
-{% extends "base.html" %}
-{% block content %}
 
-<div class="header-bar"><h1>Profile</h1></div>
-  <div class="card-body">
 
+
+
+
+
+
+{#{% extends "base.html" %}#}
+{#{% block content %}#}
+{##}
+{#<div class="header-bar"><h1>Profile</h1></div>#}
+{#  <div class="card-body">#}
+{##}
 {#    <h1>Profile <a class="atuin-btn" href="{% url 'task_manager:bio-update' username=user.worker.username %}">Update</a></h1>#}
 {#  <a class="atuin-btn" href="{% url 'task_manager:profile-detail' pk=user.id %}"><strong>Create position</strong></a>#}
-    {% if user.is_authenticated %}
-          {{ user.username }}
-
-
-    {% endif %}
-
-
-  </div>
-
-{% endblock %}
+{#    {% if user.is_authenticated %}#}
+{#          {{ user.username }}#}
+{##}
+{##}
+{#    {% endif %}#}
+{##}
+{##}
+{#  </div>#}
+{##}
+{#{% endblock %}#}
