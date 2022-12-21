@@ -88,8 +88,7 @@ class Project(models.Model):
     name = models.CharField(max_length=255)
     teams = models.ManyToManyField(
         Team,
-        related_name="projects",
-        blank=True,
+        related_name="projects"
     )
     description = models.TextField(null=True, blank=True)
 
