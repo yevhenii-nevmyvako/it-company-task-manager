@@ -16,7 +16,7 @@
           <div class="row col-12 py-xxl">
             <div class="container-fluid col-xxl-12">
               <div class="c card mb-2 py-4 h-100 align-items-center">
-                <h2>{{ object|yesno:"Change,Addition" }} task deadline tame ==> <span class="text-primary">{{ task_deadline_update.task_type }}</span></h2>
+                <h2 class="text-info text-gradient">{{ object|yesno:"Change,Addition" }} task deadline time <span class="text-primary"> in "{{ task_deadline_update.task_type }}"</span></h2>
                 <form action="" method="POST" novalidate>
                   {% csrf_token %}
                   {{ form|crispy }}
