@@ -183,6 +183,7 @@ class TaskPriorityView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("task_manager:task-list")
     template_name = "task_manager/task_priority_form.html"
 
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     context_object_name = "worker_list"
@@ -229,6 +230,7 @@ class WorkerPositionUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
+    context_object_name = "worker_to_delete"
     template_name = "task_manager/worker_delete_confirm.html"
     success_url = reverse_lazy("task_manager:worker-list")
 
