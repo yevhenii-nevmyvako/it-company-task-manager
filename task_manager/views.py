@@ -25,8 +25,7 @@ from task_manager.forms import (
     TeamSearchForm,
     TeamForm,
     ProjectForm,
-    TeamWorkerUpdateForm, CompletedForm, DeadlineForm, PriorityForm,
-
+    CompletedForm, DeadlineForm, PriorityForm,
 )
 
 
@@ -413,14 +412,6 @@ class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Team
     template_name = "task_manager/team_delete_confirm.html"
     context_object_name = "team_to_delete"
-    success_url = reverse_lazy("task_manager:team-list")
-
-
-class TeamWorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
-    model = TeamWorkerUpdateForm
-    form_class = Team
-    template_name = "task_manager/team-member-update.html"
-    context_object_name = "member_update_in_team"
     success_url = reverse_lazy("task_manager:team-list")
 
 
