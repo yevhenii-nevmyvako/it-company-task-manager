@@ -16,7 +16,7 @@
           <div class="row col-12 py-xxl">
             <div class="container-fluid col-xxl-12">
               <div class="card mb-2 py-4 h-100 align-items-center">
-                <h1>{{ object|yesno:"Update,Addition" }} this position! ==> <span class="text-primary">{{ position.name }}</span></h1>
+                <h2>{{ object|yesno:"Update,Addition" }} this position! ==> <span class="text-primary">{{ position.name }}</span></h1>
                 <form action="" method="POST" novalidate>
                   {% csrf_token %}
                   {{ form|crispy }}
