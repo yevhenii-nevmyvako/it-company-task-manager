@@ -1,18 +1,35 @@
 {% extends "base.html" %}
-{% block title %}{{ tasktype.name }} | {{ object|yesno:"Update,Create" }}{% endblock %}
 {% load crispy_forms_filters %}
 
+{% block title %} {{ tasktype.name }} {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-  <h1>{{ object|yesno:"Update,Create" }} new type!</h1>
 
-  <form action="" method="POST" novalidate>
-  {% csrf_token %}
-  {{ form|crispy }}
-    <input class="btn btn-primary" type="submit" value="Addition">
-    <input class="btn btn-primary" type="button"
-           value="Cancel" onclick="location.href='{% url 'task_manager:task-type-list' %}'">
+    <div class="container-fluid">
+      <div class="page-header min-height-300 border-radius-lg mt-4" style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+        <span class="mask bg-gradient-primary opacity-6"></span>
+      </div>
+        <div class="container-fluid col-12 mx-4 mt-n6 py-xxl">
+          <div class="row col-12 py-xxl">
+            <div class="container-fluid col-xxl-12">
+              <div class="card mb-2 py-4 h-100 align-items-center">
+                <h2 class="font-weight-bolder text-info text-gradient">{{ object|yesno:"Change,Addition" }} task type in: <span class="text-primary">"{{ tasktype.name }}"</span></h2>
+                <form action="" method="POST" novalidate>
+                  {% csrf_token %}
+                  {{ form|crispy }}
+                  <input class="btn btn-success" type="submit" name="Addition">
+                  <input class="btn btn-secondary" type="button"
+                         value="Cancel" onclick="location.href='{% url 'task_manager:task-type-list' %}'">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  </form>
+{% endblock content %}
 
-{% endblock %}
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
