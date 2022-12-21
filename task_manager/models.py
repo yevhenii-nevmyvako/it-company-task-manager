@@ -123,12 +123,11 @@ class Task(models.Model):
     task_type = models.ForeignKey(
         TaskType, on_delete=models.CASCADE,
         related_name="tasks",
-        null=True, blank=True,
+        null=True,
     )
     assignees = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="tasks",
-        blank=True
     )
     projects = models.ForeignKey(
         Project,
