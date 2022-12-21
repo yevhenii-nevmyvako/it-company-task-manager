@@ -65,7 +65,7 @@ class Team(models.Model):
     description = models.TextField(null=True, blank=True)
     members = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        related_name="workers",
+        related_name="teams",
         blank=True,
     )
 

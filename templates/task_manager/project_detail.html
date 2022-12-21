@@ -50,8 +50,6 @@
             </div>
           </div>
         </div>
-
-
         <div class="container-fluid col-8 py-xxl ">
           <div class="row col-11 py-xxl">
             <div class="col-xxl-12">
@@ -82,6 +80,8 @@
                             </div>
                           </td>
                         </tr>
+                        {% empty %}
+                          <p style="text-align: center; color: mediumspringgreen">No Teams on this Project!</p>
                         {% endfor %}
                       </tbody>
                     </table>
@@ -91,9 +91,6 @@
             </div>
           </div>
         </div>
-
-
-
         <div class="container-fluid col-10 py-xxl ">
           <div class="row col-11 py-xxl">
             <div class="container-fluid col-xxl-12">
@@ -146,6 +143,8 @@
                             </td>
                             {% endif %}
                         </tr>
+                        {% empty %}
+                          <p style="text-align: center; color: mediumspringgreen">No Tasks on this Project!</p>
                         {% endfor %}
                       </tbody>
                     </table>
@@ -154,82 +153,7 @@
               </div>
             </div>
 
-
-
-
 {% endblock content %}
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}{% endblock javascripts %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-{##}
-{#{% extends "base.html" %}#}
-{#{% block title %}Project | {{ project.name }}{% endblock %}#}
-{##}
-{#{% block content %}#}
-{#  <h4 class="display-5">Project: {{ project.name }}#}
-{#    <a href="{% url 'task_manager:project-update' pk=project.id %}"><strong>Update</strong></a>#}
-{#  </h4>#}
-{##}
-{#  <hr>#}
-{#  <table class="table">#}
-{##}
-{#      <tr>#}
-{#        <th>Project name:</th>#}
-{#        <th>project description:</th>#}
-{#      </tr>#}
-{#      <tr>#}
-{#        <td>{{ project.name }}</td>#}
-{#        <td>{{ project.description }}</td>#}
-{#      </tr>#}
-{#  </table>#}
-{##}
-{#    <hr>#}
-{#  <table class="table">#}
-{#    {% for task in project.tasks.all %}#}
-{##}
-{#      <tr>#}
-{#        <th>Task name:</th>#}
-{#        <th>is completed:</th>#}
-{#        <th>is_completed</th>#}
-{#      </tr>#}
-{#      <tr>#}
-{#        <td>{{ task.task_type.name }}</td>#}
-{#        <td>{{ task.priority }}</td>#}
-{#        <td>{% if task.is_completed == True %} Completed {% else %} Not Comleted{% endif %}</td>#}
-{#      </tr>#}
-{#  </table>#}
-{#  {% endfor %}#}
-{##}
-{#  <hr>#}
-{##}
-{##}
-{#  <div class="p-2 bg-light border">#}
-{##}
-{#        <table class="table">#}
-{#        {% for team in project.teams.all %}#}
-{#        <tr>#}
-{#          <th>Team name</th>#}
-{#        <tr>#}
-{#        <tr>#}
-{#          <td>{{ team.name }} </td>#}
-{#        </tr>#}
-{##}
-{##}
-{#        {% endfor %}#}
-{#        </table>#}
-{##}
-{#  </div>#}
-{#{% endblock %}#}
