@@ -38,7 +38,9 @@ from task_manager.views import (
     assign_worker_to_team,
     delete_worker_from_team,
     ProfileListView,
-    TaskCompletedUpdateView, TaskDeadlineUpdateView, TaskPriorityView,
+    TaskCompletedUpdateView,
+    TaskDeadlineUpdateView,
+    TaskPriorityView,
 )
 
 
@@ -85,8 +87,6 @@ urlpatterns = [
          assign_worker_to_team, name="worker-assign-to-team"),
     path("workers/<int:pk>/delete_worker_from_team",
          delete_worker_from_team, name="worker-delete-from-team"),
-    # path("workers/<int:pk>/team-update/",
-    #      WorkerTeamUpdateView.as_view(), name="worker-team-update"),
 
 
     path("positions/",
@@ -124,10 +124,6 @@ urlpatterns = [
     path("teams/<int:pk>delete/",
          TeamDeleteView.as_view(), name="team-delete"),
 
-    # path("workers/<int:pk>/team-update/",
-    #      WorkerTeamUpdateView.as_view(), name="worker-team-update"),
-
-#     custom path to update views:
 
     path("tasks/<int:pk>/task-completed-update",
          TaskCompletedUpdateView.as_view(), name="task-completed-update"),
@@ -135,22 +131,8 @@ urlpatterns = [
          TaskDeadlineUpdateView.as_view(), name="task-deadline-update"),
     path("tasks/<int:pk>/task-priority-update",
          TaskPriorityView.as_view(), name="task-priority-update"),
-
-    # path("tasks/<int:pk>/task-type-update/",
-    #      TaskTaskTypeUpdateView.as_view(), name="task-task-type-update"),
-    # path("tasks/<int:pk>/assignees-update/",
-    #      TaskAssigneesUpdateView.as_view(), name="task-assignees-update"),
-    # path("tasks/<int:pk>/project-update/",
-    #      TaskAProjectUpdateView.as_view(), name="task-project-update"),
-
-    # path("projects/<int:pk>/team-update/",
-    #      ProjectTeamUpdateView.as_view(), name="project-team-update")
-
     path("profile/<int:pk>/profile/",
          ProfileListView.as_view(), name="profile"),
-
-
-
 ]
 
 app_name = "task_manager"

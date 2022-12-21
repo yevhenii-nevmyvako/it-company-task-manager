@@ -7,7 +7,8 @@ from task_manager.models import (
     Position,
     Worker,
     Project,
-    Team, Profile,
+    Team,
+    Profile,
 )
 
 
@@ -26,6 +27,7 @@ class TaskAdmin(admin.ModelAdmin):
         "task_type",
         "deadline",
         "description",
+
     ]
     list_filter = ["is_completed", "priority", "deadline"]
     search_fields = ["task_type"]

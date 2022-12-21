@@ -25,11 +25,12 @@ from task_manager.forms import (
     TeamSearchForm,
     TeamForm,
     ProjectForm,
-    CompletedForm, DeadlineForm, PriorityForm,
+    CompletedForm,
+    DeadlineForm,
+    PriorityForm,
 )
 
 
-@login_required
 def index(request):
     num_tusk_types = TaskType.objects.count()
     num_tusks = Task.objects.count()
@@ -77,6 +78,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
             return self.queryset.filter(
                 name__icontains=form.cleaned_data["name"]
             )
+
         return self.queryset
 
 
@@ -206,6 +208,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
             return self.queryset.filter(
                 username__icontains=form.cleaned_data["username"]
             )
+
         return self.queryset
 
 
@@ -329,6 +332,7 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
         context["project_search_form"] = ProjectSearchForm(
             initial={"name": name}
         )
+
         return context
 
     def get_queryset(self):
@@ -338,6 +342,7 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
             return self.queryset.filter(
                 name__icontains=form.cleaned_data["name"]
             )
+
         return self.queryset
 
 
@@ -378,6 +383,7 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
         context["team_search_form"] = TeamSearchForm(
             initial={"name": name}
         )
+
         return context
 
     def get_queryset(self):
@@ -387,6 +393,7 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
             return self.queryset.filter(
                 name__icontains=form.cleaned_data["name"]
             )
+
         return self.queryset
 
 

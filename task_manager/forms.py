@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from task_manager.models import Worker, Task, Position, Team, Project, Profile
+from task_manager.models import Worker, Task, Position, Team, Project
 
 
 class WorkerCreationFrom(UserCreationForm):
