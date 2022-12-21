@@ -33,7 +33,7 @@ class PositionForm(forms.ModelForm):
         model = Position
         fields = "__all__"
 
-    def clean_name(self):
+    def clean_name(self) -> str:
         name = self.cleaned_data["name"]
 
         if [el for el in name if el in "0123456789"]:

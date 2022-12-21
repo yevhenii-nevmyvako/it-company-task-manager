@@ -27,6 +27,7 @@ class TaskAdmin(admin.ModelAdmin):
         "task_type",
         "deadline",
         "description",
+        "project",
 
     ]
     list_filter = ["is_completed", "priority", "deadline"]
@@ -62,7 +63,7 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ["name"]
+    list_display = ["name", "description"]
     list_filter = ["name"]
     search_fields = ["name"]
 
