@@ -61,7 +61,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     queryset = TaskType.objects.all()
     paginate_by = 5
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs) -> None:
         context = super(TaskTypeListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
 
@@ -71,7 +71,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
 
         return context
 
-    def get_queryset(self):
+    def get_queryset(self) -> queryset:
         form = TaskTypeSearchForm(self.request.GET)
 
         if form.is_valid():
@@ -115,7 +115,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "task_list"
     paginate_by = 7
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs) -> None:
         context = super(TaskListView, self).get_context_data(**kwargs)
         task_type = self.request.GET.get("task_type", "")
 
@@ -125,7 +125,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
         return context
 
-    def get_queryset(self):
+    def get_queryset(self) -> queryset:
         form = TaskSearchForm(self.request.GET)
 
         if form.is_valid():
@@ -191,7 +191,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     queryset = Worker.objects.all().select_related("position")
     paginate_by = 5
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs) -> None:
         context = super(WorkerListView, self).get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
 
@@ -201,7 +201,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
         return context
 
-    def get_queryset(self):
+    def get_queryset(self) -> queryset:
         form = WorkerSearchForm(self.request.GET)
 
         if form.is_valid():
@@ -238,7 +238,7 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 
 @login_required
-def assign_worker_to_task(request, pk):
+def assign_worker_to_task(request, pk) -> HttpResponseRedirect:
     task = Task.objects.get(pk=pk)
     task.assignees.add(request.user.id)
     return HttpResponseRedirect(reverse_lazy(
@@ -246,7 +246,7 @@ def assign_worker_to_task(request, pk):
 
 
 @login_required
-def delete_worker_from_task(request, pk):
+def delete_worker_from_task(request, pk) -> HttpResponseRedirect:
     task = Task.objects.get(pk=pk)
     task.assignees.remove(request.user.id)
     return HttpResponseRedirect(reverse_lazy(
@@ -255,7 +255,7 @@ def delete_worker_from_task(request, pk):
 
 
 @login_required
-def assign_worker_to_team(request, pk):
+def assign_worker_to_team(request, pk) -> HttpResponseRedirect:
     team = Team.objects.get(pk=pk)
     team.members.add(request.user.id)
     return HttpResponseRedirect(reverse_lazy(
@@ -264,7 +264,7 @@ def assign_worker_to_team(request, pk):
 
 
 @login_required
-def delete_worker_from_team(request, pk):
+def delete_worker_from_team(request, pk) -> HttpResponseRedirect:
     team = Team.objects.get(pk=pk)
     team.members.remove(request.user.id)
     return HttpResponseRedirect(reverse_lazy(
@@ -278,7 +278,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "position_list"
     paginate_by = 5
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs) -> None:
         context = super(PositionListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
 
@@ -287,7 +287,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
         )
         return context
 
-    def get_queryset(self):
+    def get_queryset(self) -> queryset:
         form = PositionSearchForm(self.request.GET)
 
         if form.is_valid():
@@ -325,7 +325,7 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
     queryset = Project.objects.all()
     paginate_by = 5
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs) -> None:
         context = super(ProjectListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
 
@@ -335,7 +335,7 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
 
         return context
 
-    def get_queryset(self):
+    def get_queryset(self) -> queryset:
         form = ProjectSearchForm(self.request.GET)
 
         if form.is_valid():
@@ -376,7 +376,7 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
     queryset = Team.objects.all()
     paginate_by = 5
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs) -> None:
         context = super(TeamListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
 
@@ -386,7 +386,7 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
 
         return context
 
-    def get_queryset(self):
+    def get_queryset(self) -> queryset:
         form = TeamSearchForm(self.request.GET)
 
         if form.is_valid():
