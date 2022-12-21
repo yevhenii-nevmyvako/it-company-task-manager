@@ -21,18 +21,6 @@
               </h2>
             </div>
           </div>
-{#          <div class="col-lg-2 col-md-2 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">#}
-{#            <div class="nav-wrapper position-relative end-0">#}
-{#              <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">#}
-{#                <li class="nav-item">#}
-{#                  <a href="{% url 'task_manager:project-update' pk=worker.id %}">#}
-{#                    <i class="fas fa-pencil-alt text-dark me-2" style="margin: 0" aria-hidden="true"></i>#}
-{#                    <span class="btn btn-link text-success text-gradient text-xl px-3 mb-0">Update</span>#}
-{#                  </a>#}
-{#                </li>#}
-{#              </ul>#}
-{#            </div>#}
-{#          </div>#}
         </div>
       </div>
     </div>
@@ -53,10 +41,8 @@
             </div>
           </div>
       </div>
-
-
-        <div class="container-fluid col-8 py-xxl ">
-          <div class="row col-11 py-xxl">
+        <div class="container-fluid col-8">
+          <div class="row col-11 py-xxl min-height-400">
             <div class="col-xxl-12">
               <div class="card mb-2 py-4 h-100">
                 <div class="card-header pb-0 ">
@@ -85,6 +71,8 @@
                             </div>
                           </td>
                         </tr>
+                        {% empty %}
+                          <p style="text-align: center; color: mediumspringgreen">This worker has no Teams</p>
                         {% endfor %}
                       </tbody>
                     </table>
@@ -94,124 +82,69 @@
             </div>
           </div>
         </div>
-{##}
-{##}
-{##}
-{#        <div class="container-fluid col-10 py-xxl ">#}
-{#          <div class="row col-11 py-xxl">#}
-{#            <div class="container-fluid col-xxl-12">#}
-{#              <div class="card mb-2 py-4 h-100">#}
-{#                <div class="card-header pb-0 ">#}
-{#                  <h6 class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">Task list</h6>#}
-{#                </div>#}
-{#                  <table class=" container table align-items-center mb-0">#}
-{#                    <thead>#}
-{#                      <tr>#}
-{#                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">id</th>#}
-{#                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 ">Task Type</th>#}
-{#                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-3">Priority</th>#}
-{#                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-3">Deadline</th>#}
-{#                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-1">Is Completed</th>#}
-{#                      </tr>#}
-{#                    </thead>#}
-{#                      <tbody>#}
-{#                        {% for task in project.tasks.all %}#}
-{#                        <tr>#}
-{#                          <td class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-2" style="text-align: center">#}
-{#                            <div class="d-flex px-2 py-1">#}
-{#                              <div class="d-flex flex-column justify-content-right">#}
-{#                                {{ task.id }}#}
-{#                              </div>#}
-{#                            </div>#}
-{#                          </td>#}
-{#                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">#}
-{#                            <div class="col-5">#}
-{#                                {{ task.task_type }}#}
-{#                            </div>#}
-{#                          </td>#}
-{#                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">#}
-{#                            <div class="col-4">#}
-{#                                {{ task.priority }}#}
-{#                            </div>#}
-{#                          </td>#}
-{#                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">#}
-{#                            <div class="col-2">#}
-{#                                {{ task.deadline }}#}
-{#                            </div>#}
-{#                          </td>#}
-{#                            {% if task.is_completed == True %}#}
-{#                            <td class="align-middle text-center text-sm">#}
-{#                              <span class="badge badge-sm bg-gradient-success">Completed</span>#}
-{#                            </td>#}
-{#                              {% else %}#}
-{#                            <td class="align-middle text-center text-sm">#}
-{#                              <span class="badge badge-sm bg-gradient-secondary">Incomplete</span>#}
-{#                            </td>#}
-{#                            {% endif %}#}
-{#                        </tr>#}
-{#                        {% endfor %}#}
-{#                      </tbody>#}
-{#                    </table>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
+        <div class="container-fluid col-10 py-xxl ">
+          <div class="row col-11 py-xxl">
+            <div class="container-fluid col-xxl-12">
+              <div class="card mb-2 py-4 h-100">
+                <div class="card-header pb-0 ">
+                  <h6 class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">Task list</h6>
+                </div>
+                  <table class=" container table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">id</th>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 ">Task Type</th>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-3">Priority</th>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-3">Deadline</th>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-1">Is Completed</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                        {% for task in worker.tasks.all %}
+                        <tr>
+                          <td class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-2" style="text-align: center">
+                            <div class="d-flex px-2 py-1">
+                              <div class="d-flex flex-column justify-content-right">
+                                {{ task.id }}
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
+                            <div class="col-5">
+                                {{ task.task_type }}
+                            </div>
+                          </td>
+                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
+                            <div class="col-4">
+                                {{ task.priority }}
+                            </div>
+                          </td>
+                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
+                            <div class="col-2">
+                                {{ task.deadline }}
+                            </div>
+                          </td>
+                            {% if task.is_completed == True %}
+                            <td class="align-middle text-center text-sm">
+                              <span class="badge badge-sm bg-gradient-success">Completed</span>
+                            </td>
+                              {% else %}
+                            <td class="align-middle text-center text-sm">
+                              <span class="badge badge-sm bg-gradient-secondary">Incomplete</span>
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% empty %}
+                          <p style="text-align: center; color: mediumspringgreen">This worker has no Tasks!</p>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 {% endblock content %}
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}{% endblock javascripts %}
-
-
-
-
-
-
-{#{% extends "base.html" %}#}
-{#{% block title %}Worker | {{ worker.username }}{% endblock %}#}
-{#{% block content %}#}
-{#  <h4 class="display-5">Worker:</h4>#}
-{#  <hr>#}
-{#  <table class="table">#}
-{#      <tr>#}
-{#        <th>Username:</th>#}
-{#        <th>First name:</th>#}
-{#        <th>Surname:</th>#}
-{#        <th>@email:</th>#}
-{#        <th>Position</th>#}
-{#        <th>Team name</th>#}
-{#      </tr>#}
-{#      <tr>#}
-{#        <td>{{ worker.username }}</td>#}
-{#        <td>{{ worker.first_name }}</td>#}
-{#        <td>{{ worker.last_name }}</td>#}
-{#        <td>{{ worker.email }}</td>#}
-{#        <td>{{ worker.position.name }}</td>#}
-{#        <td>{{ worker.team.name }}</td>#}
-{#      </tr>#}
-{#  </table>#}
-{##}
-{##}
-{#  <h5 class="display-5">My Tasks: </h5>#}
-{#  <div class="p-2 bg-light border">#}
-{#  {% for task in worker.tasks.all %}#}
-{#    <table class="table">#}
-{#    <tr>#}
-{#      <th>Task type:</th>#}
-{#      <th>Is completed:</th>#}
-{#      <th>Task priority</th>#}
-{#      <th>Deadline</th>#}
-{#    </tr>#}
-{#    <tr>#}
-{#      <td>{{ task.task_type }}</td>#}
-{#      <td>{% if task.is_cpmleted == True %} Completed{% else %}Not Completed{% endif %}</td>#}
-{#      <td>{{ task.priority }}</td>#}
-{#      <td>{{ task.deadline }}</td>#}
-{#    </tr>#}
-{##}
-{#    </table>#}
-{#    {% empty %}#}
-{#      <p>I have finish all!</p>#}
-{#  {% endfor %}#}
-{#  </div>#}
-{#{% endblock %}#}
