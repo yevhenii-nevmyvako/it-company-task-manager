@@ -67,19 +67,19 @@
         <div class="col-12 col-xl-4">
           <div class="card h-100">
             <div class="card-body p-3">
-             <h6 class="text-uppercase mt-4">Task Type:</h6>
-             <h6 class="text-body text-xl font-weight-bolder">{{ task.task_type.name }}</h6>
-             <h6 class="text-uppercase mt-4">Priority:</h6>
-             <h6 class="text-body text-xl font-weight-bolder">{{ task.priority }}</h6>
-             <h6 class="text-uppercase mt-4">Deadline:</h6>
-             <h6 class="text-body text-xl font-weight-bolder">{{ task.deadline }}</h6>
-             {% if projects is None %}
-             <h6 class="text-uppercase mt-4">In Project:</h6>
-             <h6 class="text-body text-xl font-weight-bolder">{{ task.projects.name }}</h6>
+            <h6 class="text-uppercase mt-4">Task Type:</h6>
+            <h6 class="text-body text-xl font-weight-bolder">{{ task.task_type.name }}</h6>
+            <h6 class="text-uppercase mt-4">Priority:</h6>
+            <h6 class="text-body text-xl font-weight-bolder">{{ task.priority }}</h6>
+            <h6 class="text-uppercase mt-4">Deadline:</h6>
+            <h6 class="text-body text-xl font-weight-bolder">{{ task.deadline }}</h6>
+            {% if projects is None %}
+            <h6 class="text-uppercase mt-4">In Project:</h6>
+            <h6 class="text-body text-xl font-weight-bolder">{{ task.projects.name }}</h6>
             {% else %}
             <h6 class="text-uppercase mt-4">Task in Project:</h6>
-             <h6 class="text-body text-xl font-weight-bolder">No projects</h6>
-             <h6 class="text-uppercase mt-4">Is Completed:</h6>
+            <h6 class="text-body text-xl font-weight-bolder">No projects</h6>
+            <h6 class="text-uppercase mt-4">Is Completed:</h6>
             {% endif %}
              {% if task.is_completed == True %}
              <h6 class="text-body text-xl font-weight-bolder">
