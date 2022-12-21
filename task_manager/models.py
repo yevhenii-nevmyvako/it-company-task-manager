@@ -6,12 +6,17 @@ from django.urls import reverse
 
 
 class TaskType(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=70)
 
     class Meta:
         ordering = ["name"]
+        constraints = [
+            UniqueConstraint(
+                name="unique_task_type_name", fields=["name"]
+            )
+        ]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
     def get_absolute_url(self):
@@ -19,7 +24,7 @@ class TaskType(models.Model):
 
 
 class Position(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=70)
 
     class Meta:
         ordering = ["name"]
@@ -29,7 +34,7 @@ class Position(models.Model):
             )
         ]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
     def get_absolute_url(self):
@@ -41,7 +46,6 @@ class Worker(AbstractUser):
         Position,
         on_delete=models.CASCADE,
         related_name="workers",
-        blank=True,
         null=True,
     )
 
@@ -50,7 +54,7 @@ class Worker(AbstractUser):
         verbose_name = "Worker"
         verbose_name_plural = "Workers"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return (
             f"Username: {self.username} Full name: {self.first_name}"
             f" {self.last_name} Position: "
@@ -61,12 +65,11 @@ class Worker(AbstractUser):
 
 
 class Team(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=70)
     description = models.TextField(null=True, blank=True)
     members = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="teams",
-        blank=True,
     )
 
     class Meta:
@@ -77,7 +80,7 @@ class Team(models.Model):
             )
         ]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
     def get_absolute_url(self):
@@ -85,7 +88,7 @@ class Team(models.Model):
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=70)
     teams = models.ManyToManyField(
         Team,
         related_name="projects"
@@ -100,7 +103,7 @@ class Project(models.Model):
             )
         ]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Project: {self.name}" \
                f"Teams: {self.teams.name}"
 
@@ -139,7 +142,7 @@ class Task(models.Model):
     class Meta:
         ordering = ["deadline"]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return (
             f"Task type: {self.task_type.name}"
             f" (deadline date: {self.deadline},"
@@ -158,5 +161,5 @@ class Profile(models.Model):
         primary_key=True
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.user)
