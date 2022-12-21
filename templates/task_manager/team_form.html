@@ -1,18 +1,41 @@
 {% extends "base.html" %}
-{% block title %}Team | {{ object|yesno:"Update,Addition" }}{% endblock %}
 {% load crispy_forms_filters %}
 
+{% block title %} {{ team.name }} {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-<h1>{{ object|yesno:"Update,Create" }} new Team!</h1>
 
-  <form action="" method="POST" novalidate>
-  {% csrf_token %}
-  {{ form|crispy }}
-    <input class="btn btn-primary" type="submit" name="Addition">
-    <input class="btn btn-primary" type="button"
-           value="Cancel" onclick="location.href='{% url 'task_manager:team-list' %}'">
+    <div class="container-fluid">
+      <div class="page-header min-height-300 border-radius-lg mt-4" style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+        <span class="mask bg-gradient-primary opacity-6"></span>
+      </div>
 
-  </form>
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-6 d-flex flex-column mx-auto mx-6 mt-n6 ">
+              <div class="card card-plain">
+                <div class="card-header pb-06 text-left bg-transparent">
+                  <h3 class="font-weight-bolder text-info text-gradient">
+                    Update team:
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <form action="" method="POST" novalidate>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input class="btn btn-success" type="submit" name="Addition">
+                    <input class="btn btn-secondary" type="button"
+                           value="Cancel" onclick="location.href='{% url 'task_manager:team-list' %}'">
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div>
 
-{% endblock %}
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
