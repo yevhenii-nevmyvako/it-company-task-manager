@@ -85,7 +85,7 @@
                     <thead>
                       <tr>
                         <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7" style="text-align: left">id</th>
-                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-6" >Project name</th>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-7" >Project name</th>
                       </tr>
                     </thead>
                       <tbody>
@@ -98,7 +98,7 @@
                               </div>
                             </div>
                           </td>
-                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
                             <div class="col-3">
                                 {{ project.name }}
                             </div>
@@ -134,24 +134,24 @@
                       <tbody>
                         {% for worker in team.members.all %}
                         <tr>
-                          <td class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-2" style="text-align: center">
+                          <td class=" text-dark text-xl font-weight-bolder opacity-7 col-2" style="text-align: center">
                             <div class="d-flex px-2 py-1">
                               <div class="d-flex flex-column justify-content-right">
                                 {{ worker.id }}
                               </div>
                             </div>
                           </td>
-                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
                             <div class="col-4">
                                 {{ worker.username }}
                             </div>
                           </td>
-                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
                             <div class="col-4">
                                 {{ worker.first_name }} {{ worker.last_name }}
                             </div>
                           </td>
-                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
                             <div class="col-2">
                                 {{ worker.position.name }}
                             </div>

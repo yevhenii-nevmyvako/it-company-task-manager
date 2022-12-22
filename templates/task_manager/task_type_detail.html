@@ -66,36 +66,36 @@
                       <tbody>
                       {% for task in task_type.tasks.all %}
                         <tr>
-                          <td class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7" >
+                          <td class="text-dark text-xl font-weight-bolder opacity-7" >
                             <div class="d-flex px-2 py-1">
                               <div class="d-flex flex-column justify-content-right">
                                 {{ task.id }}
                               </div>
                             </div>
                           </td>
-                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
                             <div class="col-7">
                                 {{ task.priority }}
                             </div>
                           </td>
-                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
                             <div class="col-3">
                                 {{ task.deadline }}
                             </div>
                           </td>
-                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
-                            <div class="col-7">
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
+                            <div class="col-8">
                                 {{ task.projects.name }}
                             </div>
                           </td>
                           {% if task.is_completed == True %}
-                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
                             <div class="col-8">
                                 <span class="badge badge-sm bg-gradient-success">Completed</span>
                             </div>
                           </td>
                           {% else %}
-                          <td class="text-uppercase text-primary text-xl font-weight-bolder opacity-8" style="text-align: center">
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
                             <div class="col-8">
                                 <span class="badge badge-sm bg-gradient-secondary">Incomplete</span>
                             </div>
