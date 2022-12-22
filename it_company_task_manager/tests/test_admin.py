@@ -28,3 +28,9 @@ class AdminSiteTest(TestCase):
         url = reverse("admin:task_manager_worker_changelist")
         res = self.client.get(url)
         self.assertContains(res, self.worker.position)
+
+    def test_worker_detailed_position_listed(self):
+        """test that worker has position in worker detail admin page"""
+        url = reverse("admin:task_manager_worker_change", args=[self.worker.id])
+        res = self.client.get(url)
+        self.assertContains(res, self.worker.position)
