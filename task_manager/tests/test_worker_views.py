@@ -22,8 +22,13 @@ class PublicWorkerTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
-    # def test_login_required_worker_detail(self):
-    #     """test login required in worker detail view"""
-    #     response = self.client.get(WORKER_DETAIL_URL)
-    #
-    #     self.assertNotEqual(response.status_code, 200)
+
+class PrivetWorkerTests(TestCase):
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="qwer1234"
+        )
+        self.client.force_login(self.user)
+
+
