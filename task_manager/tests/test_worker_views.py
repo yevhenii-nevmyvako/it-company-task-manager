@@ -88,6 +88,17 @@ class PrivetWorkerTests(TestCase):
 
         self.assertTemplateUsed(response, "task_manager/worker_form.html")
 
+    def test_create_worker_with_position(self):
+        """test create worker with position"""
+        position = Position.objects.create(name="test-position")
+        Worker.objects.create(
+            first_name="test",
+            last_name="testing",
+            position=position
+        )
+        response = self.client.get(WORKER_URL)
+        self.assertEqual(response.status_code, 200)
+
 
 class SearchWorkerTests(TestCase):
     """test the search worker field"""
@@ -107,11 +118,3 @@ class SearchWorkerTests(TestCase):
             list(response.context["worker_list"]),
             list(Worker.objects.filter(username__icontains="test")),
         )
-
-
-
-
-
-
-
-
