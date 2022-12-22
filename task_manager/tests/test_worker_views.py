@@ -89,6 +89,27 @@ class PrivetWorkerTests(TestCase):
         self.assertTemplateUsed(response, "task_manager/worker_form.html")
 
 
+class SearchWorkerTests(TestCase):
+    """test the search worker field"""
+
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="test12345",
+        )
+        self.client.force_login(self.user)
+
+    def test_worker_search_field(self):
+        response = self.client.get(
+            reverse("task_manager:worker-list") + "?username=test"
+        )
+        self.assertEqual(
+            list(response.context["worker_list"]),
+            list(Worker.objects.filter(username__icontains="test")),
+        )
+
+
+
 
 
 
