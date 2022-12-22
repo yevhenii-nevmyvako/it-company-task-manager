@@ -13,7 +13,7 @@ class TaskTypeForm(forms.ModelForm):
         model = TaskType
         fields = ("name",)
 
-    def clean_name(self):
+    def clean_name(self) -> str:
         name = self.cleaned_data["name"]
 
         if [el for el in name if el in "0123456789"]:
@@ -29,7 +29,7 @@ class WorkerCreationFrom(UserCreationForm):
             "first_name", "last_name", "email", "position"
         )
 
-    def clean_position(self):
+    def clean_position(self) -> str:
         name = self.cleaned_data["name"]
 
         if [el for el in name if el in "0123456789"]:
@@ -48,7 +48,7 @@ class TeamForm(forms.ModelForm):
         model = Team
         fields = "__all__"
 
-    def clean_name(self):
+    def clean_name(self) -> str:
         name = self.cleaned_data["name"]
 
         if [el for el in name if el in "0123456789"]:
@@ -89,7 +89,7 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = "__all__"
 
-    def clean_deadline(self):
+    def clean_deadline(self) -> str:
         deadline = self.cleaned_data["deadline"]
         deadline = str(deadline)
         now = str(timezone.now())
@@ -119,7 +119,7 @@ class DeadlineForm(forms.ModelForm):
         model = Task
         fields = ("deadline",)
 
-    def clean_deadline(self):
+    def clean_deadline(self) -> str:
         deadline = self.cleaned_data["deadline"]
         deadline = str(deadline)
         now = str(timezone.now())
@@ -154,7 +154,7 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = "__all__"
 
-    def clean_name(self):
+    def clean_name(self) -> str:
         name = self.cleaned_data["name"]
 
         if [el for el in name if el in "0123456789"]:
@@ -172,7 +172,7 @@ class TeamWorkerUpdateForm(forms.ModelForm):
 
 class PositionSearchForm(forms.Form):
     name = forms.CharField(
-        max_length=255,
+        max_length=70,
         required=False,
         label="",
         widget=forms.TextInput(
@@ -185,7 +185,7 @@ class PositionSearchForm(forms.Form):
 
 class WorkerSearchForm(forms.Form):
     username = forms.CharField(
-        max_length=255,
+        max_length=70,
         required=False,
         label="",
         widget=forms.TextInput(
@@ -198,7 +198,7 @@ class WorkerSearchForm(forms.Form):
 
 class TaskSearchForm(forms.Form):
     task_type = forms.CharField(
-        max_length=255,
+        max_length=70,
         required=False,
         label="",
         widget=forms.TextInput(
@@ -211,7 +211,7 @@ class TaskSearchForm(forms.Form):
 
 class TaskTypeSearchForm(forms.Form):
     name = forms.CharField(
-        max_length=255,
+        max_length=70,
         required=False,
         label="",
         widget=forms.TextInput(
@@ -224,7 +224,7 @@ class TaskTypeSearchForm(forms.Form):
 
 class ProjectSearchForm(forms.Form):
     name = forms.CharField(
-        max_length=255,
+        max_length=70,
         required=False,
         label="",
         widget=forms.TextInput(
@@ -237,7 +237,7 @@ class ProjectSearchForm(forms.Form):
 
 class TeamSearchForm(forms.Form):
     name = forms.CharField(
-        max_length=255,
+        max_length=70,
         required=False,
         label="",
         widget=forms.TextInput(
