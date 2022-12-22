@@ -6,9 +6,6 @@ from task_manager.models import Worker, Position
 
 WORKER_URL = reverse("task_manager:worker-list")
 WORKER_CREATE_URL = reverse("task_manager:worker-create")
-# WORKER_DETAIL_URL = reverse("task_manager:worker-detail", args=[.id])
-# WORKER_DELETE_URL = reverse("task_manager:worker-delete")
-
 
 
 class PublicWorkerTests(TestCase):
@@ -62,6 +59,20 @@ class PrivetWorkerTests(TestCase):
         response = self.client.get(url_to_delete)
 
         self.assertEqual(response.status_code, 200)
+
+    def test_equal_worker_list_queryset_with_login(self):
+        """test equal worker lists queryset with  login required"""
+        workers_all = Worker.objects.all()
+        response = self.client.get(WORKER_URL)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(list(response.context["worker_list"]), list(workers_all))
+
+    def test_equal_worker_template_with_login(self):
+        """test check worker template with login required"""
+        response = self.client.get(WORKER_URL)
+
+        self.assertTemplateUsed(response, "task_manager/worker_list.html")
 
 
 
