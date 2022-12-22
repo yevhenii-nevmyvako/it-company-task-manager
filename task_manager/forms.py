@@ -6,7 +6,21 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
-from task_manager.models import Worker, Task, Position, Team, Project
+from task_manager.models import Worker, Task, Position, Team, Project, TaskType
+
+
+class TaskTypeForm(forms.ModelForm):
+
+    class Meta:
+        model = TaskType
+        fields = "__all__"
+
+    def clean_position(self):
+        name = self.cleaned_data["name"]
+
+        if [el for el in name if el in "0123456789"]:
+            raise ValidationError("Should be no digits in position field")
+        return name
 
 
 class WorkerCreationFrom(UserCreationForm):
@@ -141,6 +155,14 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = "__all__"
+
+    def clean_name(self):
+        name = self.cleaned_data["name"]
+
+        if [el for el in name if el in "0123456789"]:
+            raise ValidationError("Should be no digits in this field")
+
+        return name
 
 
 class TeamWorkerUpdateForm(forms.ModelForm):

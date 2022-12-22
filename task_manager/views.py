@@ -28,6 +28,7 @@ from task_manager.forms import (
     CompletedForm,
     DeadlineForm,
     PriorityForm,
+    TaskTypeForm,
 )
 
 
@@ -91,14 +92,14 @@ class TaskTypeDetailView(generic.DetailView):
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
     template_name = "task_manager/task_type_form.html"
-    fields = "__all__"
+    form_class = TaskTypeForm
     success_url = reverse_lazy("task_manager:task-type-list")
 
 
 class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
     template_name = "task_manager/task_type_form.html"
-    fields = "__all__"
+    form_class = TaskTypeForm
     success_url = reverse_lazy("task_manager:task-type-list")
 
 
