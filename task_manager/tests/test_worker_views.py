@@ -46,8 +46,12 @@ class PrivetWorkerTests(TestCase):
 
     def test_retrieve_worker_detail_with_login(self):
         """test retrieved worker detail page with login required"""
-        worker_detail = Worker.objects.create(first_name="test", last_name="testing")
-        url_to_detail = reverse("task_manager:worker-detail", args=[worker_detail.id])
+        worker_detail = Worker.objects.create(
+            first_name="test", last_name="testing"
+        )
+        url_to_detail = reverse(
+            "task_manager:worker-detail", args=[worker_detail.id]
+        )
         response = self.client.get(url_to_detail)
 
         self.assertEqual(response.status_code, 200)
@@ -55,7 +59,9 @@ class PrivetWorkerTests(TestCase):
     def test_retrieve_worker_delete_with_login(self):
         """test retrieved worker delete page with login required"""
         worker_detail = Worker.objects.create(first_name="test", last_name="testing")
-        url_to_delete = reverse("task_manager:worker-delete", args=[worker_detail.id])
+        url_to_delete = reverse(
+            "task_manager:worker-delete", args=[worker_detail.id]
+        )
         response = self.client.get(url_to_delete)
 
         self.assertEqual(response.status_code, 200)
@@ -66,13 +72,22 @@ class PrivetWorkerTests(TestCase):
         response = self.client.get(WORKER_URL)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(list(response.context["worker_list"]), list(workers_all))
+        self.assertEqual(
+            list(response.context["worker_list"]), list(workers_all)
+        )
 
     def test_equal_worker_template_with_login(self):
         """test check worker template with login required"""
         response = self.client.get(WORKER_URL)
 
         self.assertTemplateUsed(response, "task_manager/worker_list.html")
+
+    def test_equal_worker_create_template_with_login(self):
+        """test check worker create template with login"""
+        response = self.client.get(WORKER_CREATE_URL)
+
+        self.assertTemplateUsed(response, "task_manager/worker_form.html")
+
 
 
 
