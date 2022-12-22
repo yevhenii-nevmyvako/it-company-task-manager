@@ -26,17 +26,17 @@ class AdminSiteTest(TestCase):
     def test_worker_position_listed(self):
         """test that worker has position in list_display on worker admin page"""
         url = reverse("admin:task_manager_worker_changelist")
-        res = self.client.get(url)
-        self.assertContains(res, self.worker.position)
+        response = self.client.get(url)
+        self.assertContains(response, self.worker.position)
 
     def test_worker_detailed_position_listed(self):
         """test that worker has position in worker detail admin page"""
         url = reverse("admin:task_manager_worker_change", args=[self.worker.id])
-        res = self.client.get(url)
-        self.assertContains(res, self.worker.position)
+        response = self.client.get(url)
+        self.assertContains(response, self.worker.position)
 
     def test_worker_add_position_listed(self):
         """test that worker has position in add worker admin page"""
         url = reverse("admin:task_manager_worker_add")
-        res = self.client.get(url)
-        self.assertContains(res, self.worker.position)
+        response = self.client.get(url)
+        self.assertContains(response, self.worker.position)
