@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from task_manager.models import Task, Position, TaskType
+from task_manager.models import Task, Position, TaskType, Team
 
 
 class ModelsTest(TestCase):
@@ -45,3 +45,10 @@ class ModelsTest(TestCase):
             name="test"
         )
         self.assertEqual(str(task_type), task_type.name)
+
+    def test_team_str(self):
+        """test __str__ method in team model"""
+        team = Team.objects.create(
+            name="test"
+        )
+        self.assertEqual(str(team), team.name)
