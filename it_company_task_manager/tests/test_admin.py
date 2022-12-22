@@ -26,6 +26,5 @@ class AdminSiteTest(TestCase):
     def test_worker_position_listed(self):
         """test that worker has position in list_display on worker admin page"""
         url = reverse("admin:task_manager_worker_changelist")
-        # url = "http://127.0.0.1:8005/admin/task_manager/worker/"
         res = self.client.get(url)
         self.assertContains(res, self.worker.position)
