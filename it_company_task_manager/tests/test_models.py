@@ -20,18 +20,15 @@ class ModelsTest(TestCase):
                          f" {worker.last_name})"
         )
 
-
-
     def test_task_str(self):
         """Should test __str__method in task model"""
-        task = Task.objects.crate(
-
-            f"Task type: {self.task_type.name}"
-            f" (deadline date: {self.deadline},"
-            f" priority: {self.priority}"
-
+        task = Task.objects.create(
+            priority="Ugent",
+            is_completed="True"
         )
-
-
-
+        self.assertEqual(
+            str(task), f" deadline date: {task.deadline}"
+                       f" priority: {task.priority}"
+                       f" is completed: {task.is_completed}"
+        )
 
