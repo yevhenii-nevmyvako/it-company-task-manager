@@ -143,8 +143,10 @@ class Task(models.Model):
 
     def __str__(self) -> str:
         return (
-            f" (deadline date: {self.deadline},"
+            f" deadline date: {self.deadline}"
             f" priority: {self.priority}"
+            f" is completed: {self.is_completed}"
+
         )
 
     def get_absolute_url(self):
