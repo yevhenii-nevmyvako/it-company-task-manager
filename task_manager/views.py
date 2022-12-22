@@ -60,7 +60,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     template_name = "task_manager/task_type_list.html"
     context_object_name = "task_type_list"
     queryset = TaskType.objects.all()
-    paginate_by = 5
+    paginate_by = 7
 
     def get_context_data(self, *, object_list=None, **kwargs) -> None:
         context = super(TaskTypeListView, self).get_context_data(**kwargs)

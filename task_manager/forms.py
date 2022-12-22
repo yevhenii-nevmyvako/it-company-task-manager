@@ -1,5 +1,3 @@
-import datetime
-
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
@@ -13,9 +11,9 @@ class TaskTypeForm(forms.ModelForm):
 
     class Meta:
         model = TaskType
-        fields = "__all__"
+        fields = ("name",)
 
-    def clean_position(self):
+    def clean_name(self):
         name = self.cleaned_data["name"]
 
         if [el for el in name if el in "0123456789"]:
