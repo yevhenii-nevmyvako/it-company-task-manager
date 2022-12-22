@@ -57,7 +57,7 @@ class Worker(AbstractUser):
     def __str__(self) -> str:
         return (
             f"Username: {self.username} Full name: ({self.first_name}"
-            f" {self.last_name})"
+            f" {self.last_name}) position: {self.position.name}"
         )
 
     def get_absolute_url(self):
@@ -143,10 +143,11 @@ class Task(models.Model):
 
     def __str__(self) -> str:
         return (
+            f"task type: {self.task_type.name}"
             f" deadline date: {self.deadline}"
             f" priority: {self.priority}"
             f" is completed: {self.is_completed}"
-
+            f" project: {self.projects.name}"
         )
 
     def get_absolute_url(self):

@@ -8,28 +8,37 @@ class ModelsTest(TestCase):
 
     def test_worker_str(self):
         """test __str__ method in worker model"""
+        position = Position.objects.create(name="test")
         worker = get_user_model().objects.create_user(
             username="testname",
             password="test12345",
             first_name="Test First",
-            last_name="Test Last"
+            last_name="Test Last",
+            position=position
         )
         self.assertEqual(
             str(worker), f"Username: {worker.username}"
                          f" Full name: ({worker.first_name}"
-                         f" {worker.last_name})"
+                         f" {worker.last_name}) position: {worker.position.name}"
+
         )
 
     def test_task_str(self):
         """test __str__ method in task model"""
+        task_type = TaskType.objects.create(name="test")
+        projects = Project.objects.create(name="test")
         task = Task.objects.create(
             priority="Ugent",
-            is_completed="True"
+            is_completed="True",
+            task_type=task_type,
+            projects=projects
         )
         self.assertEqual(
-            str(task), f" deadline date: {task.deadline}"
+            str(task), f"task type: {task.task_type.name}"
+                       f" deadline date: {task.deadline}"
                        f" priority: {task.priority}"
                        f" is completed: {task.is_completed}"
+                       f" project: {task.projects.name}"
         )
 
     def test_position_str(self):
@@ -59,3 +68,4 @@ class ModelsTest(TestCase):
             name="test"
         )
         self.assertEqual(str(project), project.name)
+
