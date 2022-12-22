@@ -56,8 +56,8 @@ class Worker(AbstractUser):
 
     def __str__(self) -> str:
         return (
-            f"Username: {self.username} Full name: {self.first_name}"
-            f" {self.last_name} Position: "
+            f"Username: {self.username} Full name: ({self.first_name}"
+            f" {self.last_name})"
         )
 
     def get_absolute_url(self):
@@ -104,8 +104,7 @@ class Project(models.Model):
         ]
 
     def __str__(self) -> str:
-        return f"Project: {self.name}" \
-               f"Teams: {self.teams.name}"
+        return self.name
 
     def get_absolute_url(self):
         return reverse("task_manager:project-detail", args=[str(self.id)])
@@ -144,7 +143,6 @@ class Task(models.Model):
 
     def __str__(self) -> str:
         return (
-            f"Task type: {self.task_type.name}"
             f" (deadline date: {self.deadline},"
             f" priority: {self.priority}"
         )
