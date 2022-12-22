@@ -6,7 +6,7 @@ from task_manager.models import Task, Position, TaskType, Team, Project
 
 class ModelsTest(TestCase):
 
-    def test_worker_str(self):
+    def test_worker_str(self) -> None:
         """test __str__ method in worker model"""
         position = Position.objects.create(name="test")
         worker = get_user_model().objects.create_user(
@@ -23,7 +23,7 @@ class ModelsTest(TestCase):
 
         )
 
-    def test_task_str(self):
+    def test_task_str(self) -> None:
         """test __str__ method in task model"""
         task_type = TaskType.objects.create(name="test")
         projects = Project.objects.create(name="test")
@@ -41,31 +41,30 @@ class ModelsTest(TestCase):
                        f" project: {task.projects.name}"
         )
 
-    def test_position_str(self):
+    def test_position_str(self) -> None:
         """test __str__ method in position model"""
         position = Position.objects.create(
             name="test"
         )
         self.assertEqual(str(position), position.name)
 
-    def test_task_type_str(self):
+    def test_task_type_str(self) -> None:
         """test __str__ method in tasktype model"""
         task_type = TaskType.objects.create(
             name="test"
         )
         self.assertEqual(str(task_type), task_type.name)
 
-    def test_team_str(self):
+    def test_team_str(self) -> None:
         """test __str__ method in team model"""
         team = Team.objects.create(
             name="test"
         )
         self.assertEqual(str(team), team.name)
 
-    def test_project_str(self):
+    def test_project_str(self) -> None:
         """test __str__ method in project model"""
         project = Project.objects.create(
             name="test"
         )
         self.assertEqual(str(project), project.name)
-
