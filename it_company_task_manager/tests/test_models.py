@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from task_manager.models import Task, Position
+from task_manager.models import Task, Position, TaskType
 
 
 class ModelsTest(TestCase):
@@ -21,7 +21,7 @@ class ModelsTest(TestCase):
         )
 
     def test_task_str(self):
-        """test __str__method in task model"""
+        """test __str__ method in task model"""
         task = Task.objects.create(
             priority="Ugent",
             is_completed="True"
@@ -33,8 +33,15 @@ class ModelsTest(TestCase):
         )
 
     def test_position_str(self):
-        """test __str__method in position model"""
+        """test __str__ method in position model"""
         position = Position.objects.create(
             name="test"
         )
         self.assertEqual(str(position), position.name)
+
+    def test_task_type_str(self):
+        """test __str__ method in tasktype model"""
+        task_type = TaskType.objects.create(
+            name="test"
+        )
+        self.assertEqual(str(task_type), task_type.name)
