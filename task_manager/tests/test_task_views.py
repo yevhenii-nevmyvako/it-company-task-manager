@@ -154,3 +154,37 @@ class PrivateTaskTests(TestCase):
         self.assertTemplateUsed(
             response, "task_manager/task_list.html"
         )
+
+    def test_retrieve_template_task_delete_confirm_with_login_user(self):
+        """test retrieve template task_delete_confirm.html"""
+        task = Task.objects.create(task_type=self.task_type)
+        url_to_delete = reverse(
+            "task_manager:task-delete", args=[task.id]
+        )
+        response = self.client.get(url_to_delete)
+
+        self.assertTemplateUsed(
+            response, "task_manager/task_delete_confirm.html"
+        )
+
+    def test_retrieve_template_task_detail_with_login_user(self):
+        """test retrieve template task_detail.html"""
+        task = Task.objects.create(task_type=self.task_type)
+        url_to_detail = reverse(
+            "task_manager:task-detail", args=[task.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertTemplateUsed(
+            response, "task_manager/task_detail.html"
+        )
+
+    def test_delete_required_in_detail_task_with_login(self):
+        """test should delete the task"""
+        task_delete = Task.objects.create(
+            task_type=self.task_type)
+        url_to_delete = reverse(
+            "task_manager:task-delete", args=[task_delete.id]
+        )
+        response = self.client.post(url_to_delete)
+        self.assertEqual(response.status_code, 302)
