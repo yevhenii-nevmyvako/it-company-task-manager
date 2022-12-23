@@ -190,7 +190,7 @@ class PrivateTaskTypeTests(TestCase):
 
 
 class SearchTaskTypeTests(TestCase):
-    """test the task type search field on position llist"""
+    """test the task type search field on task_type llist"""
 
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
