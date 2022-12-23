@@ -5,8 +5,8 @@ from django.urls import reverse
 from task_manager.models import TaskType
 
 
-POSITION_URL = reverse("task_manager:task-type-list")
-POSITION_CREATE_URL = reverse("task_manager:task-type-create")
+TASK_TYPE_URL = reverse("task_manager:task-type-list")
+TASK_TYPE_CREATE_URL = reverse("task_manager:task-type-create")
 
 
 class PublicTaskTypeTests(TestCase):
@@ -14,14 +14,14 @@ class PublicTaskTypeTests(TestCase):
     def test_task_type_open_list_required(self):
         """test login required in task type
         list view doesn't work without login"""
-        response = self.client.get(POSITION_URL)
+        response = self.client.get(TASK_TYPE_URL)
 
         self.assertNotEqual(response.status_code, 200)
 
     def test_create_task_type_login_required(self):
         """test client doesn't open create
         task type without login required"""
-        response = self.client.get(POSITION_CREATE_URL)
+        response = self.client.get(TASK_TYPE_CREATE_URL)
 
         self.assertNotEqual(response.status_code, 200)
 
@@ -70,6 +70,25 @@ class PrivateTaskTypeTests(TestCase):
             password="qwer1234"
         )
         self.client.force_login(self.user)
+
+    def test_task_type_open_with_login_required(self):
+        """test to open task type list with login required"""
+        response = self.client.get(TASK_TYPE_URL)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_create_task_type_open_with_login_required(self):
+        """test client open create task type with login required"""
+        response = self.client.get(TASK_TYPE_CREATE_URL)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_create_position_with_login_required(self):
+        """test should create position with user login"""
+        TaskType.objects.create(name="test")
+        response = self.client.get(TASK_TYPE_CREATE_URL)
+
+        self.assertEqual(response.status_code, 200)
 
 
 
