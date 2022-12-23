@@ -23,7 +23,7 @@ class PublicWorkerTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-class PrivetWorkerTests(TestCase):
+class PrivateWorkerTests(TestCase):
 
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
