@@ -140,13 +140,17 @@ class PrivateTaskTypeTests(TestCase):
         """test check task type template with login required"""
         response = self.client.get(TASK_TYPE_URL)
 
-        self.assertTemplateUsed(response, "task_manager/task_type_list.html")
+        self.assertTemplateUsed(
+            response, "task_manager/task_type_list.html"
+        )
 
     def test_retrieve_template_position_form_with_login(self):
         """test retrieve template task_type_form.html"""
         response = self.client.get(TASK_TYPE_CREATE_URL)
 
-        self.assertTemplateUsed(response, "task_manager/task_type_form.html")
+        self.assertTemplateUsed(
+            response, "task_manager/task_type_form.html"
+        )
 
     def test_retrieve_template_task_type_delete_confirm_with_login(self):
         """test retrieve template task_type_delete_confirm.html"""
@@ -156,7 +160,9 @@ class PrivateTaskTypeTests(TestCase):
         )
         response = self.client.get(url_to_delete)
 
-        self.assertTemplateUsed(response, "task_manager/task_type_delete_confirm.html")
+        self.assertTemplateUsed(
+            response, "task_manager/task_type_delete_confirm.html"
+        )
 
     def test_retrieve_template_task_type_detail_with_login(self):
         """test retrieve template task_type_detail.html"""
@@ -166,7 +172,9 @@ class PrivateTaskTypeTests(TestCase):
         )
         response = self.client.get(url_to_detail)
 
-        self.assertTemplateUsed(response, "task_manager/task_type_detail.html")
+        self.assertTemplateUsed(
+            response, "task_manager/task_type_detail.html"
+        )
 
     def test_retrieve_template_task_type_update_with_login(self):
         """test retrieve template task_type_form.html"""
@@ -176,8 +184,26 @@ class PrivateTaskTypeTests(TestCase):
         )
         response = self.client.get(url_to_update)
 
-        self.assertTemplateUsed(response, "task_manager/task_type_form.html")
+        self.assertTemplateUsed(
+            response, "task_manager/task_type_form.html"
+        )
 
 
+class SearchTaskTypeTests(TestCase):
+    """test the task type search field on position llist"""
 
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="test12345",
+        )
+        self.client.force_login(self.user)
 
+    def test_task_type_search_field(self):
+        response = self.client.get(
+            reverse("task_manager:task-type-list") + "?name=test"
+        )
+        self.assertEqual(
+            list(response.context["task_type_list"]),
+            list(TaskType.objects.filter(name__icontains="test")),
+        )
