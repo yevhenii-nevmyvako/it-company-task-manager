@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.urls import reverse
 
+from task_manager.models import Position
 
 POSITION_URL = reverse("task_manager:position-list")
 POSITION_CREATE_URL = reverse("task_manager:position-create")
@@ -44,4 +45,24 @@ class PrivatePositionTests(TestCase):
         response = self.client.get(POSITION_CREATE_URL)
 
         self.assertEqual(response.status_code, 200)
+
+    def test_create_position_with_login_required(self):
+        """test should create position with user login"""
+        Position.objects.create(name="test")
+        response = self.client.get(POSITION_CREATE_URL)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_retrieve_position_detail_with_login(self):
+        """test retrieved position detail page with login required"""
+        worker_position = Position.objects.create(
+            name="test"
+        )
+        url_to_detail = reverse(
+            "task_manager:position-detail", args=[worker_position.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertEqual(response.status_code, 200)
+
 
