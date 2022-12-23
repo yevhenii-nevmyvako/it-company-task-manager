@@ -188,6 +188,16 @@ class PrivateProjectTests(TestCase):
             response, "task_manager/project_form.html"
         )
 
+    def test_delete_required_in_detail_project_with_login(self):
+        """test should delete the project"""
+        project_delete = Project.objects.create(
+            name="test")
+        url_to_delete = reverse(
+            "task_manager:project-delete", args=[project_delete.id]
+        )
+        response = self.client.post(url_to_delete)
+        self.assertEqual(response.status_code, 302)
+
 
 class SearchProjectTests(TestCase):
     """test the project search field on project list"""
