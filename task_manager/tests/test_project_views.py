@@ -89,3 +89,39 @@ class PrivateProjectTests(TestCase):
         response = self.client.get(PROJECT_CREATE_URL)
 
         self.assertEqual(response.status_code, 200)
+
+    def test_retrieve_project_detail_with_login(self):
+        """test retrieved project detail page with login required"""
+        project = Project.objects.create(
+            name="test"
+        )
+        url_to_detail = reverse(
+            "task_manager:project-detail", args=[project.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_retrieve_project_delete_with_login(self):
+        """test retrieved project delete page with login required"""
+        project = Project.objects.create(
+            name="test"
+        )
+        url_to_delete = reverse(
+            "task_manager:project-delete", args=[project.id]
+        )
+        response = self.client.get(url_to_delete)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_retrieve_project_update_with_login(self):
+        """test retrieved project delete page with login required"""
+        project = Project.objects.create(
+            name="test"
+        )
+        url_to_update = reverse(
+            "task_manager:project-update", args=[project.id]
+        )
+        response = self.client.get(url_to_update)
+
+        self.assertEqual(response.status_code, 200)

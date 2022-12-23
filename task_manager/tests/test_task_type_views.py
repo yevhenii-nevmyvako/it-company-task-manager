@@ -103,7 +103,7 @@ class PrivateTaskTypeTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_retrieve_task_type_delete_with_login(self):
-        """test retrieved position delete page with login required"""
+        """test retrieved task type delete page with login required"""
         task_type = TaskType.objects.create(
             name="test"
         )
