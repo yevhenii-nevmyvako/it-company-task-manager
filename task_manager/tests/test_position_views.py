@@ -89,5 +89,15 @@ class PrivatePositionTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+    def test_equal_position_list_queryset_with_login(self):
+        """test equal worker lists queryset with  login required"""
+        position_all = Position.objects.all()
+        response = self.client.get(POSITION_URL)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            list(response.context["position_list"]), list(position_all)
+        )
+
 
 
