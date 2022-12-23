@@ -24,6 +24,42 @@ class PublicPositionTests(TestCase):
 
         self.assertNotEqual(response.status_code, 200)
 
+    def test_delete_task_type_login_required(self):
+        """test doesn't open position_delete_confirm without login"""
+        position = Position.objects.create(
+            name="test"
+        )
+        url_to_delete = reverse(
+            "task_manager:position-delete", args=[position.id]
+        )
+        response = self.client.get(url_to_delete)
+
+        self.assertNotEqual(response.status_code, 200)
+
+    def test_detail_task_type_login_required(self):
+        """test doesn't open position_detail without login"""
+        position = Position.objects.create(
+            name="test"
+        )
+        url_to_detail = reverse(
+            "task_manager:position-detail", args=[position.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertNotEqual(response.status_code, 200)
+
+    def test_update_task_type_login_required(self):
+        """test doesn't open task_type_form without login"""
+        position = Position.objects.create(
+            name="test"
+        )
+        url_to_update = reverse(
+            "task_manager:position-update", args=[position.id]
+        )
+        response = self.client.get(url_to_update)
+
+        self.assertNotEqual(response.status_code, 200)
+
 
 class PrivatePositionTests(TestCase):
 

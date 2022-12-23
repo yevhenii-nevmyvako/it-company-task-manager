@@ -298,7 +298,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
         return self.queryset
 
 
-class PositionDetailView(generic.DetailView):
+class PositionDetailView(LoginRequiredMixin, generic.DetailView):
     model = Position
 
 
