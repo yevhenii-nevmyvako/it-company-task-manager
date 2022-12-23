@@ -113,4 +113,30 @@ class PrivateTeamTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+    def test_equal_team_list_queryset_with_login_user(self):
+        """test equal team lists queryset with login user"""
+        team_all = Team.objects.all()
+        response = self.client.get(TEAM_URL)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            list(response.context["team_list"]), list(team_all)
+        )
+
+    def test_retrieve_team_template_with_login_user(self):
+        """test check team template with login user"""
+        response = self.client.get(TEAM_URL)
+
+        self.assertTemplateUsed(
+            response, "task_manager/team_list.html"
+        )
+
+    def test_retrieve_template_team_form_with_login_user(self):
+        """test retrieve template team_form.html"""
+        response = self.client.get(TEAM_URL)
+
+        self.assertTemplateUsed(
+            response, "task_manager/team_list.html"
+        )
+
 
