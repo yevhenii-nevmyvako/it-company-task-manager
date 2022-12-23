@@ -148,6 +148,36 @@ class PrivateTaskTypeTests(TestCase):
 
         self.assertTemplateUsed(response, "task_manager/task_type_form.html")
 
+    def test_retrieve_template_task_type_delete_confirm_with_login(self):
+        """test retrieve template task_type_delete_confirm.html"""
+        task_type = TaskType.objects.create(name="test")
+        url_to_delete = reverse(
+            "task_manager:task-type-delete", args=[task_type.id]
+        )
+        response = self.client.get(url_to_delete)
+
+        self.assertTemplateUsed(response, "task_manager/task_type_delete_confirm.html")
+
+    def test_retrieve_template_task_type_detail_with_login(self):
+        """test retrieve template task_type_detail.html"""
+        task_type = TaskType.objects.create(name="test")
+        url_to_detail = reverse(
+            "task_manager:task-type-detail", args=[task_type.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertTemplateUsed(response, "task_manager/task_type_detail.html")
+
+    def test_retrieve_template_task_type_update_with_login(self):
+        """test retrieve template task_type_form.html"""
+        task_type = TaskType.objects.create(name="test")
+        url_to_update = reverse(
+            "task_manager:task-type-update", args=[task_type.id]
+        )
+        response = self.client.get(url_to_update)
+
+        self.assertTemplateUsed(response, "task_manager/task_type_form.html")
+
 
 
 
