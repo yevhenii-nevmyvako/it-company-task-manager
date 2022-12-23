@@ -144,7 +144,7 @@ class PrivateTaskTypeTests(TestCase):
             response, "task_manager/task_type_list.html"
         )
 
-    def test_retrieve_template_position_form_with_login(self):
+    def test_retrieve_template_task_type_form_with_login(self):
         """test retrieve template task_type_form.html"""
         response = self.client.get(TASK_TYPE_CREATE_URL)
 

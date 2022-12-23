@@ -6,7 +6,7 @@ from task_manager.models import Project
 
 
 PROJECT_URL = reverse("task_manager:project-list")
-PROJECT_CREATE_URL = reverse("task_manager:task-type-create")
+PROJECT_CREATE_URL = reverse("task_manager:project-create")
 
 
 class PublicProjectTests(TestCase):
@@ -125,3 +125,29 @@ class PrivateProjectTests(TestCase):
         response = self.client.get(url_to_update)
 
         self.assertEqual(response.status_code, 200)
+
+    def test_equal_project_list_queryset_with_login(self):
+        """test equal project lists queryset with login required"""
+        project_all = Project.objects.all()
+        response = self.client.get(PROJECT_URL)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            list(response.context["project_list"]), list(project_all)
+        )
+
+    def test_retrieve_project_template_with_login(self):
+        """test check project template with login required"""
+        response = self.client.get(PROJECT_URL)
+
+        self.assertTemplateUsed(
+            response, "task_manager/project_list.html"
+        )
+
+    def test_retrieve_template_project_form_with_login(self):
+        """test retrieve template project_form.html"""
+        response = self.client.get(PROJECT_CREATE_URL)
+
+        self.assertTemplateUsed(
+            response, "task_manager/project_form.html"
+        )
