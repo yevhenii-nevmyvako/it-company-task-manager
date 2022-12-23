@@ -142,7 +142,21 @@ class PrivatePositionTests(TestCase):
         self.assertTemplateUsed(response, "task_manager/position_form.html")
 
 
+class SearchPositionTests(TestCase):
+    """test the position search field on position llist"""
 
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="test12345",
+        )
+        self.client.force_login(self.user)
 
-
-
+    def test_position_search_field(self):
+        response = self.client.get(
+            reverse("task_manager:position-list") + "?name=test"
+        )
+        self.assertEqual(
+            list(response.context["position_list"]),
+            list(Position.objects.filter(name__icontains="test")),
+        )
