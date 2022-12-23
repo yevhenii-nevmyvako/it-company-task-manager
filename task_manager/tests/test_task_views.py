@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from task_manager.models import Project, Team, Task, TaskType
+from task_manager.models import Project, Task, TaskType
 
 TASK_URL = reverse("task_manager:task-list")
 TASK_CREATE_URL = reverse("task_manager:task-create")
@@ -128,3 +128,29 @@ class PrivateTaskTests(TestCase):
         response = self.client.get(url_to_delete)
 
         self.assertEqual(response.status_code, 200)
+
+    def test_equal_task_list_queryset_with_login_user(self):
+        """test equal task lists queryset with login user"""
+        task_all = Task.objects.all()
+        response = self.client.get(TASK_URL)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            list(response.context["task_list"]), list(task_all)
+        )
+
+    def test_retrieve_task_template_with_login_user(self):
+        """test check task template with login user"""
+        response = self.client.get(TASK_URL)
+
+        self.assertTemplateUsed(
+            response, "task_manager/task_list.html"
+        )
+
+    def test_retrieve_template_task_form_with_login_user(self):
+        """test retrieve template task_form.html"""
+        response = self.client.get(TASK_URL)
+
+        self.assertTemplateUsed(
+            response, "task_manager/task_list.html"
+        )
