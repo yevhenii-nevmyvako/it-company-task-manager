@@ -62,4 +62,14 @@ class PublicTaskTypeTests(TestCase):
         self.assertNotEqual(response.status_code, 200)
 
 
+class PrivateTaskTypeTests(TestCase):
+
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="qwer1234"
+        )
+        self.client.force_login(self.user)
+
+
 
