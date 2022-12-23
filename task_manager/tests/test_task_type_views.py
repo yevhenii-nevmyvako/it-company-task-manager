@@ -126,6 +126,28 @@ class PrivateTaskTypeTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+    def test_equal_task_type_list_queryset_with_login(self):
+        """test equal task type lists queryset with login required"""
+        task_type_all = TaskType.objects.all()
+        response = self.client.get(TASK_TYPE_URL)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            list(response.context["task_type_list"]), list(task_type_all)
+        )
+
+    def test_retrieve_task_type_template_with_login(self):
+        """test check task type template with login required"""
+        response = self.client.get(TASK_TYPE_URL)
+
+        self.assertTemplateUsed(response, "task_manager/task_type_list.html")
+
+    def test_retrieve_template_position_form_with_login(self):
+        """test retrieve template task_type_form.html"""
+        response = self.client.get(TASK_TYPE_CREATE_URL)
+
+        self.assertTemplateUsed(response, "task_manager/task_type_form.html")
+
 
 
 
