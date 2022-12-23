@@ -99,6 +99,16 @@ class PrivateWorkerTests(TestCase):
         response = self.client.get(WORKER_URL)
         self.assertEqual(response.status_code, 200)
 
+    def test_delete_required_in_detail_worker_with_login(self):
+        """test should delete the worker"""
+        worker_delete = Worker.objects.create(
+            username="testings12", password="4321qwer")
+        url_to_delete = reverse(
+            "task_manager:worker-delete", args=[worker_delete.id]
+        )
+        response = self.client.post(url_to_delete)
+        self.assertEqual(response.status_code, 302)
+
 
 class SearchWorkerTests(TestCase):
     """test the worker search field"""
