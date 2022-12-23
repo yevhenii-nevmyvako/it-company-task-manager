@@ -177,6 +177,16 @@ class PrivatePositionTests(TestCase):
 
         self.assertTemplateUsed(response, "task_manager/position_form.html")
 
+    def test_delete_required_in_detail_position_with_login(self):
+        """test should delete the position"""
+        position_delete = Position.objects.create(
+            name="test")
+        url_to_delete = reverse(
+            "task_manager:position-delete", args=[position_delete.id]
+        )
+        response = self.client.post(url_to_delete)
+        self.assertEqual(response.status_code, 302)
+
 
 class SearchPositionTests(TestCase):
     """test the position search field on position llist"""
