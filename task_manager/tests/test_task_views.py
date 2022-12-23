@@ -191,7 +191,7 @@ class PrivateTaskTests(TestCase):
 
 
 class SearchTaskTests(TestCase):
-    """test the team search field on team list"""
+    """test the task search field on team list"""
 
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
