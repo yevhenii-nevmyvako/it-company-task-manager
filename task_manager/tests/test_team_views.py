@@ -35,3 +35,27 @@ class PublicTeamTests(TestCase):
         response = self.client.get(url_to_delete)
 
         self.assertNotEqual(response.status_code, 200)
+
+    def test_detail_team_login_required(self):
+        """test doesn't open team_detail without login"""
+        team = Team.objects.create(
+            name="test"
+        )
+        url_to_detail = reverse(
+            "task_manager:team-detail", args=[team.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertNotEqual(response.status_code, 200)
+
+    def test_update_team_login_required(self):
+        """test doesn't open team_form without login"""
+        team = Team.objects.create(
+            name="test"
+        )
+        url_to_update = reverse(
+            "task_manager:team-update", args=[team.id]
+        )
+        response = self.client.get(url_to_update)
+
+        self.assertNotEqual(response.status_code, 200)
