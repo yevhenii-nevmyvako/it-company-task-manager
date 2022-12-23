@@ -188,3 +188,23 @@ class PrivateTaskTests(TestCase):
         )
         response = self.client.post(url_to_delete)
         self.assertEqual(response.status_code, 302)
+
+
+class SearchTaskTests(TestCase):
+    """test the team search field on team list"""
+
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="test12345",
+        )
+        self.client.force_login(self.user)
+
+    def test_task_search_field(self):
+        response = self.client.get(
+            reverse("task_manager:task-list") + "?task_type=test"
+        )
+        self.assertEqual(
+            list(response.context["task_list"]),
+            list(Task.objects.filter(task_type__name__icontains="test")),
+            )
