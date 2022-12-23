@@ -164,5 +164,21 @@ class PrivateTeamTests(TestCase):
         )
 
 
+class SearchTeamTests(TestCase):
+    """test the team search field on project list"""
 
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="test12345",
+        )
+        self.client.force_login(self.user)
 
+    def test_team_search_field(self):
+        response = self.client.get(
+            reverse("task_manager:team-list") + "?name=test"
+        )
+        self.assertEqual(
+            list(response.context["team_list"]),
+            list(Team.objects.filter(name__icontains="test")),
+            )
