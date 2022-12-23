@@ -62,3 +62,27 @@ class PublicTaskTests(TestCase):
         response = self.client.get(url_to_update)
 
         self.assertNotEqual(response.status_code, 200)
+
+
+class PrivateTaskTests(TestCase):
+
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="qwer1234",
+        )
+        self.client.force_login(self.user)
+        self.task_type = TaskType.objects.create(name="test1")
+        self.projects = Project.objects.create(name="test2")
+
+    def test_task_open_with_login_user(self):
+        """test to open task with login user"""
+        response = self.client.get(TASK_URL)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_create_task_open_with_login_user(self):
+        """test client open create task with login user"""
+        response = self.client.get(TASK_URL)
+
+        self.assertEqual(response.status_code, 200)
