@@ -84,7 +84,7 @@ class PrivateProjectTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_create_project_with_login_user(self):
-        """test should create project with user user"""
+        """test should create project with user"""
         Project.objects.create(name="test")
         response = self.client.get(PROJECT_CREATE_URL)
 
