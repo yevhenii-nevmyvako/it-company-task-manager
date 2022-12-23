@@ -104,3 +104,27 @@ class PrivateTaskTests(TestCase):
         response = self.client.get(TASK_URL)
 
         self.assertEqual(response.status_code, 200)
+
+    def test_retrieve_task_detail_with_login_user(self):
+        """test retrieved task detail page with login user"""
+        task = Task.objects.create(
+            task_type=self.task_type
+        )
+        url_to_detail = reverse(
+            "task_manager:task-detail", args=[task.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_retrieve_task_delete_with_login_user(self):
+        """test retrieved task delete page with login user"""
+        task = Task.objects.create(
+            task_type=self.task_type
+        )
+        url_to_delete = reverse(
+            "task_manager:task-delete", args=[task.id]
+        )
+        response = self.client.get(url_to_delete)
+
+        self.assertEqual(response.status_code, 200)
