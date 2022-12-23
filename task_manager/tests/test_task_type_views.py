@@ -188,6 +188,16 @@ class PrivateTaskTypeTests(TestCase):
             response, "task_manager/task_type_form.html"
         )
 
+    def test_delete_required_in_detail_task_type_with_login(self):
+        """test should delete the task_type"""
+        task_type_delete = TaskType.objects.create(
+            name="test")
+        url_to_delete = reverse(
+            "task_manager:task-type-delete", args=[task_type_delete.id]
+        )
+        response = self.client.post(url_to_delete)
+        self.assertEqual(response.status_code, 302)
+
 
 class SearchTaskTypeTests(TestCase):
     """test the task type search field on task_type llist"""
