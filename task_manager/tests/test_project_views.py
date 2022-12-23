@@ -70,3 +70,22 @@ class PrivateProjectTests(TestCase):
             password="qwer1234"
         )
         self.client.force_login(self.user)
+
+    def test_project_open_with_login_required(self):
+        """test to open task project with login required"""
+        response = self.client.get(PROJECT_URL)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_create_project_open_with_login_required(self):
+        """test client open create project with login required"""
+        response = self.client.get(PROJECT_CREATE_URL)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_create_project_with_login_required(self):
+        """test should create project with user login"""
+        Project.objects.create(name="test")
+        response = self.client.get(PROJECT_CREATE_URL)
+
+        self.assertEqual(response.status_code, 200)
