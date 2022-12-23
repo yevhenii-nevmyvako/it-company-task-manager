@@ -83,7 +83,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
         return self.queryset
 
 
-class TaskTypeDetailView(generic.DetailView):
+class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = TaskType
     template_name = "task_manager/task_type_detail.html"
     context_object_name = "task_type"

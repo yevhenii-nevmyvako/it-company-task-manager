@@ -25,3 +25,41 @@ class PublicTaskTypeTests(TestCase):
 
         self.assertNotEqual(response.status_code, 200)
 
+    def test_delete_task_type_login_required(self):
+        """test doesn't open task_type_delete_confirm without login"""
+        task_type = TaskType.objects.create(
+            name="test"
+        )
+        url_to_delete = reverse(
+            "task_manager:task-type-delete", args=[task_type.id]
+        )
+        response = self.client.get(url_to_delete)
+
+        self.assertNotEqual(response.status_code, 200)
+
+    def test_detail_task_type_login_required(self):
+        """test doesn't open task_type_detail without login"""
+        task_type = TaskType.objects.create(
+            name="test"
+        )
+        url_to_detail = reverse(
+            "task_manager:task-type-detail", args=[task_type.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertNotEqual(response.status_code, 200)
+
+    def test_update_task_type_login_required(self):
+        """test doesn't open task_type_form without login"""
+        task_type = TaskType.objects.create(
+            name="test"
+        )
+        url_to_update = reverse(
+            "task_manager:task-type-update", args=[task_type.id]
+        )
+        response = self.client.get(url_to_update)
+
+        self.assertNotEqual(response.status_code, 200)
+
+
+
