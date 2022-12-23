@@ -86,3 +86,21 @@ class PrivateTaskTests(TestCase):
         response = self.client.get(TASK_URL)
 
         self.assertEqual(response.status_code, 200)
+
+    def test_create_task_task_type_with_login_user(self):
+        """test should create task with task_type"""
+        Task.objects.create(
+            task_type=self.task_type
+        )
+        response = self.client.get(TASK_URL)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_create_task_project_with_login_user(self):
+        """test should create task with project"""
+        Task.objects.create(
+            projects=self.projects
+        )
+        response = self.client.get(TASK_URL)
+
+        self.assertEqual(response.status_code, 200)
