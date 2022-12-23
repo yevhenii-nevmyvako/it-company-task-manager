@@ -55,11 +55,11 @@ class PrivatePositionTests(TestCase):
 
     def test_retrieve_position_detail_with_login(self):
         """test retrieved position detail page with login required"""
-        worker_position = Position.objects.create(
+        position = Position.objects.create(
             name="test"
         )
         url_to_detail = reverse(
-            "task_manager:position-detail", args=[worker_position.id]
+            "task_manager:position-detail", args=[position.id]
         )
         response = self.client.get(url_to_detail)
 
@@ -67,11 +67,11 @@ class PrivatePositionTests(TestCase):
 
     def test_retrieve_position_delete_with_login(self):
         """test retrieved position delete page with login required"""
-        worker_position = Position.objects.create(
+        position = Position.objects.create(
             name="test"
         )
         url_to_delete = reverse(
-            "task_manager:position-delete", args=[worker_position.id]
+            "task_manager:position-delete", args=[position.id]
         )
         response = self.client.get(url_to_delete)
 
@@ -79,18 +79,18 @@ class PrivatePositionTests(TestCase):
 
     def test_retrieve_position_update_with_login(self):
         """test retrieved position delete page with login required"""
-        worker_position = Position.objects.create(
+        position = Position.objects.create(
             name="test"
         )
         url_to_update = reverse(
-            "task_manager:position-update", args=[worker_position.id]
+            "task_manager:position-update", args=[position.id]
         )
         response = self.client.get(url_to_update)
 
         self.assertEqual(response.status_code, 200)
 
     def test_equal_position_list_queryset_with_login(self):
-        """test equal worker lists queryset with  login required"""
+        """test equal position lists queryset with login required"""
         position_all = Position.objects.all()
         response = self.client.get(POSITION_URL)
 
@@ -98,6 +98,51 @@ class PrivatePositionTests(TestCase):
         self.assertEqual(
             list(response.context["position_list"]), list(position_all)
         )
+
+    def test_retrieve_position_template_with_login(self):
+        """test check position template with login required"""
+        response = self.client.get(POSITION_URL)
+
+        self.assertTemplateUsed(response, "task_manager/position_list.html")
+
+    def test_retrieve_template_position_form_with_login(self):
+        """test retrieve template position_form.html"""
+        response = self.client.get(POSITION_CREATE_URL)
+
+        self.assertTemplateUsed(response, "task_manager/position_form.html")
+
+    def test_retrieve_template_position_delete_confirm_with_login(self):
+        """test retrieve template position_delete_confirm.html"""
+        position = Position.objects.create(name="test")
+        url_to_delete = reverse(
+            "task_manager:position-delete", args=[position.id]
+        )
+        response = self.client.get(url_to_delete)
+
+        self.assertTemplateUsed(response, "task_manager/position_delete_confirm.html")
+
+    def test_retrieve_template_position_detail_with_login(self):
+        """test retrieve template position_detail.html"""
+        position = Position.objects.create(name="test")
+        url_to_detail = reverse(
+            "task_manager:position-detail", args=[position.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertTemplateUsed(response, "task_manager/position_detail.html")
+
+    def test_retrieve_template_position_update_with_login(self):
+        """test retrieve template position_form.html"""
+        position = Position.objects.create(name="test")
+        url_to_update = reverse(
+            "task_manager:position-update", args=[position.id]
+        )
+        response = self.client.get(url_to_update)
+
+        self.assertTemplateUsed(response, "task_manager/position_form.html")
+
+
+
 
 
 
