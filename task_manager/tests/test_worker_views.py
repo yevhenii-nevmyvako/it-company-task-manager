@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse
 
 from task_manager.models import Worker, Position
@@ -101,7 +101,7 @@ class PrivetWorkerTests(TestCase):
 
 
 class SearchWorkerTests(TestCase):
-    """test the search worker field"""
+    """test the worker search field"""
 
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
