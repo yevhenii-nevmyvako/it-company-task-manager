@@ -65,4 +65,29 @@ class PrivatePositionTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+    def test_retrieve_position_delete_with_login(self):
+        """test retrieved position delete page with login required"""
+        worker_position = Position.objects.create(
+            name="test"
+        )
+        url_to_delete = reverse(
+            "task_manager:position-delete", args=[worker_position.id]
+        )
+        response = self.client.get(url_to_delete)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_retrieve_position_update_with_login(self):
+        """test retrieved position delete page with login required"""
+        worker_position = Position.objects.create(
+            name="test"
+        )
+        url_to_update = reverse(
+            "task_manager:position-update", args=[worker_position.id]
+        )
+        response = self.client.get(url_to_update)
+
+        self.assertEqual(response.status_code, 200)
+
+
 
