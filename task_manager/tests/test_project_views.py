@@ -151,3 +151,39 @@ class PrivateProjectTests(TestCase):
         self.assertTemplateUsed(
             response, "task_manager/project_form.html"
         )
+
+    def test_retrieve_template_project_delete_confirm_with_login(self):
+        """test retrieve template project_delete_confirm.html"""
+        project = Project.objects.create(name="test")
+        url_to_delete = reverse(
+            "task_manager:project-delete", args=[project.id]
+        )
+        response = self.client.get(url_to_delete)
+
+        self.assertTemplateUsed(
+            response, "task_manager/project_delete_confirm.html"
+        )
+
+    def test_retrieve_template_project_detail_with_login(self):
+        """test retrieve template project_detail.html"""
+        project = Project.objects.create(name="test")
+        url_to_detail = reverse(
+            "task_manager:project-detail", args=[project.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertTemplateUsed(
+            response, "task_manager/project_detail.html"
+        )
+
+    def test_retrieve_template_project_update_with_login(self):
+        """test retrieve template project_form.html"""
+        project = Project.objects.create(name="test")
+        url_to_update = reverse(
+            "task_manager:project-update", args=[project.id]
+        )
+        response = self.client.get(url_to_update)
+
+        self.assertTemplateUsed(
+            response, "task_manager/project_form.html"
+        )
