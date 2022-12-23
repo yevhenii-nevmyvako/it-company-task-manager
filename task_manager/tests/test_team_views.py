@@ -163,9 +163,19 @@ class PrivateTeamTests(TestCase):
             response, "task_manager/team_detail.html"
         )
 
+    def test_delete_required_in_detail_team_with_login(self):
+        """test should delete the team"""
+        team_delete = Team.objects.create(
+            name="test")
+        url_to_delete = reverse(
+            "task_manager:team-delete", args=[team_delete.id]
+        )
+        response = self.client.post(url_to_delete)
+        self.assertEqual(response.status_code, 302)
+
 
 class SearchTeamTests(TestCase):
-    """test the team search field on project list"""
+    """test the team search field on team list"""
 
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
