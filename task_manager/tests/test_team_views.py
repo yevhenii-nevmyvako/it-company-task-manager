@@ -139,4 +139,30 @@ class PrivateTeamTests(TestCase):
             response, "task_manager/team_list.html"
         )
 
+    def test_retrieve_template_team_delete_confirm_with_login_user(self):
+        """test retrieve template team_delete_confirm.html"""
+        team = Team.objects.create(name="test")
+        url_to_delete = reverse(
+            "task_manager:team-delete", args=[team.id]
+        )
+        response = self.client.get(url_to_delete)
+
+        self.assertTemplateUsed(
+            response, "task_manager/team_delete_confirm.html"
+        )
+
+    def test_retrieve_template_team_detail_with_login_user(self):
+        """test retrieve template team_detail.html"""
+        team = Team.objects.create(name="test")
+        url_to_detail = reverse(
+            "task_manager:team-detail", args=[team.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertTemplateUsed(
+            response, "task_manager/team_detail.html"
+        )
+
+
+
 
