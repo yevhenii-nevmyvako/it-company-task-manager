@@ -60,3 +60,13 @@ class PublicProjectTests(TestCase):
         response = self.client.get(url_to_update)
 
         self.assertNotEqual(response.status_code, 200)
+
+
+class PrivateProjectTests(TestCase):
+
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="qwer1234"
+        )
+        self.client.force_login(self.user)
