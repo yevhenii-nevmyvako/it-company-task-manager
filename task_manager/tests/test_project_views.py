@@ -36,3 +36,27 @@ class PublicProjectTests(TestCase):
         response = self.client.get(url_to_delete)
 
         self.assertNotEqual(response.status_code, 200)
+
+    def test_detail_project_login_required(self):
+        """test doesn't open project_detail without login"""
+        project = Project.objects.create(
+            name="test"
+        )
+        url_to_detail = reverse(
+            "task_manager:project-detail", args=[project.id]
+        )
+        response = self.client.get(url_to_detail)
+
+        self.assertNotEqual(response.status_code, 200)
+
+    def test_update_project_login_required(self):
+        """test doesn't open project_form without login"""
+        project = Project.objects.create(
+            name="test"
+        )
+        url_to_update = reverse(
+            "task_manager:project-update", args=[project.id]
+        )
+        response = self.client.get(url_to_update)
+
+        self.assertNotEqual(response.status_code, 200)
