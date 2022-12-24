@@ -221,6 +221,7 @@ class WorkerDetailView(generic.DetailView):
 class WorkerCreateView(generic.CreateView):
     model = Worker
     form_class = WorkerCreationFrom
+    queryset = Worker.objects.all().select_related("position")
     success_url = reverse_lazy("task_manager:worker-list")
 
 

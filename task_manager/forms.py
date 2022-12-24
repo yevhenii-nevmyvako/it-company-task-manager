@@ -22,6 +22,7 @@ class TaskTypeForm(forms.ModelForm):
 
 
 class WorkerCreationFrom(UserCreationForm):
+    position = forms.ModelChoiceField(queryset=Position.objects.all(), empty_label="Nothing")
 
     class Meta(UserCreationForm.Meta):
         model = Worker
@@ -61,7 +62,7 @@ class PositionForm(forms.ModelForm):
 
     class Meta:
         model = Position
-        fields = "__all__"
+        fields = ("name",)
 
     def clean_name(self) -> str:
         name = self.cleaned_data["name"]
@@ -72,6 +73,7 @@ class PositionForm(forms.ModelForm):
 
 
 class TaskForm(forms.ModelForm):
+
     deadline = forms.DateField(
         label="Deadline datetime",
         widget=forms.DateInput(
