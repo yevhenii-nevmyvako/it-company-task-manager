@@ -2,11 +2,13 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from task_manager.forms import WorkerCreationFrom, PositionForm, TaskTypeForm, CompletedForm
+from task_manager.forms import WorkerCreationFrom, PositionForm, TaskTypeForm, CompletedForm, PriorityForm, \
+    WorkerPositionUpdateForm
 from task_manager.models import Position
 
 
 class TaskTypeFormTests(TestCase):
+
     def test_task_type_form(self):
         """test should validate task type form field"""
         form_data = {"name": "test"}
@@ -45,3 +47,19 @@ class CompletedFormTests(TestCase):
         form_data = {"is_completed": "True"}
         form = CompletedForm(data=form_data)
         self.assertTrue(form.is_valid())
+
+
+class PriorityFormTests(TestCase):
+
+    def test_priority_field_form(self):
+        """test should validate priority field"""
+        form_data = {"priority": "Ugent"}
+        form = PriorityForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_equal_priority_field_form(self):
+        """test should equal priority field"""
+        form_data = {"priority": "Ugent"}
+        form = PriorityForm(data=form_data)
+        form.is_valid()
+        self.assertEqual(form.cleaned_data, form_data)
