@@ -16,7 +16,7 @@
           <div class="row col-12 py-xxl">
             <div class="container-fluid col-xxl-12">
               <div class="card mb-2 py-4 h-100 align-items-center">
-                <h2 class="font-weight-bolder text-info text-gradient">{{ object|yesno:"Change,Addition" }} task type in: <span class="text-primary">"{{ tasktype.name }}"</span></h2>
+                <h2 class="font-weight-bolder text-info text-gradient">{{ object|yesno:"Change,Create" }} task type in: <span class="text-primary">"{{ tasktype.name }}"</span></h2>
                 <form action="" method="POST" novalidate>
                   {% csrf_token %}
                   {{ form|crispy }}
