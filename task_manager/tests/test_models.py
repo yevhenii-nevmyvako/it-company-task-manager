@@ -19,7 +19,7 @@ class ModelsTest(TestCase):
         self.assertEqual(
             str(worker), f"Username: {worker.username}"
                          f" Full name: ({worker.first_name}"
-                         f" {worker.last_name})"
+                         f" {worker.last_name}) Position: {worker.position}"
 
         )
 

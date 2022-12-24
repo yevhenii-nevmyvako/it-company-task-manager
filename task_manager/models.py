@@ -57,7 +57,7 @@ class Worker(AbstractUser):
     def __str__(self) -> str:
         return (
             f"Username: {self.username} Full name: ({self.first_name}"
-            f" {self.last_name})"
+            f" {self.last_name}) Position: {self.position}"
         )
 
     def get_absolute_url(self):
