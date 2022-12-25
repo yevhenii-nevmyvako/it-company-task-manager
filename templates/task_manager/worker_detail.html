@@ -53,8 +53,11 @@
              <h6 class="text-body text-xl font-weight-bolder">{{ worker.first_name }} {{ worker.last_name }}</h6>
              <h6 class="text-uppercase mt-4">@Email:</h6>
              <h6 class="text-body text-xl font-weight-bolder">{{ worker.email }}</h6>
-             <h6 class="text-uppercase mt-4">Position:</h6>
-             <h6 class="text-body text-xl font-weight-bolder">{{ worker.position }}</h6>
+             <h6 class="text-uppercase mt-4">Position: </h6>
+             <h6 class="text-body text-xl font-weight-bolder">{{ worker.position }}
+               <a class="col" href="{% url 'task_manager:position-update' pk=worker.id %}">
+                 <span class="btn btn-link text-success text-gradient text-xl px-3 mb-0">Change Position</span>
+               </a></h6>
              <h6 class="text-uppercase mt-4">Date joined:</h6>
              <h6 class="text-body text-xl font-weight-bolder">{{ worker.date_joined }}</h6>
             </div>
