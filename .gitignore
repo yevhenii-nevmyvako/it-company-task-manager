@@ -6,8 +6,5 @@ db.sqlite3
 .env
 .DS_Store
 .pytest_cache/
-assets
-media
-signals.py
-user_profile.html
+
 
