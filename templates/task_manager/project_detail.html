@@ -117,7 +117,7 @@
                       <tbody>
                         {% for task in project.tasks.all %}
                         <tr>
-                          <td class="text-dark text-xl font-weight-bolder opacity-7 col-xl-2" style="text-align: center">
+                          <td class="text-dark text-xl font-weight-bolder opacity-7 col-xl-1" style="text-align: center">
                             <div class="d-flex px-2 py-1">
                               <div class="d-flex flex-column justify-content-right">
                                 {{ task.id }}
@@ -125,12 +125,12 @@
                             </div>
                           </td>
                           <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
-                            <div class="col-xl-5">
+                            <div class="col-xl-4">
                                 {{ task.task_type }}
                             </div>
                           </td>
                           <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
-                            <div class="col-xl-4">
+                            <div class="col-xl-5">
                                 {{ task.priority }}
                             </div>
                           </td>
