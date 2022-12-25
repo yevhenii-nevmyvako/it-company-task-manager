@@ -1,2 +1,9 @@
 .idea
 venv
+**__pycache__
+*.iml
+.env
+.DS_Store
+.pytest_cache/
+
+

@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %} Project {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="container-fluid xxl">
+
+      <div class="page-header min-height-300 border-radius-lg mt-4" style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+        <span class="mask bg-gradient-primary opacity-6"></span>
+      </div>
+      <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
+        <div class="row gx-4">
+          <div class="col-lg-auto my-auto">
+            <div class="h-100">
+              <h2 class="mb-1">
+                Project name: {{ project.name }}
+              </h2>
+            </div>
+          </div>
+          <div class="col-lg-3 col-lg-md-2 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+            <div class="nav-wrapper position-relative end-0">
+              <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                <li class="nav-item">
+                  <a href="{% url 'task_manager:project-update' pk=project.id %}">
+                    <i class="fas fa-pencil-alt text-dark me-2" style="margin: 0" aria-hidden="true"></i>
+                    <span class="btn btn-link text-success text-gradient text-xl px-3 mb-0">Update</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'task_manager:project-list' %}">
+                    <i class="fa-regular fa-circle-xmark text-dark m-2" style="margin: 0" aria-hidden="true"></i>
+                    <span class="btn btn-link text-warning text-gradient text-xl px-3 mb-0">Close</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid col-lg-12 py-4">
+      <div class="row">
+        <div class="col-md-12 col-xl-4">
+          <div class="card h-100">
+            <div class="card-header pb-0 p-3 py-xxl">
+              <h6 class="text-uppercase mb-0">Project name:</h6>
+            </div>
+            <div class="card-body p-3">
+              <h6 class="text-body text-xl font-weight-bolder">{{ project.name }}</h6>
+              <h6 class="text-uppercase mt-4">Project Description:</h6>
+              <h6 class="text-body text-xl font-weight-bolder">{{ project.description }}</h6>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid col-lg-8 py-xxl ">
+          <div class="row col--lg11 py-xxl min-height-400">
+            <div class="col-lg-12">
+              <div class="card mb-2 py-4 h-100">
+                <div class="card-header pb-0 ">
+                  <h6 class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">Team list</h6>
+                </div>
+                  <table class=" container table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7" style="text-align: left">id</th>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-lg-7" >Team name</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                        {% for team in project.teams.all %}
+                        <tr>
+                          <td class="text-dark text-xl font-weight-bolder opacity-7" >
+                            <div class="d-flex px-2 py-1">
+                              <div class="d-flex flex-column justify-content-right">
+                                {{ team.id }}
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
+                            <div class="col-xxl-3">
+                                {{ team.name }}
+                            </div>
+                          </td>
+                        </tr>
+                        {% empty %}
+                          <p style="text-align: center; color: mediumspringgreen">No Teams on this Project!</p>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid col-lg-10 py-xxl ">
+          <div class="row col-lg-11 py-xxl">
+            <div class="container-fluid col-xxl-12">
+              <div class="card mb-2 py-4 h-100">
+                <div class="card-header pb-0 ">
+                  <h6 class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">Task list</h6>
+                </div>
+                  <table class=" container table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">id</th>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 ">Task Type</th>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-xl-3">Priority</th>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-xl-3">Deadline</th>
+                        <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7 col-xl-1">Is Completed</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                        {% for task in project.tasks.all %}
+                        <tr>
+                          <td class="text-dark text-xl font-weight-bolder opacity-7 col-xl-1" style="text-align: center">
+                            <div class="d-flex px-2 py-1">
+                              <div class="d-flex flex-column justify-content-right">
+                                {{ task.id }}
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
+                            <div class="col-xl-4">
+                                {{ task.task_type }}
+                            </div>
+                          </td>
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
+                            <div class="col-xl-5">
+                                {{ task.priority }}
+                            </div>
+                          </td>
+                          <td class="text-dark text-xl font-weight-bolder opacity-8" style="text-align: center">
+                            <div class="col-xl-2">
+                                {{ task.deadline }}
+                            </div>
+                          </td>
+                            {% if task.is_completed == True %}
+                            <td class="align-middle text-center text-sm">
+                              <span class="badge badge-sm bg-gradient-success">Completed</span>
+                            </td>
+                              {% else %}
+                            <td class="align-middle text-center text-sm">
+                              <span class="badge badge-sm bg-gradient-secondary">Incomplete</span>
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% empty %}
+                          <p style="text-align: center; color: mediumspringgreen">No Tasks on this Project!</p>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
