@@ -30,13 +30,6 @@ class WorkerCreationFrom(UserCreationForm):
             "first_name", "last_name", "email", "position"
         )
 
-    def clean_position(self) -> str:
-        name = self.cleaned_data["name"]
-
-        if [el for el in name if el in "0123456789"]:
-            raise ValidationError("Should be no digits in position field")
-        return name
-
 
 class TeamForm(forms.ModelForm):
     members = forms.ModelMultipleChoiceField(
