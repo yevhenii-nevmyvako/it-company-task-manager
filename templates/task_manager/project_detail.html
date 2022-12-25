@@ -21,13 +21,19 @@
               </h2>
             </div>
           </div>
-          <div class="col-lg-2 col-lg-md-2 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+          <div class="col-lg-3 col-lg-md-2 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
             <div class="nav-wrapper position-relative end-0">
               <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
                 <li class="nav-item">
                   <a href="{% url 'task_manager:project-update' pk=project.id %}">
                     <i class="fas fa-pencil-alt text-dark me-2" style="margin: 0" aria-hidden="true"></i>
                     <span class="btn btn-link text-success text-gradient text-xl px-3 mb-0">Update</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'task_manager:project-list' %}">
+                    <i class="fa-regular fa-circle-xmark text-dark m-2" style="margin: 0" aria-hidden="true"></i>
+                    <span class="btn btn-link text-warning text-gradient text-xl px-3 mb-0">Close</span>
                   </a>
                 </li>
               </ul>
