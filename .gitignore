@@ -5,6 +5,4 @@ venv
 .env
 .DS_Store
 .pytest_cache/
-db.sqlite3
-
-
+*.sqlite3
