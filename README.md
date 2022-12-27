@@ -21,6 +21,7 @@ pip install -r requirements.txt
 python mnange.py runserver
 ```
 
+
 ## Features
 
 * Authentication functionality for Worker/User
@@ -31,6 +32,9 @@ python mnange.py runserver
 * Worker can change position
 * Tasks can change deadline & completed & priority
 
+## User for login 
+* User: testuser
+* Password: test2857
 
 ## Demo
 
