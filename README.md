@@ -33,11 +33,11 @@ python mnange.py runserver
 * Tasks can change deadline & completed & priority
 
 ## User for login 
-* Url: http://127.0.0.1:8005/task_manager
+* Url: http://127.0.0.1:8000/task_manager
 * User: testuser
 * Password: test2857
 
 ## Demo
 
-![Website Interface](demo.png)
-![Website Interface](demo1.png)
+![Website Interface](static/demo/demo.png)
+![Website Interface](static/demo/demo1.png)
