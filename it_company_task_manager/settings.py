@@ -95,7 +95,10 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(default=os.environ.get("DATABASE_URL"), conn_max_age=500)
+db_from_env = dj_database_url.config(
+    default=os.environ.get("DATABASE_URL"),
+    conn_max_age=500
+)
 DATABASES["default"].update(db_from_env)
 
 
@@ -162,6 +165,6 @@ if os.path.isfile(dotenv_file):
 # UPDATE secret key
 SECRET_KEY = os.environ["SECRET_KEY"]
 DATABASE_URL = os.environ["DATABASE_URL"]
-DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
+DEBUG = os.environ.get("DEBUG", "") != "False"
 
 # Instead of your actual secret key
