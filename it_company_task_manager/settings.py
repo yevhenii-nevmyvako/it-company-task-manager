@@ -32,9 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = ["127.0.0.1"]
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+INTERNAL_IPS = ["127.0.0.1"]
 
 # Application definition
 
@@ -92,15 +90,13 @@ AUTH_USER_MODEL = "task_manager.Worker"
 
 DATABASES = {
     "default": {
+        # "ENGINE": "django.db.backends.postgresql"
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
-# Update DB to postrgesql with dj-database-url
-
-db_from_env = dj_database_url.config(
-    conn_max_age=500)
+db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES["default"].update(db_from_env)
 
 
@@ -166,6 +162,7 @@ if os.path.isfile(dotenv_file):
 
 # UPDATE secret key
 SECRET_KEY = os.environ["SECRET_KEY"]
+DATABASE_URL = os.environ["DATABASE_URL"]
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
 # Instead of your actual secret key
