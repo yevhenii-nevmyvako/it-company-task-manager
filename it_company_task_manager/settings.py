@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -158,6 +158,6 @@ if os.path.isfile(dotenv_file):
 
 # UPDATE secret key
 SECRET_KEY = os.environ["SECRET_KEY"]
-DEBUG = os.environ["DEBUG"]
+DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
 # Instead of your actual secret key
