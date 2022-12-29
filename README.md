@@ -30,7 +30,7 @@ python mnange.py runserver
 * Worker can take tasks and join a team
 * On projects members can work on team and complete the task
 * Worker can change position
-* Tasks can change deadline & completed & priority
+* Tasks can change deadline & completedC & priority
 
 ## User for login 
 * Url: http://127.0.0.1:8000/task_manager
