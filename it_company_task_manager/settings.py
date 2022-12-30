@@ -43,11 +43,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # "task_manager",
     "debug_toolbar",
-    "task_manager",
     "crispy_forms",
     "crispy_bootstrap5",
     "bootstrap_modal_forms",
+    "task_manager.apps.TaskManagerConfig"
 ]
 
 MIDDLEWARE = [
@@ -164,7 +165,7 @@ if os.path.isfile(dotenv_file):
 
 # UPDATE secret key
 SECRET_KEY = os.environ["SECRET_KEY"]
-DATABASE_URL = os.environ["DATABASE_URL"]
-DEBUG = os.environ.get("DEBUG", "") != "False"
-
+# DATABASE_URL = os.environ["DATABASE_URL"]
+# DEBUG = os.environ.get("DEBUG", "") != "False"
+DEBUG = os.environ["DEBUG"]
 # Instead of your actual secret key
