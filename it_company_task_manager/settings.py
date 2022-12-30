@@ -167,7 +167,6 @@ if os.path.isfile(dotenv_file):
 
 # UPDATE secret key
 SECRET_KEY = os.environ["SECRET_KEY"]
-# DATABASE_URL = os.environ["DATABASE_URL"]
 # DEBUG = os.environ.get("DEBUG", "") != "False"
 DEBUG = os.environ["DEBUG"]
 # Instead of your actual secret key
