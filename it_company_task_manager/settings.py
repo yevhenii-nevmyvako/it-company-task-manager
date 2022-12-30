@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1", "it-task-manager.onrender.com"]
 
 INTERNAL_IPS = ["127.0.0.1"]
 
@@ -167,6 +167,6 @@ if os.path.isfile(dotenv_file):
 
 # UPDATE secret key
 SECRET_KEY = os.environ["SECRET_KEY"]
-# DEBUG = os.environ.get("DEBUG", "") != "False"
-DEBUG = os.environ["DEBUG"]
+DEBUG = os.environ.get("DEBUG", "") != "False"
+# DEBUG = os.environ["DEBUG"]
 # Instead of your actual secret key
