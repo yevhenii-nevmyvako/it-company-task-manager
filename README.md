@@ -35,7 +35,7 @@ python mnange.py runserver
 ## User for login 
 * Url: http://127.0.0.1:8000/task_manager
 * User: testuser
-* Password: 
+* Password: qaz1qaz1
 
 ## Demo
 
