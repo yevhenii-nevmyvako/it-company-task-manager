@@ -32,8 +32,7 @@ python mnange.py runserver
 * Worker can change position
 * Tasks can change deadline & completedC & priority
 
-## User for login 
-* Url: http://127.0.0.1:8000/task_manager
+## User for login
 * User: testuser
 * Password: qaz1qaz1
 
