@@ -4,7 +4,7 @@ Django project to managing tasks adn workers in teams and projects
 
 
 # Check it out!
-[task-manager project deployed to (link here)](PAST_LINK_HERE)
+[task-manager project deployed to Render](https://it-task-manager.onrender.com/)
 
 
 
@@ -35,7 +35,7 @@ python mnange.py runserver
 ## User for login 
 * Url: http://127.0.0.1:8000/task_manager
 * User: testuser
-* Password: test2857
+* Password: qaz1qaz1
 
 ## Demo
 
