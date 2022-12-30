@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 import dotenv
 from dotenv import load_dotenv, find_dotenv
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,11 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+INTERNAL_IPS = ["127.0.0.1"]
 
 # Application definition
 
@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "debug_toolbar",
     "task_manager",
+    "debug_toolbar",
     "crispy_forms",
     "crispy_bootstrap5",
     "bootstrap_modal_forms",
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -95,6 +96,12 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(
+    default=os.environ.get("DATABASE_URL"),
+    conn_max_age=500
+)
+DATABASES["default"].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -136,7 +143,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-LOGIN_REDIRECT_URL = "/task_manager/"
+STATIC_ROOT = "staticfiles/"
+
+LOGIN_REDIRECT_URL = "/"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
@@ -158,6 +167,6 @@ if os.path.isfile(dotenv_file):
 
 # UPDATE secret key
 SECRET_KEY = os.environ["SECRET_KEY"]
+# DEBUG = os.environ.get("DEBUG", "") != "False"
 DEBUG = os.environ["DEBUG"]
-
 # Instead of your actual secret key
