@@ -4,7 +4,7 @@ Django project to managing tasks adn workers in teams and projects
 
 
 # Check it out!
-[task-manager project deployed to (link here)](PAST_LINK_HERE)
+[task-manager project deployed to Render](https://it-task-manager.onrender.com/)
 
 
 
