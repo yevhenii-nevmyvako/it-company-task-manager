@@ -7,7 +7,27 @@ Django project to managing tasks adn workers in teams and projects
 [task-manager project deployed to Render](https://it-task-manager.onrender.com/)
 
 
+## Features
 
+* Authentication functionality for Worker/User
+* Managing teams & tasks & project directly from website
+* Powerful admin panel for advanced  managing
+* Worker can take tasks and join a team
+* On projects members can work on team and complete the task
+* Worker can change position
+* Tasks can change deadline & completedC & priority
+
+## User for login
+```shell
+* User: testuser
+* Password: qaz1qaz1
+```
+
+
+## Demo
+
+![Website Interface](static/demo/demo.png)
+![Website Interface](static/demo/demo1.png)
 
 ## Installation
 Python3 and Django must be already installed
@@ -20,23 +40,3 @@ source venv/bin/activate
 pip install -r requirements.txt
 python mnange.py runserver
 ```
-
-
-## Features
-
-* Authentication functionality for Worker/User
-* Managing teams & tasks & project directly from website
-* Powerful admin panel for advanced  managing
-* Worker can take tasks and join a team
-* On projects members can work on team and complete the task
-* Worker can change position
-* Tasks can change deadline & completedC & priority
-
-## User for login
-* User: testuser
-* Password: qaz1qaz1
-
-## Demo
-
-![Website Interface](static/demo/demo.png)
-![Website Interface](static/demo/demo1.png)
